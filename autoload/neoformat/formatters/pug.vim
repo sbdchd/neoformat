@@ -1,8 +1,8 @@
-function! neoformat#formatters#pug#enabled()
+function! neoformat#formatters#pug#enabled() abort
    return ['pugbeautifier']
 endfunction
 
-function! neoformat#formatters#pug#pugbeautifier()
+function! neoformat#formatters#pug#pugbeautifier() abort
     return {
         \ 'exe': 'pug-beautifier',
         \ 'args': ['-s 2']

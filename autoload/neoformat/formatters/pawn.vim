@@ -1,8 +1,8 @@
-function! neoformat#formatters#pawn#enabled()
+function! neoformat#formatters#pawn#enabled() abort
     return ['uncrustify']
 endfunction
 
-function! neoformat#formatters#pawn#uncrustify()
+function! neoformat#formatters#pawn#uncrustify() abort
     return {
         \ 'exe': 'uncrustify',
         \ 'args': ['-q', '-l PAWN', '-f']

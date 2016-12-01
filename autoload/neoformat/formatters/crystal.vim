@@ -1,8 +1,8 @@
-function! neoformat#formatters#crystal#enabled()
+function! neoformat#formatters#crystal#enabled() abort
     return ['crystalformat']
 endfunction
 
-function! neoformat#formatters#crystal#crystalformat()
+function! neoformat#formatters#crystal#crystalformat() abort
     return {
         \ 'exe': 'crystal',
         \ 'args': ['tool', 'format'],

@@ -1,8 +1,8 @@
-function! neoformat#formatters#elm#enabled()
+function! neoformat#formatters#elm#enabled() abort
     return ['elmformat']
 endfunction
 
-function! neoformat#formatters#elm#elmformat()
+function! neoformat#formatters#elm#elmformat() abort
     return {
         \ 'exe': 'elm-format'
         \ }

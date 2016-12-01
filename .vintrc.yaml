@@ -11,5 +11,3 @@ policies:
         enabled: false
     ProhibitEqualTildeOperator:
         enabled: false
-    ProhibitNoAbortFunction:
-        enabled: false

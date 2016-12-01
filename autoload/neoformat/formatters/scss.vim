@@ -1,22 +1,22 @@
-function! neoformat#formatters#scss#enabled()
+function! neoformat#formatters#scss#enabled() abort
    return ['sassconvert', 'stylefmt', 'prettydiff', 'csscomb']
 endfunction
 
-function! neoformat#formatters#scss#sassconvert()
+function! neoformat#formatters#scss#sassconvert() abort
     return {
             \ 'exe': 'sass-convert',
             \ 'args': ['-T scss']
             \ }
 endfunction
 
-function! neoformat#formatters#scss#csscomb()
+function! neoformat#formatters#scss#csscomb() abort
     return neoformat#formatters#css#csscomb()
 endfunction
 
-function! neoformat#formatters#scss#prettydiff()
+function! neoformat#formatters#scss#prettydiff() abort
     return neoformat#formatters#css#prettydiff()
 endfunction
 
-function! neoformat#formatters#scss#stylefmt()
+function! neoformat#formatters#scss#stylefmt() abort
     return neoformat#formatters#css#stylefmt()
 endfunction

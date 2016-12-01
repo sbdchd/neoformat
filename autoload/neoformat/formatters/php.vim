@@ -1,8 +1,8 @@
-function! neoformat#formatters#php#enabled()
+function! neoformat#formatters#php#enabled() abort
     return ['phpbeautifier']
 endfunction
 
-function! neoformat#formatters#php#phpbeautifier()
+function! neoformat#formatters#php#phpbeautifier() abort
     return {
         \ 'exe': 'php_beautifier',
         \ }

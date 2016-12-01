@@ -1,8 +1,8 @@
-function! neoformat#formatters#haskell#enabled()
+function! neoformat#formatters#haskell#enabled() abort
     return ['stylishhaskell']
 endfunction
 
-function! neoformat#formatters#haskell#stylishhaskell()
+function! neoformat#formatters#haskell#stylishhaskell() abort
     return {
         \ 'exe': 'stylish-haskell'
         \ }

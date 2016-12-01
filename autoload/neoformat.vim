@@ -1,4 +1,4 @@
-function! neoformat#Start(user_formatter)
+function! neoformat#Start(user_formatter) abort
     let s:current_formatter_index = 0
     call neoformat#Neoformat(a:user_formatter)
 endfunction
@@ -60,7 +60,7 @@ function! s:get_enabled_formatters(filetype) abort
     return []
 endfunction
 
-function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos)
+function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
     if a:ArgLead =~ '[^A-Za-z0-9]'
         return []
     endif
@@ -75,7 +75,7 @@ function! neoformat#NextNeoformat() abort
     return neoformat#Neoformat('')
 endfunction
 
-function! s:autoload_func_exists(func_name)
+function! s:autoload_func_exists(func_name) abort
     try
         call eval(a:func_name . '()')
     catch /^Vim\%((\a\+)\)\=:E117/
@@ -84,7 +84,7 @@ function! s:autoload_func_exists(func_name)
     return 1
 endfunction
 
-function! s:split_filetypes(filetype)
+function! s:split_filetypes(filetype) abort
     if a:filetype == ''
         return ''
     endif

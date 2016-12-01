@@ -1,16 +1,16 @@
-function! neoformat#formatters#javascript#enabled()
+function! neoformat#formatters#javascript#enabled() abort
     return ['jsbeautify', 'prettydiff', 'clangformat', 'esformatter']
 endfunction
 
-function! neoformat#formatters#javascript#jsbeautify()
+function! neoformat#formatters#javascript#jsbeautify() abort
     return {'exe': 'js-beautify'}
 endfunction
 
-function! neoformat#formatters#javascript#clangformat()
+function! neoformat#formatters#javascript#clangformat() abort
     return {'exe': 'clang-format'}
 endfunction
 
-function! neoformat#formatters#javascript#prettydiff()
+function! neoformat#formatters#javascript#prettydiff() abort
     return {
         \ 'exe': 'prettydiff',
         \ 'args': ['mode:"beautify"',
@@ -22,7 +22,7 @@ function! neoformat#formatters#javascript#prettydiff()
         \ }
 endfunction
 
-function! neoformat#formatters#javascript#esformatter()
+function! neoformat#formatters#javascript#esformatter() abort
     return {
         \ 'exe': 'esformatter'
         \ }

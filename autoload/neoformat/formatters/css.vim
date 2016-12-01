@@ -1,19 +1,19 @@
-function! neoformat#formatters#css#enabled()
+function! neoformat#formatters#css#enabled() abort
     return ['cssbeautify', 'prettydiff', 'stylefmt', 'csscomb']
 endfunction
 
-function! neoformat#formatters#css#cssbeautify()
+function! neoformat#formatters#css#cssbeautify() abort
     return { 'exe': 'css-beautify' }
 endfunction
 
-function! neoformat#formatters#css#csscomb()
+function! neoformat#formatters#css#csscomb() abort
     return {
             \ 'exe': 'csscomb',
             \ 'replace': 1
             \ }
 endfunction
 
-function! neoformat#formatters#css#prettydiff()
+function! neoformat#formatters#css#prettydiff() abort
     return {
             \ 'exe': 'prettydiff',
             \ 'args': ['mode:"beautify"',
@@ -25,7 +25,7 @@ function! neoformat#formatters#css#prettydiff()
             \ }
 endfunction
 
-function! neoformat#formatters#css#stylefmt()
+function! neoformat#formatters#css#stylefmt() abort
     return {
         \ 'exe': 'stylefmt',
         \ 'replace': 1

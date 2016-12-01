@@ -1,8 +1,8 @@
-function! neoformat#formatters#xhtml#enabled()
+function! neoformat#formatters#xhtml#enabled() abort
    return ['tidy', 'prettydiff']
 endfunction
 
-function! neoformat#formatters#xhtml#tidy()
+function! neoformat#formatters#xhtml#tidy() abort
     return {
             \ 'exe': 'tidy',
             \ 'args': ['-quiet',
@@ -15,6 +15,6 @@ function! neoformat#formatters#xhtml#tidy()
             \ }
 endfunction
 
-function! neoformat#formatters#xhtml#prettydiff()
+function! neoformat#formatters#xhtml#prettydiff() abort
     return neoformat#formatters#html#prettydiff()
 endfunction

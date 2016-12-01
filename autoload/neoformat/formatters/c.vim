@@ -1,19 +1,19 @@
-function! neoformat#formatters#c#enabled()
+function! neoformat#formatters#c#enabled() abort
    return ['uncrustify', 'clangformat', 'astyle']
 endfunction
 
-function! neoformat#formatters#c#uncrustify()
+function! neoformat#formatters#c#uncrustify() abort
     return {
            \ 'exe': 'uncrustify',
            \ 'args': ['-q', '-l C', '-f']
            \ }
 endfunction
 
-function! neoformat#formatters#c#clangformat()
+function! neoformat#formatters#c#clangformat() abort
     return {'exe': 'clang-format'}
 endfunction
 
-function! neoformat#formatters#c#astyle()
+function! neoformat#formatters#c#astyle() abort
     return {
             \ 'exe': 'astyle',
             \ 'args': ['--mode=c'],

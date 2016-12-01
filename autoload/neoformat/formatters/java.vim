@@ -1,8 +1,8 @@
-function! neoformat#formatters#java#enabled()
+function! neoformat#formatters#java#enabled() abort
    return ['uncrustify', 'astyle', 'clang-format']
 endfunction
 
-function! neoformat#formatters#java#uncrustify()
+function! neoformat#formatters#java#uncrustify() abort
      return {
             \ 'exe': 'uncrustify',
             \ 'args': ['-q', '-l JAVA', '-f']
@@ -10,7 +10,7 @@ function! neoformat#formatters#java#uncrustify()
 endfunction
 
 
-function! neoformat#formatters#java#astyle()
+function! neoformat#formatters#java#astyle() abort
     return {
             \ 'exe': 'astyle',
             \ 'args': ['--mode=java'],
@@ -19,7 +19,7 @@ function! neoformat#formatters#java#astyle()
 endfunction
 
 
-function! neoformat#formatters#java#clangformat()
+function! neoformat#formatters#java#clangformat() abort
     return {'exe': 'clang-format'}
 endfunction
 

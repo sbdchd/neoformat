@@ -1,6 +1,6 @@
 let s:jobs = {}
 
-function! s:job_id(job)
+function! s:job_id(job) abort
     " 8 is the type Job
     if type(a:job) == 8
         let i = job_getchannel(a:job)
@@ -43,7 +43,7 @@ function! s:on_stdout(job_id, data) abort
     call extend(job.stdout, a:data)
 endfunction
 
-function! s:on_stdout_vim(job, data)
+function! s:on_stdout_vim(job, data) abort
     let id = s:job_id(a:job)
 
     if !has_key(s:jobs, id)

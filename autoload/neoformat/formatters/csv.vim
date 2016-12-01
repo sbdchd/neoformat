@@ -1,8 +1,8 @@
-function! neoformat#formatters#csv#enabled()
+function! neoformat#formatters#csv#enabled() abort
    return ['prettydiff']
 endfunction
 
-function! neoformat#formatters#csv#prettydiff()
+function! neoformat#formatters#csv#prettydiff() abort
     return {
             \ 'exe': 'prettydiff',
             \ 'args': ['mode:"beautify"',
