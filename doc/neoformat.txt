@@ -126,6 +126,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [astyle](http://astyle.sourceforge.net)
 - OCaml
   - [ocp-indent](http://www.typerex.org/ocp-indent.html)
+- Pandoc Markdown
+  - [pandoc][https://pandoc.org/MANUAL.html]
 - Pawn
   - [uncrustify](http://uncrustify.sourceforge.net)
 - Perl

@@ -160,6 +160,8 @@ let &verbose            = 1 " also increases verbosity of the editor as a whole
     [`astyle`](http://astyle.sourceforge.net)
 - OCaml
   - [`ocp-indent`](http://www.typerex.org/ocp-indent.html)
+- Pandoc Markdown
+  - [`pandoc`][https://pandoc.org/MANUAL.html]
 - Pawn
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Perl
