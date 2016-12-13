@@ -11,8 +11,6 @@ function! neoformat#formatters#pandoc#pandoc() abort
             \ '-s',
             \ '--wrap=auto',
             \ '--atx-headers',
-            \ '-t markdown+autolink_bare_uris',
-            \ '--atx-headers',
             \ '%:p',
             \ '|',
             \ "sed -e 's/\\\[/[/g'", "-e 's/\\\]/]/g'",],
