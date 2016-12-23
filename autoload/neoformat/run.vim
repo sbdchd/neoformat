@@ -34,7 +34,7 @@ function! neoformat#run#Neoformat(cmd) abort
     let s:jobs[id]   = job
 endfunction
 
-function! s:on_stdout(job_id, data) abort
+function! s:on_stdout(job_id, data, event) abort
     if !has_key(s:jobs, a:job_id)
         return
     endif
@@ -43,7 +43,7 @@ function! s:on_stdout(job_id, data) abort
     call extend(job.stdout, a:data)
 endfunction
 
-function! s:on_stdout_vim(job, data) abort
+function! s:on_stdout_vim(job, data, event) abort
     let id = s:job_id(a:job)
 
     if !has_key(s:jobs, id)
@@ -53,13 +53,13 @@ function! s:on_stdout_vim(job, data) abort
     let job = s:jobs[id]
 
     if a:data == 'DETACH'
-        return s:on_exit(id, job.stdout)
+        return s:on_exit(id, job.stdout, a:event)
     endif
 
     call extend(job.stdout, [a:data])
 endfunction
 
-function! s:on_exit(job_id, data) abort
+function! s:on_exit(job_id, data, event) abort
     if !has_key(s:jobs, a:job_id)
         return
     endif
