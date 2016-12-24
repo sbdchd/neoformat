@@ -3,9 +3,9 @@ function! neoformat#formatters#json#enabled() abort
 endfunction
 
 function! neoformat#formatters#json#jsbeautify() abort
-    return neoformat#javascript#jsbeautify()
+    return neoformat#formatters#javascript#jsbeautify()
 endfunction
 
 function! neoformat#formatters#json#prettydiff() abort
-    return neoformat#javascript#prettydiff()
+    return neoformat#formatters#javascript#prettydiff()
 endfunction
