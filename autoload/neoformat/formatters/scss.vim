@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#scss#sassconvert() abort
     return {
             \ 'exe': 'sass-convert',
-            \ 'args': ['-F scss', '-T scss', '-s'],
+            \ 'args': ['-F scss', '-T scss', '--indent ' . (&expandtab ? shiftwidth() : 't')],
             \ 'stdin': 1,
             \ }
 endfunction

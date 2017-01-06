@@ -7,9 +7,10 @@ function! neoformat#formatters#html#tidy() abort
         \ 'exe': 'tidy',
         \ 'args': ['-quiet',
         \          '--indent auto',
-        \          '--indent-spaces 4',
+        \          '--indent-spaces ' . shiftwidth(),
         \          '--vertical-space yes',
-        \          '--tidy-mark no'
+        \          '--tidy-mark no',
+        \          '-wrap' .&textwidth
         \         ]
         \ }
 endfunction
@@ -17,6 +18,7 @@ endfunction
 function! neoformat#formatters#html#htmlbeautify() abort
     return {
             \ 'exe': 'html-beautify',
+            \ 'args': ['--indent-size ' .shiftwidth()],
             \ 'stdin': 1,
             \ }
 endfunction
