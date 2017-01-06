@@ -2,12 +2,18 @@
 
 A [Neovim](https://neovim.io) and Vim8 plugin for formatting code.
 
-Neoformat uses a variety of formatters for differing filetypes. Currently, Neoformat
-will run a formatter _asynchronously_, and on success it will update the current
-buffer with the formatted text. On a formatter failure, Neoformat will try the next
-formatter defined for the filetype.
+Neoformat uses a variety of formatters for many filetypes. Currently, Neoformat
+will run a formatter using the current buffer data, and on success it will
+update the current buffer with the formatted text. On a formatter failure,
+Neoformat will try the next formatter defined for the filetype.
 
-The job control is based off [vim-go's](https://github.com/fatih/vim-go).
+By using `getbufline()` to read from the current buffer instead of file,
+Neoformat is able to format your buffer without you having to `:w` your file first.
+Also, by using `setline()`, marks, jumps, etc. are all maintained after formatting.
+
+Neoformat supports both sending buffer data to formatters via stdin, and also
+writing buffer data to `/tmp/` for formatters to read that do not support input
+via stdin.
 
 ## Basic Usage
 
@@ -33,28 +39,33 @@ Plug 'sbdchd/neoformat'
 
 ## Current Limitation(s)
 
-In order to preserve marks, jumps, etc., Neoformat uses Vim's `setline()` function
-to insert the formatted text. If the buffer is changed before the formatter has
-completed, then the updated text will be put into the current buffer.
-
-To prevent this, format jobs are cancelled when changing / closing the buffer.
-
-**So don't switch buffers before the the formatting is complete!**
-
-Note: This should be resolved when [`setbufline()`](https://github.com/vim/vim/blob/9bd547aca41799605c3a3f83444f6725c2d6eda9/runtime/doc/todo.txt#L177) is added.
-
-By default, Neoformat reads from the current buffer, not the current file. This
-can be changed via the configuration variable `g:neoformat_read_from_buffer`.
-
-With Vim, some of the formatters do not function, e.g. remark.
+If a formatter is either not configured to use `stdin`, or is not able to read
+from `stdin`, then buffer data will be written to a file in `/tmp/neoformat/`,
+where the formatter will then read from
 
 ## Config [Optional]
 
 Define custom formatters.
 
+Options:
+
+| name        | description                                                                                                       | default | optional / required |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- | ------- | ------------------- |
+| `exe`       | the name the formatter executable in the path                                                                     | n/a     | **required**        |
+| `args`      | list of arguments                                                                                                 | \[]     | optional            |
+| `replace`   | overwrite the file, instead of updating the buffer                                                                | 0       | optional            |
+| `stdin`     | send data to the stdin of the formatter                                                                           | 0       | optional            |
+| `no_append` | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command | 0       | optional            |
+
+Example:
+
 ```viml
 let g:neoformat_python_autopep8 = {
-            \ 'exe': 'autopep8'
+            \ 'exe': 'autopep8',
+            \ 'args': ['-s 4', '-E'],
+            \ 'replace': 1 " replace the file, instead of updating buffer (default: 0),
+            \ 'stdin': 1, " send data to stdin of formatter (default: 0)
+            \ 'no_append': 1,
             \ }
 
 let g:neoformat_enabled_python = ['autopep8']
@@ -91,6 +102,35 @@ When debugging, you can enable either of following variables for extra logging.
 let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat
 " Or
 let &verbose            = 1 " also increases verbosity of the editor as a whole
+```
+
+## Adding a New Formatter
+
+Note: you should replace everything `{{ }}` accordingly
+
+1. Create a file in `autoload/neoformat/formatters/{{ filetype }}.vim` if it does not
+   already exist for your filetype.
+
+2. Follow the following format
+
+See Config above for options
+
+```viml
+function! neoformat#formatters#{{ filetype }}#enabled() abort
+    return ['{{ formatter name }}', '{{ other formatter name for filetype }}']
+endfunction
+
+function! neoformat#formatters#{{ filetype }}#{{ formatter name }}() abort
+    return {
+        \ 'exe': '{{ formatter name }}',
+        \ 'args': ['-s 4', '-q'],
+        \ 'stdin': 1
+        \ }
+endfunction
+
+function! neoformat#formatters#{{ filetype }}#{{ other formatter name }}() abort
+  return {'exe': {{ other formatter name }}
+endfunction
 ```
 
 ## Supported Filetypes

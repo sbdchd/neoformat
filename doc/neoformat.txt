@@ -1,7 +1,5 @@
 *neoformat.txt*	A Neovim plugin for formatting.
 
-Version: 0.1
-
 CONTENTS					*neoformat-contents*
 
 Introduction		|neoformat-introduction|
@@ -12,12 +10,20 @@ Supported Filetypes	|neoformat-supported-filetypes|
 ==============================================================================
 INTRODUCTION					*neoformat-introduction*
 
-*neoformat* uses a variety of formatters for differing filetypes.
-Currently, neoformat will run a formatter asynchronously, and on success it
-will update the current buffer with the formatted text. On a formatter failure,
-neoformat will try the next formatter defined for the filetype.
+A [Neovim](https://neovim.io) and Vim8 plugin for formatting code.
 
-The job control is based off of vim-go's.
+*Neoformat* uses a variety of formatters for many filetypes. Currently, Neoformat
+will run a formatter using the current buffer data, and on success it will
+update the current buffer with the formatted text. On a formatter failure,
+Neoformat will try the next formatter defined for the filetype.
+
+By using `getbufline()` to read from the current buffer instead of file,
+Neoformat is able to format your buffer without you having to `:w` your file first.
+Also, by using `setline()`, marks, jumps, etc. are all maintained after formatting.
+
+Neoformat supports both sending buffer data to formatters via stdin, and also
+writing buffer data to `/tmp/` for formatters to read that do not support input
+via stdin.
 
 ==============================================================================
 INSTALL						*neoformat-install*
@@ -32,18 +38,44 @@ USAGE						*neoformat-usage* *Neoformat*
 Format the current file using its filetype
 >
 	:Neoformat
+
 <Or specify a certain formatter (must be defined for the current filetype)
 >
 	:Neoformat js-beautify
-<
+
+==============================================================================
+CURRENT LIMITATION(S)				*neoformat-limitations*
+
+If a formatter is either not configured to use `stdin`, or is not able to read
+from `stdin`, then buffer data will be written to a file in `/tmp/neoformat/`,
+where the formatter will then read from
+
 ==============================================================================
 CONFIG						*neoformat-config*
 
 Define custom formatters.
+
+Options:
+
+| `exe`       | the name the formatter executable in the path | required
+| `args`      | list of arguments | default: [] | optional
+| `replace`   | overwrite the file, instead of updating the buffer | default: 0 | optional
+| `stdin`     | send data to the stdin of the formatter | default 0 | optional
+| `no_append` | do not append the `path` of the file to the formatter command,
+	     used when the `path` is in the middle of a command | default: 0 |
+	     optional
+
+Example:
+
+Define custom formatters.
 >
     let g:neoformat_python_autopep8 = {
-		\ 'exe': 'autopep8'
-		\ }
+            \ 'exe': 'autopep8',
+            \ 'args': ['-s 4', '-E'],
+            \ 'replace': 1 " replace the file, instead of updating buffer (default: 0),
+            \ 'stdin': 1, " send data to stdin of formatter (default: 0)
+            \ 'no_append': 1,
+            \ }
 
     let g:neoformat_enabled_python = ['autopep8']
 <
@@ -68,6 +100,35 @@ When debugging, you can enable either of following variables for extra logging.
     " Or
     let &verbose            = 1 " also increases verbosity of the editor as a whole
 <
+==============================================================================
+ADDING A NEW FORMATTER				*neoformat-adding-new-formatter*
+
+Note: you should replace everything `{{ }}` accordingly
+
+1. Create a file in `autoload/neoformat/formatters/{{ filetype }}.vim` if it does not
+   already exist for your filetype.
+
+2. Follow the following format
+
+See Config above for options
+>
+    function! neoformat#formatters#{{ filetype }}#enabled() abort
+	return ['{{ formatter name }}', '{{ other formatter name for filetype }}']
+    endfunction
+
+    function! neoformat#formatters#{{ filetype }}#{{ formatter name }}() abort
+	return {
+	    \ 'exe': '{{ formatter name }}',
+	    \ 'args': ['-s 4', '-q'],
+	    \ 'stdin': 1
+	    \ }
+    endfunction
+
+    function! neoformat#formatters#{{ filetype }}#{{ other formatter name }}() abort
+      return {'exe': {{ other formatter name }}
+    endfunction
+<
+
 ==============================================================================
 SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 

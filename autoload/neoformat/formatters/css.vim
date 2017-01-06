@@ -3,7 +3,10 @@ function! neoformat#formatters#css#enabled() abort
 endfunction
 
 function! neoformat#formatters#css#cssbeautify() abort
-    return { 'exe': 'css-beautify' }
+    return {
+            \ 'exe': 'css-beautify',
+            \ 'stdin': 1,
+            \ }
 endfunction
 
 function! neoformat#formatters#css#csscomb() abort
@@ -28,6 +31,6 @@ endfunction
 function! neoformat#formatters#css#stylefmt() abort
     return {
         \ 'exe': 'stylefmt',
-        \ 'replace': 1
+        \ 'stdin': 1,
         \ }
 endfunction

@@ -5,7 +5,8 @@ endfunction
 function! neoformat#formatters#cpp#uncrustify() abort
     return {
            \ 'exe': 'uncrustify',
-           \ 'args': ['-q', '-l CPP', '-f']
+           \ 'args': ['-q', '-l CPP', '-f'],
+           \ 'stdin': 1,
            \ }
 endfunction
 

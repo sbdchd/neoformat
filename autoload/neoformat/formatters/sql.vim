@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#sql#sqlformat() abort
     return {
         \ 'exe': 'sqlformat',
-        \ 'args': ['--reindent']
+        \ 'args': ['--reindent', '-'],
+        \ 'stdin': 1,
         \ }
 endfunction

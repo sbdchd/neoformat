@@ -3,11 +3,17 @@ function! neoformat#formatters#javascript#enabled() abort
 endfunction
 
 function! neoformat#formatters#javascript#jsbeautify() abort
-    return {'exe': 'js-beautify'}
+    return {
+            \ 'exe': 'js-beautify',
+            \ 'stdin': 1,
+            \ }
 endfunction
 
 function! neoformat#formatters#javascript#clangformat() abort
-    return {'exe': 'clang-format'}
+    return {
+            \ 'exe': 'clang-format',
+            \ 'stdin': 1
+            \ }
 endfunction
 
 function! neoformat#formatters#javascript#prettydiff() abort
@@ -24,6 +30,7 @@ endfunction
 
 function! neoformat#formatters#javascript#esformatter() abort
     return {
-        \ 'exe': 'esformatter'
+        \ 'exe': 'esformatter',
+        \ 'stdin': 1,
         \ }
 endfunction

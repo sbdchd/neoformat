@@ -4,6 +4,7 @@ endfunction
 
 function! neoformat#formatters#haskell#stylishhaskell() abort
     return {
-        \ 'exe': 'stylish-haskell'
+        \ 'exe': 'stylish-haskell',
+        \ 'stdin': 1,
         \ }
 endfunction

@@ -5,7 +5,8 @@ endfunction
 function! neoformat#formatters#objc#uncrustify() abort
     return {
         \ 'exe': 'uncrustify',
-        \ 'args': ['-q', '-l OC+', '-f']
+        \ 'args': ['-q', '-l OC+', '-f'],
+        \ 'stdin': 1,
         \ }
 endfunction
 

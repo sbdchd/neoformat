@@ -11,10 +11,9 @@ function! neoformat#formatters#pandoc#pandoc() abort
             \ '-s',
             \ '--wrap=auto',
             \ '--atx-headers',
-            \ '%:p',
             \ '|',
             \ "sed -e 's/\\\[/[/g'", "-e 's/\\\]/]/g'",],
-            \ 'no_append': 1
+            \ 'stdin': 1,
             \ }
 endfunction
 

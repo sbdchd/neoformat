@@ -3,5 +3,8 @@ function! neoformat#formatters#sh#enabled() abort
 endfunction
 
 function! neoformat#formatters#sh#shfmt() abort
-    return {'exe': 'shfmt'}
+    return {
+            \ 'exe': 'shfmt',
+            \ 'stdin': 1,
+            \ }
 endfunction

@@ -5,6 +5,6 @@ endfunction
 function! neoformat#formatters#rust#rustfmt() abort
     return {
         \ 'exe': 'rustfmt',
-        \ 'replace': 1
+        \ 'stdin': 1,
         \ }
 endfunction

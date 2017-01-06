@@ -1,7 +1,8 @@
 function! neoformat#formatters#vala#uncrustify() abort
     return {
         \ 'exe': 'uncrustify',
-        \ 'args': ['-q', '-l VALA', '-f']
+        \ 'args': ['-q', '-l VALA'],
+        \ 'stdin': 1,
         \ }
 endfunction
 

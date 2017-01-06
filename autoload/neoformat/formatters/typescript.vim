@@ -4,6 +4,8 @@ endfunction
 
 function! neoformat#formatters#typescript#tsfmt() abort
     return {
-        \ 'exe': 'tsfmt'
+        \ 'exe': 'tsfmt',
+        \ 'args': ['--stdin'],
+        \ 'stdin': 1
         \ }
 endfunction

@@ -5,7 +5,8 @@ endfunction
 function! neoformat#formatters#cs#uncrustify() abort
     return {
         \ 'exe': 'uncrustify',
-        \ 'args': ['-q', '-l CS', '-f']
+        \ 'args': ['-q', '-l CS', '-f'],
+        \ 'stdin': 1,
         \ }
 endfunction
 
@@ -13,6 +14,6 @@ function! neoformat#formatters#cs#astyle() abort
     return {
         \ 'exe': 'astyle',
         \ 'args': ['--mode=cs'],
-        \ 'replace': 1
+        \ 'stdin': 1,
         \ }
 endfunction

@@ -15,7 +15,10 @@ function! neoformat#formatters#html#tidy() abort
 endfunction
 
 function! neoformat#formatters#html#htmlbeautify() abort
-    return {'exe': 'html-beautify'}
+    return {
+            \ 'exe': 'html-beautify',
+            \ 'stdin': 1,
+            \ }
 endfunction
 
 function! neoformat#formatters#html#prettydiff() abort

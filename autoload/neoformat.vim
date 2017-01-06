@@ -4,19 +4,15 @@ function! neoformat#Start(user_formatter) abort
 endfunction
 
 function! neoformat#Neoformat(user_formatter) abort
-    let s:vim_jobcontrol = !has('nvim') && has('job') && has('patch-7-4-1590')
-    if !(has('nvim') || s:vim_jobcontrol)
-        return neoformat#utils#warn('Neovim, or Vim with job control, is currently required to run this plugin')
-    endif
 
     if !&modifiable
         return neoformat#utils#warn('buffer not modifiable')
     endif
 
+    let filetype = s:split_filetypes(&filetype)
     if !empty(a:user_formatter)
         let formatter = a:user_formatter
     else
-        let filetype = s:split_filetypes(&filetype)
         let formatters = s:get_enabled_formatters(filetype)
         if formatters == []
             call neoformat#utils#msg('formatter not defined for ' . filetype . ' filetype')
@@ -47,14 +43,49 @@ function! neoformat#Neoformat(user_formatter) abort
     let cmd = s:generate_cmd(definition, filetype)
     if cmd == {}
         if !empty(a:user_formatter)
-            return neoformat#utils#log('user specified formatter failed')
+            return neoformat#utils#warn('formatter ' . a:user_formatter . ' failed')
         endif
         return neoformat#NextNeoformat()
     endif
 
-    call neoformat#utils#log(cmd)
+    let stdin = getbufline(bufnr('%'), 1, '$')
+    if cmd.stdin == 1
+        let stdout = systemlist(cmd.exe, stdin)
+    else
+        let stdout = systemlist(cmd.exe)
+    endif
+    call neoformat#utils#log(stdin)
+    call neoformat#utils#log(stdout)
+    if v:shell_error == 0
+        if stdout != stdin
+            " 1. set lines to '' aka \n from end of file when new data < old data
+            let datalen = len(stdout)
 
-    return neoformat#run#Neoformat(cmd)
+            while datalen <= line('$')
+                call setline(datalen, '')
+                let datalen += 1
+            endwhile
+
+            " 2. remove extra newlines at the end of the file
+            let search = @/
+            let view = winsaveview()
+            " http://stackoverflow.com/a/7496112/3720597
+            " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
+            silent! %s#\($\n\)\+\%$##
+            " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
+            let @/=search
+            call winrestview(view)
+
+            " 3. write new data to buffer
+            call setline(1, stdout)
+            call neoformat#utils#msg(cmd.name . ' formatted buffer')
+        else
+            call neoformat#utils#msg('no change necessary with ' . cmd.name)
+        endif
+    else
+        call neoformat#utils#log(v:shell_error)
+        return neoformat#NextNeoformat()
+    endif
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
@@ -136,7 +167,8 @@ function! s:generate_cmd(definition, filetype) abort
         let path = fnameescape(expand('%:p'))
     endif
 
-    if no_append
+    let using_stdin = get(a:definition, 'stdin', 0)
+    if no_append || using_stdin
         let path = ''
     endif
 
@@ -146,6 +178,7 @@ function! s:generate_cmd(definition, filetype) abort
 
     return {
         \ 'exe':       fullcmd,
+        \ 'stdin':     using_stdin,
         \ 'name':      a:definition.exe,
         \ 'no_append': no_append,
         \ 'path':      path,

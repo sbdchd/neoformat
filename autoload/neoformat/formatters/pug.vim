@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#pug#pugbeautifier() abort
     return {
         \ 'exe': 'pug-beautifier',
-        \ 'args': ['-s 2']
+        \ 'args': ['-s 2'],
+        \ 'stdin': 1,
         \ }
 endfunction

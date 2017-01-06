@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#scala#scalariform() abort
     return {
         \ 'exe': 'scalariform',
-        \ 'args': ['--stdout']
+        \ 'args': ['--stdin'],
+        \ 'stdin': 1,
         \ }
 endfunction

@@ -5,6 +5,6 @@ endfunction
 function! neoformat#formatters#perl#perltidy() abort
     return {
             \ 'exe': 'perltidy',
-            \ 'args': ['--standard-output']
+            \ 'stdin': 1,
             \ }
 endfunction

@@ -11,7 +11,8 @@ function! neoformat#formatters#xml#tidy() abort
             \          '--indent-spaces 4',
             \          '--vertical-space yes',
             \          '--tidy-mark no'
-            \         ]
+            \         ],
+            \ 'stdin': 1,
             \ }
 endfunction
 
