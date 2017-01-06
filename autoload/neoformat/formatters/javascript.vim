@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#javascript#jsbeautify() abort
     return {
             \ 'exe': 'js-beautify',
+            \ 'args': ['--indent-size ' .shiftwidth()],
             \ 'stdin': 1,
             \ }
 endfunction
