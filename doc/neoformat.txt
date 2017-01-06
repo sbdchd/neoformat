@@ -33,7 +33,7 @@ Install with [vim-plug](https://github.com/junegunn/vim-plug)
 	Plug 'sbdchd/neoformat'
 <
 ==============================================================================
-USAGE						*neoformat-usage* *Neoformat*
+USAGE						*neoformat-usage*
 
 Format the current file using its filetype
 >
@@ -64,8 +64,8 @@ Options:
 | `no_append` | do not append the `path` of the file to the formatter command,
 	     used when the `path` is in the middle of a command | default: 0 |
 	     optional
-| `filter`    | a filter to send formatter data through e.g. `2>/dev/null` 
-	     (used when formatter doesn't send correct status codes) 
+| `filter`    | a filter to send formatter data through e.g. `2>/dev/null`
+	     (used when formatter doesn't send correct status codes)
 	     | default: '' | optional
 
 Example:
