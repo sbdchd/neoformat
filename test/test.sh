@@ -36,7 +36,8 @@ cd "$( dirname "${BASH_SOURCE[0]}" )" && nvim -u vimrc -c 'Vader! *.vader' > /de
 # Run Autocomplete Tests
 nvim -u vimrc -c 'source autocomplete_test.vim' > /dev/null
 
+# install formatters
 bash install.sh
 
 # run formatter tests
-pytest test.py
+pytest -v test.py

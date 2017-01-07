@@ -19,22 +19,12 @@ def compare_files(filename):
 
             assert before == after
 
-def formatter_test(filename):
-    run_formatter(filename)
-    compare_files(filename)
 
-def test_yapf():
-    filename = 'yapf.py'
-    formatter_test(filename)
+def test_formatters():
+    for f in listdir('before'):
+        run_formatter(f)
+        compare_files(f)
 
-def test_prettydiff():
-    filename = 'prettydiff.css'
-    formatter_test(filename)
 
-def test_csscomb():
-    filename = 'csscomb.css'
-    formatter_test(filename)
-
-def test_cssbeautify():
-    filename = 'cssbeautify.css'
-    formatter_test(filename)
+if __name__ == '__main__':
+    test_formatters()
