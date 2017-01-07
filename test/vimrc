@@ -3,4 +3,6 @@ set runtimepath+=$HOME/.vim/plugged/vader.vim
 set runtimepath+=../
 filetype plugin indent on
 syntax enable
+autocmd! filetype css set shiftwidth=2
+autocmd! filetype py set shiftwidth=4
 set nocompatible
