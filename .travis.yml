@@ -2,9 +2,14 @@ language: python
 
 cache:
     - pip
+    - npm
+
+node_js:
+    - "5.11.1"
 
 install:
     - sudo pip install vim-vint
+    - bash test/install.sh
 
 script:
     - bash test/test.sh
