@@ -6,6 +6,9 @@ cache:
 
 node_js:
     - "5.11.1"
+python:
+    - "3.5"
+    - "3.6"
 
 install:
     - sudo pip install vim-vint
