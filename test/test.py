@@ -5,9 +5,10 @@ from os import listdir
 
 def run_formatter(filename):
     formatter = filename.split('.')[0]
-    cmd = 'nvim -u vimrc -c "Neoformat {formatter} | wq " --headless ./before/{filename}'.format(
+    cmd = 'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | wq " --headless ./before/{filename}'.format(
         filename=filename, formatter=formatter)
-    subprocess.check_output(['bash', '-c', cmd])
+    output = subprocess.check_output(cmd, shell=True)
+    print(output.decode('utf-8'))
 
 
 def compare_files(filename):
