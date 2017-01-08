@@ -8,7 +8,7 @@ function! neoformat#formatters#xhtml#tidy() abort
             \ 'args': ['-quiet',
             \          '-asxhtml',
             \          '--indent auto',
-            \          '--indent-spaces 4',
+            \          '--indent-spaces '. shiftwidth(),
             \          '--vertical-space yes',
             \          '--tidy-mark no'
             \         ],
