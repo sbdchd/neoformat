@@ -5,6 +5,6 @@ endfunction
 function! neoformat#formatters#ruby#rubybeautify() abort
      return {
         \ 'exe': 'ruby-beautify',
-        \ 'args': ['--spaces', '-c 2'],
+        \ 'args': ['--spaces', '-c ' . shiftwith()],
         \ }
 endfunction
