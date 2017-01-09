@@ -8,7 +8,7 @@ function! neoformat#formatters#xml#tidy() abort
             \ 'args': ['-quiet',
             \          '-xml',
             \          '--indent auto',
-            \          '--indent-spaces 4',
+            \          '--indent-spaces ' . shiftwidth(),
             \          '--vertical-space yes',
             \          '--tidy-mark no'
             \         ],
