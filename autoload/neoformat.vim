@@ -1,97 +1,88 @@
-function! neoformat#Start(user_formatter) abort
-    let s:current_formatter_index = 0
-    call neoformat#Neoformat(a:user_formatter)
-endfunction
-
 function! neoformat#Neoformat(user_formatter) abort
-
     if !&modifiable
         return neoformat#utils#warn('buffer not modifiable')
     endif
 
     let filetype = s:split_filetypes(&filetype)
+
     if !empty(a:user_formatter)
-        let formatter = a:user_formatter
+        let formatters = [a:user_formatter]
     else
         let formatters = s:get_enabled_formatters(filetype)
         if formatters == []
             call neoformat#utils#msg('formatter not defined for ' . filetype . ' filetype')
             return s:basic_format()
         endif
-
-        if s:current_formatter_index >= len(formatters)
-            call neoformat#utils#msg('attempted all formatters available for ' . filetype)
-            return s:basic_format()
-        endif
-
-        let formatter = formatters[s:current_formatter_index]
     endif
 
-    if exists('g:neoformat_' . filetype . '_' . formatter)
-        let definition = g:neoformat_{filetype}_{formatter}
-    elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
-        let definition =  neoformat#formatters#{filetype}#{formatter}()
-    else
-        call neoformat#utils#log('definition not found for formatter: ' . formatter)
-        if !empty(a:user_formatter)
-            call neoformat#utils#msg('formatter definition for ' . a:user_formatter . ' not found')
-            return s:basic_format()
-        endif
-        return neoformat#NextNeoformat()
-    endif
+    for formatter in formatters
 
-    let cmd = s:generate_cmd(definition, filetype)
-    if cmd == {}
-        if !empty(a:user_formatter)
-            return neoformat#utils#warn('formatter ' . a:user_formatter . ' failed')
-        endif
-        return neoformat#NextNeoformat()
-    endif
-
-    let stdin = getbufline(bufnr('%'), 1, '$')
-    if cmd.stdin == 1
-        let stdout = systemlist(cmd.exe, stdin)
-    else
-        let stdout = systemlist(cmd.exe)
-    endif
-
-    " read from /tmp file if formatter replaces file on format
-    if cmd.replace == 1
-        let stdout = readfile(cmd.tmp_file_path)
-    endif
-
-    call neoformat#utils#log(stdin)
-    call neoformat#utils#log(stdout)
-    if v:shell_error == 0
-        if stdout != stdin
-            " 1. set lines to '' aka \n from end of file when new data < old data
-            let datalen = len(stdout)
-
-            while datalen <= line('$')
-                call setline(datalen, '')
-                let datalen += 1
-            endwhile
-
-            " 2. remove extra newlines at the end of the file
-            let search = @/
-            let view = winsaveview()
-            " http://stackoverflow.com/a/7496112/3720597
-            " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
-            silent! %s#\($\n\)\+\%$##
-            " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
-            let @/=search
-            call winrestview(view)
-
-            " 3. write new data to buffer
-            call setline(1, stdout)
-            call neoformat#utils#msg(cmd.name . ' formatted buffer')
+        if exists('g:neoformat_' . filetype . '_' . formatter)
+            let definition = g:neoformat_{filetype}_{formatter}
+        elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
+            let definition =  neoformat#formatters#{filetype}#{formatter}()
         else
-            call neoformat#utils#msg('no change necessary with ' . cmd.name)
+            call neoformat#utils#log('definition not found for formatter: ' . formatter)
+            if !empty(a:user_formatter)
+                call neoformat#utils#msg('formatter definition for ' . a:user_formatter . ' not found')
+                return s:basic_format()
+            endif
+            continue
         endif
-    else
-        call neoformat#utils#log(v:shell_error)
-        return neoformat#NextNeoformat()
-    endif
+
+        let cmd = s:generate_cmd(definition, filetype)
+        if cmd == {}
+            if !empty(a:user_formatter)
+                return neoformat#utils#warn('formatter ' . a:user_formatter . ' failed')
+            endif
+            continue
+        endif
+
+        let stdin = getbufline(bufnr('%'), 1, '$')
+        if cmd.stdin
+            let stdout = systemlist(cmd.exe, stdin)
+        else
+            let stdout = systemlist(cmd.exe)
+        endif
+
+        " read from /tmp file if formatter replaces file on format
+        if cmd.replace
+            let stdout = readfile(cmd.tmp_file_path)
+        endif
+
+        call neoformat#utils#log(stdin)
+        call neoformat#utils#log(stdout)
+        if !v:shell_error
+            if stdout != stdin
+                " 1. set lines to '' aka \n from end of file when new data < old data
+                let datalen = len(stdout)
+
+                while datalen <= line('$')
+                    call setline(datalen, '')
+                    let datalen += 1
+                endwhile
+
+                " 2. remove extra newlines at the end of the file
+                let search = @/
+                let view = winsaveview()
+                " http://stackoverflow.com/a/7496112/3720597
+                " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
+                silent! %s#\($\n\)\+\%$##
+                " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
+                let @/=search
+                call winrestview(view)
+
+                " 3. write new data to buffer
+                call setline(1, stdout)
+                call neoformat#utils#msg(cmd.name . ' formatted buffer')
+            else
+                call neoformat#utils#msg('no change necessary with ' . cmd.name)
+            endif
+        else
+            call neoformat#utils#log(v:shell_error)
+            continue
+        endif
+    endfor
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
@@ -110,12 +101,6 @@ function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
     let filetype = s:split_filetypes(&filetype)
     return filter(s:get_enabled_formatters(filetype),
                 \ "v:val =~? '^" . a:ArgLead ."'")
-endfunction
-
-function! neoformat#NextNeoformat() abort
-    call neoformat#utils#log('trying next formatter')
-    let s:current_formatter_index += 1
-    return neoformat#Neoformat('')
 endfunction
 
 function! s:autoload_func_exists(func_name) abort

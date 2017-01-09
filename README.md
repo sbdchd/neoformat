@@ -1,6 +1,6 @@
 # Neoformat [![Build Status](https://travis-ci.org/sbdchd/neoformat.svg?branch=master)](https://travis-ci.org/sbdchd/neoformat)
 
-A [Neovim](https://neovim.io) and Vim8 plugin for formatting code.
+A (Neo)vim plugin for formatting code.
 
 Neoformat uses a variety of formatters for many filetypes. Currently, Neoformat
 will run a formatter using the current buffer data, and on success it will

@@ -6,3 +6,4 @@ syntax enable
 autocmd! filetype css set shiftwidth=2
 autocmd! filetype py set shiftwidth=4
 set nocompatible
+set noswapfile

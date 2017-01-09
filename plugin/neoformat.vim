@@ -1,2 +1,2 @@
 command! -nargs=? -bar -complete=customlist,neoformat#CompleteFormatters Neoformat
-            \ call neoformat#Start(<q-args>)
+            \ call neoformat#Neoformat(<q-args>)
