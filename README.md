@@ -17,7 +17,7 @@ via stdin.
 
 ## Basic Usage
 
-Format the current file using its filetype
+Format the entire buffer, or visual selection of the buffer
 
 ```viml
 :Neoformat
@@ -27,6 +27,14 @@ Or specify a certain formatter (must be defined for the current filetype)
 
 ```viml
 :Neoformat js-beautify
+```
+
+Or format a visual selection of code in a different filetype
+
+__Note:__ you must use a ! and pass the filetype of the selection
+
+```viml
+:Neoformat! python
 ```
 
 Or perhaps run a formatter on save

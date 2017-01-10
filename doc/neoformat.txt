@@ -35,13 +35,21 @@ Install with [vim-plug](https://github.com/junegunn/vim-plug)
 ==============================================================================
 USAGE						*neoformat-usage*
 
-Format the current file using its filetype
+Format the entire buffer, or visual selection of the buffer
 >
 	:Neoformat
 
 <Or specify a certain formatter (must be defined for the current filetype)
 >
 	:Neoformat js-beautify
+
+Or format a visual selection of code in a different filetype
+
+*Note:* you must use a ! and pass the filetype of the selection
+
+>
+	:Neoformat! python
+>
 
 Or perhaps run a formatter on save
 

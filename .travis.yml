@@ -6,9 +6,8 @@ cache:
 
 node_js:
     - "5.11.1"
+
 python:
-    - "2.7"
-    - "3.5"
     - "3.6"
 
 install:

@@ -1,12 +1,34 @@
-function! neoformat#Neoformat(user_formatter) abort
+function! neoformat#Neoformat(bang, user_input, start_line, end_line) abort
+    let search = @/
+    let view = winsaveview()
+    let original_filetype = &filetype
+
+    call s:neoformat(a:bang, a:user_input, a:start_line, a:end_line)
+
+    let @/ = search
+    call winrestview(view)
+    let &filetype = original_filetype
+endfunction
+
+function! s:neoformat(bang, user_input, start_line, end_line) abort
+
     if !&modifiable
         return neoformat#utils#warn('buffer not modifiable')
     endif
 
+    let using_visual_selection = a:start_line != 1 || a:end_line != line('$')
+
+    if a:bang
+        let &filetype = a:user_input
+    endif
+
     let filetype = s:split_filetypes(&filetype)
 
-    if !empty(a:user_formatter)
-        let formatters = [a:user_formatter]
+    let using_user_passed_formatter = !empty(a:user_input) && !a:bang
+
+    if using_user_passed_formatter
+        " user passed a formatter
+        let formatters = [a:user_input]
     else
         let formatters = s:get_enabled_formatters(filetype)
         if formatters == []
@@ -23,8 +45,9 @@ function! neoformat#Neoformat(user_formatter) abort
             let definition =  neoformat#formatters#{filetype}#{formatter}()
         else
             call neoformat#utils#log('definition not found for formatter: ' . formatter)
-            if !empty(a:user_formatter)
-                call neoformat#utils#msg('formatter definition for ' . a:user_formatter . ' not found')
+            if using_user_passed_formatter
+                call neoformat#utils#msg('formatter definition for ' . a:user_input . ' not found')
+
                 return s:basic_format()
             endif
             continue
@@ -32,16 +55,22 @@ function! neoformat#Neoformat(user_formatter) abort
 
         let cmd = s:generate_cmd(definition, filetype)
         if cmd == {}
-            if !empty(a:user_formatter)
-                return neoformat#utils#warn('formatter ' . a:user_formatter . ' failed')
+            if using_user_passed_formatter
+                return neoformat#utils#warn('formatter ' . a:user_input . ' failed')
             endif
             continue
         endif
 
-        let stdin = getbufline(bufnr('%'), 1, '$')
+        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+        let original_buffer = getbufline(bufnr('%'), 1, '$')
+
+        call neoformat#utils#log(stdin)
+
         if cmd.stdin
             let stdout = systemlist(cmd.exe, stdin)
         else
+            call mkdir('/tmp/neoformat', 'p')
+            call writefile(stdin, cmd.tmp_file_path)
             let stdout = systemlist(cmd.exe)
         endif
 
@@ -50,39 +79,30 @@ function! neoformat#Neoformat(user_formatter) abort
             let stdout = readfile(cmd.tmp_file_path)
         endif
 
-        call neoformat#utils#log(stdin)
         call neoformat#utils#log(stdout)
         if !v:shell_error
-            if stdout != stdin
-                " 1. set lines to '' aka \n from end of file when new data < old data
-                let datalen = len(stdout)
+            " 1. append the lines that are before and after the formatterd content
+            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
+            let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
 
-                while datalen <= line('$')
-                    call setline(datalen, '')
-                    let datalen += 1
-                endwhile
+            let new_buffer = lines_before + stdout + lines_after
+            if new_buffer != original_buffer
 
-                " 2. remove extra newlines at the end of the file
-                let search = @/
-                let view = winsaveview()
-                " http://stackoverflow.com/a/7496112/3720597
-                " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
-                silent! %s#\($\n\)\+\%$##
-                " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
-                let @/=search
-                call winrestview(view)
+                call s:deletelines(len(new_buffer), line('$'))
 
-                " 3. write new data to buffer
-                call setline(1, stdout)
-                call neoformat#utils#msg(cmd.name . ' formatted buffer')
+                call setline(1, new_buffer)
+
+                return neoformat#utils#msg(cmd.name . ' formatted buffer')
             else
-                call neoformat#utils#msg('no change necessary with ' . cmd.name)
+
+                return neoformat#utils#msg('no change necessary with ' . cmd.name)
             endif
         else
             call neoformat#utils#log(v:shell_error)
-            continue
+            call neoformat#utils#log('trying next formatter')
         endif
     endfor
+    call neoformat#utils#msg('attempted all formatters for current filetype')
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
@@ -92,6 +112,10 @@ function! s:get_enabled_formatters(filetype) abort
         return neoformat#formatters#{a:filetype}#enabled()
     endif
     return []
+endfunction
+
+function! s:deletelines(start, end) abort
+    silent! execute a:start . ',' . a:end . 'delete'
 endfunction
 
 function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
@@ -139,19 +163,8 @@ function! s:generate_cmd(definition, filetype) abort
     let no_append = get(a:definition, 'no_append', 0)
     let using_stdin = get(a:definition, 'stdin', 0)
 
-    " Write buffer data to /tmp/ file if formatter doesn't use stdin
-    if !using_stdin
-        let base_tmp_path = '/tmp/neoformat/'
-        call mkdir(base_tmp_path, 'p')
-
-        " get the last path component, the filename
-        let filename = expand('%:t')
-        let path     = base_tmp_path . fnameescape(filename)
-        let data     = getbufline(bufnr('%'), 1, '$')
-        call writefile(data, path)
-    else
-        let path = ''
-    endif
+    let filename = expand('%:t')
+    let path = !using_stdin ? '/tmp/neoformat/' . fnameescape(filename) : ''
 
     let _fullcmd = executable . ' ' . join(args_expanded) . ' ' . (no_append ? '' : path)
     " make sure there aren't any double spaces in the cmd
