@@ -26,7 +26,7 @@ Format the entire buffer, or visual selection of the buffer
 Or specify a certain formatter (must be defined for the current filetype)
 
 ```viml
-:Neoformat js-beautify
+:Neoformat jsbeautify
 ```
 
 Or format a visual selection of code in a different filetype
@@ -35,6 +35,12 @@ __Note:__ you must use a ! and pass the filetype of the selection
 
 ```viml
 :Neoformat! python
+```
+
+You can also pass a formatter to use
+
+```viml
+:Neoformat! python yapf
 ```
 
 Or perhaps run a formatter on save

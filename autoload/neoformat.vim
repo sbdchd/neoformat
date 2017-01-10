@@ -18,17 +18,18 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
     let using_visual_selection = a:start_line != 1 || a:end_line != line('$')
 
+    let inputs = split(a:user_input)
     if a:bang
-        let &filetype = a:user_input
+        let &filetype = len(inputs) > 1 ? inputs[0] : a:user_input
     endif
 
     let filetype = s:split_filetypes(&filetype)
 
-    let using_user_passed_formatter = !empty(a:user_input) && !a:bang
+    let using_user_passed_formatter = (!empty(a:user_input) && !a:bang)
+                \ || (len(inputs) > 1 && a:bang)
 
     if using_user_passed_formatter
-        " user passed a formatter
-        let formatters = [a:user_input]
+        let formatters = len(inputs) > 1 ? [inputs[1]] : [a:user_input]
     else
         let formatters = s:get_enabled_formatters(filetype)
         if formatters == []
@@ -120,6 +121,14 @@ endfunction
 
 function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
     if a:CmdLine =~ '!'
+        " 1. user inputting formatter :Neoformat! css <here>
+        if a:CmdLine =~# 'Neoformat! \S*\s'
+            let filetype = split(a:CmdLine)[1]
+            return filter(s:get_enabled_formatters(filetype),
+                    \ "v:val =~? '^" . a:ArgLead ."'")
+        endif
+
+        " 2. user inputting filetype :Neoformat! <here>
         " https://github.com/junegunn/fzf.vim/pull/110
         " 1. globpath (find) all filetype files in neoformat
         " 2. split at new lines

@@ -1,17 +1,17 @@
+#!/usr/bin/env python3.6
+
 import subprocess
 
 from os import listdir
+from shutil import copyfile
+
+def run_vim_cmd(cmd, filename=''):
+    cmd = f'nvim -u vimrc -c "set verbose=1 | {cmd} | wq " --headless {filename}'
+    return run_cmd(cmd)
 
 
-def run_formatter(filename):
-    formatter = filename.split('.')[0]
-    cmd = f'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | wq " --headless ./before/{filename}'
-    print(subprocess.check_output(cmd, shell=True).decode('utf-8'))
-
-
-def run_formatter_with_visual(filename, filetype, start_line, end_line):
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} | wq " --headless {filename}'
-    print(subprocess.check_output(cmd, shell=True).decode('utf-8'))
+def run_cmd(cmd):
+    return subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True).wait()
 
 
 def readlines(filename):
@@ -20,21 +20,82 @@ def readlines(filename):
 
 
 def test_formatters():
-    for f in listdir('before'):
-        run_formatter(f)
-        before = readlines('./before/' + f)
-        after = readlines('./after/' + f)
+    '''
+    run formatters on entire buffer
+    '''
+    for filename in listdir('before'):
+        output_file = '/tmp/neoformat_' + filename
+        formatter = filename.split('.')[0]
+        cmd = f'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | w! {output_file} | q! " --headless ./before/{filename}'
+        run_cmd(cmd)
+        before = readlines(output_file)
+        after = readlines('./after/' + filename)
         assert before == after
 
 
-def test_visualselection():
+def test_visual_selection_multi_filetype():
+    '''
+    Format different filetypes in one file
+    '''
     filename_before = 'visual_selection_before.txt'
-    for test in [('python', 4, 7), ('css', 9, 9), ('css', 14, 15)]:
-        run_formatter_with_visual(filename_before, *test)
+    output_file = '/tmp/neoformat_' + filename_before
+    copyfile(filename_before, output_file)
 
-    before = readlines(filename_before)
+    for test in [('python', 4, 7), ('css', 9, 9), ('css', 14, 15)]:
+        (filetype, start_line, end_line) = test
+        print(start_line)
+        vim_cmd = f'{start_line},{end_line}Neoformat! {filetype}'
+        cmd = f'nvim -u vimrc -c "set verbose=1 | {vim_cmd} | wq " --headless {output_file}'
+        run_cmd(cmd)
+
+    before = readlines(output_file)
     after = readlines('visual_selection_after.txt')
     assert before == after
 
+
+def test_visual_selection_with_filetype_and_formatter():
+    '''
+    Test that passing filetype and formatter to Neoformat! works
+    '''
+    dir_before = 'visual_before/'
+    dir_after = 'visual_after/'
+    for filename in listdir(dir_before):
+        (filetype, formatter, start_line, end_line) = filename.split('_')
+        output_file = '/tmp/neoformat_' + filename
+        cmd = f'nvim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} {formatter} | w! {output_file} | q! " --headless {dir_before + filename}'
+        run_cmd(cmd)
+        before = readlines(output_file)
+        after = readlines(dir_after + filename)
+        assert before == after
+
+
+def test_vader():
+    '''
+    run *.vader tests
+    '''
+    cmd = f'nvim -u vimrc -c "Vader! *.vader" --headless'
+    exit_code = run_cmd(cmd)
+    assert exit_code == 0
+
+
+def test_autocompletion():
+    '''
+    run the vim autocompletion tests
+    '''
+    cmd = f'nvim -u vimrc -c "source autocomplete_test.vim" --headless'
+    exit_code = run_cmd(cmd)
+    assert exit_code == 0
+
+
+def test_viml_syntax():
+    '''
+    run vint to check vim syntax
+    '''
+    exit_code = run_cmd('vint ../')
+    assert exit_code == 0
+
+
 if __name__ == '__main__':
-    test_formatters()
+    # run all functions with names in the form of 'test_...'
+    [func() for func in (val for key, val in vars().items()
+        if key.startswith('test_'))]

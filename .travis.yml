@@ -11,7 +11,8 @@ python:
     - "3.6"
 
 install:
-    - sudo pip install vim-vint
+    - ./test/install.sh
+    - pip install -r test/requirements.txt
 
 script:
-    - bash test/test.sh
+    - cd test && pytest -v test.py

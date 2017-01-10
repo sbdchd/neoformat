@@ -4,6 +4,7 @@ set runtimepath+=../
 filetype plugin indent on
 syntax enable
 autocmd! filetype css set shiftwidth=2
-autocmd! filetype py set shiftwidth=4
+autocmd! filetype python set shiftwidth=4
+autocmd! filetype javascript set shiftwidth=4
 set nocompatible
 set noswapfile

@@ -41,7 +41,7 @@ Format the entire buffer, or visual selection of the buffer
 
 <Or specify a certain formatter (must be defined for the current filetype)
 >
-	:Neoformat js-beautify
+	:Neoformat jsbeautify
 
 Or format a visual selection of code in a different filetype
 
@@ -50,6 +50,11 @@ Or format a visual selection of code in a different filetype
 >
 	:Neoformat! python
 >
+You can also pass a formatter to use
+
+>
+	:Neoformat! python yapf
+<
 
 Or perhaps run a formatter on save
 

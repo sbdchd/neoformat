@@ -35,7 +35,7 @@ Execute (user disabled all formatters for current (python) filetype):
   let &filetype = 'python'
   let out = g:CmdOutput('Neoformat')
 
-  AssertEqual 'Neoformat: attempted all formatters available for python', out
+  AssertEqual 'Neoformat: attempted all formatters for current filetype', out
 
 Execute (invalid user cmd: formatter not defined):
   let out = g:CmdOutput('Neoformat not_a_real_formatter')
