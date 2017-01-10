@@ -1,5 +1,5 @@
 function! neoformat#formatters#haskell#enabled() abort
-    return ['hindent', 'stylishhaskell']
+    return ['hindent', 'stylishhaskell', 'hfmt']
 endfunction
 
 function! neoformat#formatters#haskell#hindent() abort
