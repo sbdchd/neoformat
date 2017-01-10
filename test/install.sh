@@ -11,13 +11,18 @@ fi
 
 # Make sure neovim is installed
 if ! hash nvim 2>/dev/null; then
+    echo "installing neovim"
     if [[ $OS == 'linux' ]]; then
+        echo "installing nvim on linux"
         sudo add-apt-repository -y ppa:neovim-ppa/unstable
         sudo apt-get update
         sudo apt-get install -y neovim
     elif [[ $OS == 'mac' ]]; then
+        echo "install nvim on mac"
         brew install neovim
     fi
+else
+    echo "neovim already installed"
 fi
 
 # Vader
