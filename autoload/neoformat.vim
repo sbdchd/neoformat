@@ -119,6 +119,18 @@ function! s:deletelines(start, end) abort
 endfunction
 
 function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
+    if a:CmdLine =~ '!'
+        " https://github.com/junegunn/fzf.vim/pull/110
+        " 1. globpath (find) all filetype files in neoformat
+        " 2. split at new lines
+        " 3. map ~/.config/nvim/plugged/neoformat/autoload/neoformat/formatters/xml.vim --> xml
+        " 4. sort & uniq to eliminate dupes
+        " 5. filter for input
+        return filter(uniq(sort(map(split(globpath(&runtimepath,
+                    \ 'plugged/neoformat/autoload/neoformat/formatters/*.vim'), '\n'),
+                    \ "fnamemodify(v:val, ':t:r')"))),
+                    \ "v:val =~? '^" . a:ArgLead . "'")
+    endif
     if a:ArgLead =~ '[^A-Za-z0-9]'
         return []
     endif
