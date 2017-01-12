@@ -6,11 +6,14 @@ cache:
     - pip
     - npm
 
-node_js:
-    - "5.11.1"
+env:
+    - NODE_VERSION="5.11.1"
 
 python:
     - "3.6"
+
+before_install:
+    - nvm install $NODE_VERSION
 
 install:
     - ./test/install.sh
