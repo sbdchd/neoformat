@@ -191,6 +191,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
 - Haskell
   - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)
+  - [`hindent`](https://github.com/chrisdone/hindent)
+  - [`hfmt`](https://github.com/danstiner/hfmt)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
