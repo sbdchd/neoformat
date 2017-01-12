@@ -69,6 +69,43 @@ def test_visual_selection_with_filetype_and_formatter():
         assert before == after
 
 
+def test_formatprg_with_neoformat():
+    '''
+    Test that formatprg is processed by neoformat
+    '''
+
+    dir_before = 'before/'
+    filename = 'cssbeautify.css'
+    output_file = '/tmp/neoformat_fmt_prg_' + filename
+    viml = '''
+    let &formatprg = 'css-beautify -s 6 -n'
+    let g:neoformat_try_formatprg = 1
+    '''
+    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    run_cmd(cmd)
+    before = readlines(output_file)
+    after = readlines('./after/cssbeautify-indent-6.css')
+    assert before == after
+
+
+def test_formatprg_without_enable():
+    '''
+    Test that formatprg isn't use when not enabled
+    '''
+
+    dir_before = 'before/'
+    filename = 'cssbeautify.css'
+    output_file = '/tmp/neoformat_fmtprg_not_enabled' + filename
+    viml = '''
+    let &formatprg = 'css-beautify -s 6 -n'
+    '''
+    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    run_cmd(cmd)
+    before = readlines(output_file)
+    after = readlines('./after/cssbeautify.css')
+    assert before == after
+
+
 def test_vader():
     '''
     run *.vader tests

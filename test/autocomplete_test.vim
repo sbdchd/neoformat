@@ -47,10 +47,10 @@ function! s:invalid_option()
     return [] == out
 endfunction
 
-function! s:multi_options()
-    let &filetype = 'python'
-    let g:neoformat_python_enabled = ['autopep8', 'yapf']
-    let out = neoformat#CompleteFormatters('autopep8', '', 0)
+function! s:formtprg_option()
+    let &filetype = 'javascript'
+    let &formatprg = 'testing'
+    let out = neoformat#CompleteFormatters('test', '', 0)
 
     return [] == out
 endfunction
@@ -58,6 +58,7 @@ endfunction
 " Run Tests
 call s:Run('s:valid_option')
 call s:Run('s:invalid_option')
+call s:Run('s:formtprg_option')
 
 
 " Check the outputs

@@ -44,6 +44,13 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             let definition = g:neoformat_{filetype}_{formatter}
         elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
             let definition =  neoformat#formatters#{filetype}#{formatter}()
+        elseif &formatprg != '' && split(&formatprg)[0] ==# formatter
+            let fmt_prg_def = split(&formatprg)
+            let definition = {
+                    \ 'exe': fmt_prg_def[0],
+                    \ 'args': fmt_prg_def[1:],
+                    \ 'stdin': 1,
+                    \ }
         else
             call neoformat#utils#log('definition not found for formatter: ' . formatter)
             if using_user_passed_formatter
@@ -69,8 +76,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
         call neoformat#utils#log(cmd.exe)
         if cmd.stdin
+            call neoformat#utils#log('using stdin')
             let stdout = systemlist(cmd.exe, stdin)
         else
+            call neoformat#utils#log('using tmp file')
             call mkdir('/tmp/neoformat', 'p')
             call writefile(stdin, cmd.tmp_file_path)
             let stdout = systemlist(cmd.exe)
@@ -108,12 +117,22 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
-    if exists('g:neoformat_enabled_' . a:filetype)
-        return g:neoformat_enabled_{a:filetype}
-    elseif s:autoload_func_exists('neoformat#formatters#' . a:filetype . '#enabled')
-        return neoformat#formatters#{a:filetype}#enabled()
+    if &formatprg != '' && get(g:, 'neoformat_try_formatprg', 0)
+        call neoformat#utils#log('using formatprg')
+        let format_prg_exe = [split(&formatprg)[0]]
+    else
+        let format_prg_exe = []
     endif
-    return []
+
+    " Note: we append format_prg_exe to ever return as it will either be
+    " [], or it will be a formatter that we want to try first
+
+    if exists('g:neoformat_enabled_' . a:filetype)
+        return format_prg_exe + g:neoformat_enabled_{a:filetype}
+    elseif s:autoload_func_exists('neoformat#formatters#' . a:filetype . '#enabled')
+        return format_prg_exe + neoformat#formatters#{a:filetype}#enabled()
+    endif
+    return format_prg_exe
 endfunction
 
 function! s:deletelines(start, end) abort
@@ -152,7 +171,7 @@ endfunction
 function! s:autoload_func_exists(func_name) abort
     try
         call eval(a:func_name . '()')
-    catch /^Vim\%((\a\+)\)\=:E117/
+    catch /^Vim\%((\a\+)\)\=:E/
         return 0
     endtry
     return 1
