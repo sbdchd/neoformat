@@ -78,12 +78,12 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         call neoformat#utils#log(cmd.exe)
         if cmd.stdin
             call neoformat#utils#log('using stdin')
-            let stdout = systemlist(cmd.exe, stdin)
+            let stdout = split(system(cmd.exe, stdin), '\n')
         else
             call neoformat#utils#log('using tmp file')
             call mkdir('/tmp/neoformat', 'p')
             call writefile(stdin, cmd.tmp_file_path)
-            let stdout = systemlist(cmd.exe)
+            let stdout = split(system(cmd.exe), '\n')
         endif
 
         " read from /tmp file if formatter replaces file on format
