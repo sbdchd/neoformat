@@ -100,6 +100,12 @@ Configure enabled formatters.
 let g:neoformat_enabled_python = ['autopep8', 'yapf']
 ```
 
+Have Neoformat use &formatprg as a formatter
+
+```viml
+let g:neoformat_try_formatprg = 1
+```
+
 Enable basic formatting when a filetype is not found. Disabled by default.
 
 ```viml

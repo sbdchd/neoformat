@@ -102,6 +102,10 @@ Define custom formatters.
 
     let g:neoformat_enabled_python = ['autopep8']
 <
+Have Neoformat use &formatprg as a formatter
+>
+    let g:neoformat_try_formatprg = 1
+<
 Enable basic formatting when a filetype is not found. Disabled by default.
 >
     " Enable alignment

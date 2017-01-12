@@ -45,6 +45,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
             let definition =  neoformat#formatters#{filetype}#{formatter}()
         elseif &formatprg != '' && split(&formatprg)[0] ==# formatter
+                    \ && get(g:, 'neoformat_try_formatprg', 0)
             let fmt_prg_def = split(&formatprg)
             let definition = {
                     \ 'exe': fmt_prg_def[0],
