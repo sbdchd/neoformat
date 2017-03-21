@@ -261,7 +261,8 @@ endfunction
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`csscomb`](http://csscomb.com)
 - Scala
-  - [`scalariform`](https://github.com/scala-ide/scalariform)
+  - [`scalariform`](https://github.com/scala-ide/scalariform),
+    [`scalafmt`](http://scalameta.org/scalafmt/)
 - SCSS
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
