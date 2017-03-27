@@ -207,7 +207,12 @@ function! s:generate_cmd(definition, filetype) abort
     let using_stdin = get(a:definition, 'stdin', 0)
 
     let filename = expand('%:t')
-    let path = !using_stdin ? tempname() : ''
+
+    if get(a:definition, 'replace', 0)
+        let path = !using_stdin ? '/tmp/neoformat/' . fnameescape(filename) : ''
+    else
+        let path = !using_stdin ? tempname() : ''
+    endif
 
     let _fullcmd = executable . ' ' . join(args_expanded) . ' ' . (no_append ? '' : path)
     " make sure there aren't any double spaces in the cmd
