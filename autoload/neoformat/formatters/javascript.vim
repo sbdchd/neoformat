@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascript#enabled() abort
-    return ['jsbeautify', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint']
+    return ['jsbeautify', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint', 'eslint_d']
 endfunction
 
 function! neoformat#formatters#javascript#jsbeautify() abort
@@ -48,6 +48,13 @@ function! neoformat#formatters#javascript#prettiereslint() abort
     return {
         \ 'exe': 'prettier-eslint',
         \ 'args': ['--stdin'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+function! neoformat#formatters#javascript#eslint_d() abort
+    return {
+        \ 'exe': 'eslint_d',
+        \ 'args': ['--stdin','--fix-to-stdout'],
         \ 'stdin': 1,
         \ }
 endfunction
