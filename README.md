@@ -217,8 +217,9 @@ endfunction
     [`prettier`](https://github.com/jlongster/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
-    [`esformatter`](https://github.com/millermedeiros/esformatter/)
-    [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli)
+    [`esformatter`](https://github.com/millermedeiros/esformatter/),
+    [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
+    [`eslint_d`](https://github.com/mantoni/eslint_d.js)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
