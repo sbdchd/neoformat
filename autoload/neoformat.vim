@@ -82,7 +82,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             let stdout = split(system(cmd.exe, stdin), '\n')
         else
             call neoformat#utils#log('using tmp file')
-            call mkdir('/tmp/neoformat', 'p')
+            let tmp_dir = '/tmp/neoformat'
+            if !isdirectory(tmp_dir)
+                call mkdir(tmp_dir, 'p')
+            endif
             call writefile(stdin, cmd.tmp_file_path)
             let stdout = split(system(cmd.exe), '\n')
         endif
