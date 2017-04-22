@@ -255,7 +255,8 @@ endfunction
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8)
 - Ruby
-  - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
+  - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
+    [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
