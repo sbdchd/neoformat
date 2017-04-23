@@ -22,6 +22,7 @@ function! neoformat#formatters#css#prettydiff() abort
             \ 'exe': 'prettydiff',
             \ 'args': ['mode:"beautify"',
                      \ 'lang:"css"',
+                     \ 'insize:' .shiftwidth(),
                      \ 'readmethod:"filescreen"',
                      \ 'endquietly:"quiet"',
                      \ 'source:"%:p"'],
