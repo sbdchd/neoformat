@@ -249,6 +249,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Python
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8)
+    [isort](https://github.com/timothycrosley/isort)
 - Ruby
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
 - Rust
