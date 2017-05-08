@@ -20,6 +20,6 @@ endfunction
 function! neoformat#formatters#python#isort() abort
     return {
                 \ 'exe': 'isort',
-                \ 'args': ['-', '--quiet', '--stdout'],
+                \ 'args': ['-', '--quiet'],
                 \ 'stdin': 1}
 endfunction
