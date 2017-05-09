@@ -49,6 +49,8 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
                     \ 'args': fmt_prg_def[1:],
                     \ 'stdin': 1,
                     \ }
+        elseif exists('b:neoformat_' . filetype . '_' . formatter)
+            let definition = b:neoformat_{filetype}_{formatter}
         elseif exists('g:neoformat_' . filetype . '_' . formatter)
             let definition = g:neoformat_{filetype}_{formatter}
         elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
@@ -132,7 +134,9 @@ function! s:get_enabled_formatters(filetype) abort
     " Note: we append format_prg_exe to ever return as it will either be
     " [], or it will be a formatter that we want to try first
 
-    if exists('g:neoformat_enabled_' . a:filetype)
+    if exists('b:neoformat_enabled_' . a:filetype)
+        return format_prg_exe + b:neoformat_enabled_{a:filetype}
+    elseif exists('g:neoformat_enabled_' . a:filetype)
         return format_prg_exe + g:neoformat_enabled_{a:filetype}
     elseif s:autoload_func_exists('neoformat#formatters#' . a:filetype . '#enabled')
         return format_prg_exe + neoformat#formatters#{a:filetype}#enabled()
