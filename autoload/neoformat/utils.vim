@@ -19,9 +19,9 @@ function! neoformat#utils#msg(msg) abort
 endfunction
 
 function! s:better_echo(msg) abort
-    let msg = a:msg
     if type(a:msg) != type('')
-        let msg = string(a:msg)
+        echom 'Neoformat: ' . string(a:msg)
+    else
+        echom 'Neoformat: ' . a:msg
     endif
-    echom 'Neoformat: ' . msg
 endfunction
