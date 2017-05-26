@@ -81,7 +81,8 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         call neoformat#utils#log(cmd.exe)
         if cmd.stdin
             call neoformat#utils#log('using stdin')
-            let stdout = split(system(cmd.exe, stdin), '\n')
+            let stdin_str = join(stdin, "\n")
+            let stdout = split(system(cmd.exe, stdin_str), '\n')
         else
             call neoformat#utils#log('using tmp file')
             let tmp_dir = '/tmp/neoformat'
