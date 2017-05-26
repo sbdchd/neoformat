@@ -38,6 +38,8 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         endif
     endif
 
+    let formatters_failed = []
+    let formatters_changed = []
     for formatter in formatters
 
         if &formatprg != '' && split(&formatprg)[0] ==# formatter
@@ -110,17 +112,30 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
                 call setline(1, new_buffer)
 
-                return neoformat#utils#msg(cmd.name . ' formatted buffer')
+                call add(formatters_changed, cmd.name)
+                let endmsg = cmd.name . ' formatted buffer'
             else
 
-                return neoformat#utils#msg('no change necessary with ' . cmd.name)
+                let endmsg = 'no change necessary with ' . cmd.name
             endif
+            if !get(g:, 'neoformat_run_all_formatters', 0)
+                return neoformat#utils#msg(endmsg)
+            endif
+            call neoformat#utils#log('running next formatter')
         else
+            call add(formatters_failed, cmd.name)
             call neoformat#utils#log(v:shell_error)
             call neoformat#utils#log('trying next formatter')
         endif
     endfor
-    call neoformat#utils#msg('attempted all formatters for current filetype')
+    if len(formatters_failed)
+        call neoformat#utils#msg('formatters ' . join(formatters_failed, ", ") . ' failed to run')
+    endif
+    if len(formatters_changed)
+        call neoformat#utils#msg(join(formatters_changed, ", ") . ' formatted buffer')
+    else
+        call neoformat#utils#msg('no change necessary')
+    endif
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
