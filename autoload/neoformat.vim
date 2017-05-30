@@ -133,7 +133,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
     endif
     if len(formatters_changed)
         call neoformat#utils#msg(join(formatters_changed, ", ") . ' formatted buffer')
-    else
+    elseif !len(formatters_failed)
         call neoformat#utils#msg('no change necessary')
     endif
 endfunction
