@@ -185,7 +185,8 @@ endfunction
   - `css-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
-    [`csscomb`](http://csscomb.com)
+    [`csscomb`](http://csscomb.com),
+    [`prettier`](https://github.com/prettier/prettier)
 - CSV
   - [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - D
