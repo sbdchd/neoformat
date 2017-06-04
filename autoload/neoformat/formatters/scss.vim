@@ -21,3 +21,7 @@ endfunction
 function! neoformat#formatters#scss#stylefmt() abort
     return neoformat#formatters#css#stylefmt()
 endfunction
+
+function! neoformat#formatters#scss#prettier() abort
+    return neoformat#formatters#css#prettier()
+endfunction

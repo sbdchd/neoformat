@@ -272,7 +272,8 @@ endfunction
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
-    [`csscomb`](http://csscomb.com)
+    [`csscomb`](http://csscomb.com),
+    [`prettier`](https://github.com/prettier/prettier)
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
 - SQL
