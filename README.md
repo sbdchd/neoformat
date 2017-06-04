@@ -256,7 +256,7 @@ endfunction
 - Python
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8)
-  - [`isort](https://github.com/timothycrosley/isort)
+  - [`isort`](https://github.com/timothycrosley/isort)
 - Ruby
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
     [`rubocop`](https://github.com/bbatsov/rubocop)
