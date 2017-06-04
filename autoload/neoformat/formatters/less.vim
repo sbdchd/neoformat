@@ -9,3 +9,7 @@ endfunction
 function! neoformat#formatters#less#prettydiff() abort
     return neoformat#formatters#css#prettydiff()
 endfunction
+
+function! neoformat#formatters#less#prettier() abort
+    return neoformat#formatters#css#prettier()
+endfunction

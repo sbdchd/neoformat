@@ -229,7 +229,8 @@ endfunction
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
   - [`csscomb`](http://csscomb.com),
-    [`prettydiff`](https://github.com/prettydiff/prettydiff)
+    [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`prettier`](https://github.com/prettier/prettier)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
 - Markdown
