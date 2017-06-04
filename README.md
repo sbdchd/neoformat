@@ -279,7 +279,8 @@ endfunction
 - SQL
   - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
 - Typescript
-  - [`tsfmt`](https://github.com/vvakame/typescript-formatter)
+  - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
+    [`prettier`](https://github.com/prettier/prettier)
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - XHTML
