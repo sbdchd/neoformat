@@ -128,12 +128,12 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             call neoformat#utils#log('trying next formatter')
         endif
     endfor
-    if len(formatters_failed)
+    if len(formatters_failed) > 0
         call neoformat#utils#msg('formatters ' . join(formatters_failed, ", ") . ' failed to run')
     endif
-    if len(formatters_changed)
+    if len(formatters_changed) > 0
         call neoformat#utils#msg(join(formatters_changed, ", ") . ' formatted buffer')
-    elseif !len(formatters_failed)
+    elseif len(formatters_failed) == 0
         call neoformat#utils#msg('no change necessary')
     endif
 endfunction
