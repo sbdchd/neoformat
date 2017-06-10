@@ -269,6 +269,7 @@ endfunction
     [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
+    [`cargo`](https://github.com/rust-lang/cargo)
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`csscomb`](http://csscomb.com)
