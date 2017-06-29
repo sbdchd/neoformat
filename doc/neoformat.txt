@@ -258,6 +258,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Ruby
   - [rufo](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
+  - [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
