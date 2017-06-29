@@ -1,5 +1,12 @@
 function! neoformat#formatters#ruby#enabled() abort
-   return ['rubybeautify', 'rubocop']
+   return ['rufo', 'rubybeautify', 'rubocop']
+endfunction
+
+function! neoformat#formatters#ruby#rufo() abort
+     return {
+        \ 'exe': 'rufo',
+        \ 'stdin': 1,
+        \ }
 endfunction
 
 function! neoformat#formatters#ruby#rubybeautify() abort
