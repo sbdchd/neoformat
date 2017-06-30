@@ -1,5 +1,5 @@
 function! neoformat#formatters#json#enabled() abort
-    return ['jsbeautify', 'prettydiff', 'jq']
+    return ['jsbeautify', 'prettydiff', 'jq', 'prettier']
 endfunction
 
 function! neoformat#formatters#json#jsbeautify() abort
@@ -15,4 +15,12 @@ function! neoformat#formatters#json#jq() abort
             \ 'exe': 'jq',
             \ 'args': ['.'],
             \ }
+endfunction
+
+function! neoformat#formatters#json#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--parser', 'json'],
+        \ 'stdin': 1,
+        \ }
 endfunction
