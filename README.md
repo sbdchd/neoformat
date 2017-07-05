@@ -48,9 +48,13 @@ Or perhaps run a formatter on save
 ```viml
 augroup fmt
   autocmd!
-  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre * undojoin | Neoformat
 augroup END
 ```
+
+The `undojoin` command will put changes made by Neoformat into the same
+`undo-block` with the latest preceding change. See
+[Managing Undo History](#managing-undo-history).
 
 ## Install
 
@@ -168,6 +172,28 @@ function! neoformat#formatters#{{ filetype }}#{{ other formatter name }}() abort
   return {'exe': {{ other formatter name }}
 endfunction
 ```
+
+## Managing Undo History
+
+If you use an `autocmd` to run Neoformat on save, and you have your editor
+configured to save automatically on `CursorHold` then you might run into
+problems reverting changes. Pressing `u` will undo the last change made by
+Neoformat instead of the change that you made yourself - and then Neoformat
+will run again redoing the change that you just reverted. To avoid this
+problem you can run Neoformat with the Vim `undojoin` command to put changes
+made by Neoformat into the same `undo-block` with the preceding change. For
+example:
+
+```viml
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+```
+
+When `undojoin` is used this way pressing `u` will "skip over" the Neoformat
+changes - it will revert both the changes made by Neoformat and the change
+that caused Neoformat to be invoked.
 
 ## Supported Filetypes
 
