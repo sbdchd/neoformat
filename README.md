@@ -256,6 +256,7 @@ endfunction
   - [`perltidy`](http://perltidy.sourceforge.net)
 - PHP
   - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier)
+  - [`php-cs-fixer`](http://cs.sensiolabs.org/)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
