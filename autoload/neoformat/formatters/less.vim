@@ -1,5 +1,5 @@
 function! neoformat#formatters#less#enabled() abort
-    return ['csscomb', 'prettydiff']
+    return ['prettier', 'csscomb', 'prettydiff']
 endfunction
 
 function! neoformat#formatters#less#csscomb() abort

@@ -1,5 +1,5 @@
 function! neoformat#formatters#scss#enabled() abort
-   return ['sassconvert', 'stylefmt', 'prettydiff', 'csscomb']
+   return ['sassconvert', 'stylefmt', 'prettier', 'prettydiff', 'csscomb']
 endfunction
 
 function! neoformat#formatters#scss#sassconvert() abort
