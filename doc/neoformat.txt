@@ -211,6 +211,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - `crystal tool format` (ships with [`crystal`](http://crystal-lang.org))
 - CSS
   - `css-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
+    [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
     [`csscomb`](http://csscomb.com)
@@ -256,6 +257,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
   - [`csscomb`](http://csscomb.com),
+    [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
@@ -298,6 +300,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - SCSS
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
+    [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`csscomb`](http://csscomb.com)
 - Shell
