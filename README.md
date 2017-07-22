@@ -292,6 +292,8 @@ that caused Neoformat to be invoked.
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8)
   - [`isort`](https://github.com/timothycrosley/isort)
+- Reason
+  - [`refmt`](https://github.com/facebook/reason)
 - Ruby
   - [`rufo`](https://github.com/asterite/rufo),
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),

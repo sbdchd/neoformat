@@ -9,5 +9,3 @@ function! neoformat#formatters#elm#elmformat() abort
         \ 'stdin': 1,
         \ }
 endfunction
-
-
