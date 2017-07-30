@@ -316,6 +316,8 @@ that caused Neoformat to be invoked.
   - [`shfmt`](https://github.com/mvdan/sh)
 - SQL
   - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
+- Terraform
+  - [`terraform`](https://www.terraform.io/docs/commands/fmt.html),
 - Typescript
   - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
     [`prettier`](https://github.com/prettier/prettier)
