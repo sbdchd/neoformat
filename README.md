@@ -254,6 +254,7 @@ that caused Neoformat to be invoked.
     [`esformatter`](https://github.com/millermedeiros/esformatter/),
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
     [`eslint_d`](https://github.com/mantoni/eslint_d.js)
+    [`standard`](https://standardjs.com/)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
