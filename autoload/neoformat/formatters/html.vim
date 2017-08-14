@@ -10,7 +10,7 @@ function! neoformat#formatters#html#tidy() abort
         \          '--indent-spaces ' . shiftwidth(),
         \          '--vertical-space yes',
         \          '--tidy-mark no',
-        \          '-wrap' .&textwidth
+        \          '-wrap ' . &textwidth
         \         ]
         \ }
 endfunction
