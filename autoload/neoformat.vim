@@ -87,10 +87,6 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             let stdout = split(system(cmd.exe, stdin_str), '\n')
         else
             call neoformat#utils#log('using tmp file')
-            let tmp_dir = '/tmp/neoformat'
-            if !isdirectory(tmp_dir)
-                call mkdir(tmp_dir, 'p')
-            endif
             call writefile(stdin, cmd.tmp_file_path)
             let stdout = split(system(cmd.exe), '\n')
         endif
@@ -231,8 +227,16 @@ function! s:generate_cmd(definition, filetype) abort
 
     let filename = expand('%:t')
 
+    let tmp_dir = has('win32') ?
+                \ expand('$TEMP/neoformat') :
+                \ expand('$TMPDIR/neoformat')
+
+    if !isdirectory(tmp_dir)
+        call mkdir(tmp_dir, 'p')
+    endif
+
     if get(a:definition, 'replace', 0)
-        let path = !using_stdin ? '/tmp/neoformat/' . fnameescape(filename) : ''
+        let path = !using_stdin ? expand(tmp_dir . '/' . fnameescape(filename)) : ''
     else
         let path = !using_stdin ? tempname() : ''
     endif
