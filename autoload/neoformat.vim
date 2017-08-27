@@ -227,9 +227,9 @@ function! s:generate_cmd(definition, filetype) abort
 
     let filename = expand('%:t')
 
-    let tmp_dir = has('win32') ?
-                \ expand('$TEMP/neoformat') :
-                \ expand('$TMPDIR/neoformat')
+    let tmp_dir = has('win32') ? expand('$TEMP/neoformat') :
+                \ exists('$TMPDIR') ? expand('$TMPDIR/neoformat') :
+                \ '/tmp/neoformat'
 
     if !isdirectory(tmp_dir)
         call mkdir(tmp_dir, 'p')
