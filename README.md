@@ -234,6 +234,8 @@ that caused Neoformat to be invoked.
 - Go
   - [`gofmt`](https://golang.org/cmd/gofmt/),
     [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
+- GraphQL
+  - [`prettier`](https://github.com/prettier/prettier)
 - Haskell
   - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)
   - [`hindent`](https://github.com/chrisdone/hindent)
