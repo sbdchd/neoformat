@@ -263,6 +263,8 @@ that caused Neoformat to be invoked.
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/)
+- Kotlin
+  - [`ktlint`](https://github.com/shyiko/ktlint)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
