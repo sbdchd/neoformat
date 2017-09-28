@@ -39,7 +39,7 @@ endfunction
 function! neoformat#formatters#javascript#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin'],
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
         \ 'stdin': 1,
         \ }
 endfunction
@@ -47,7 +47,7 @@ endfunction
 function! neoformat#formatters#javascript#prettiereslint() abort
     return {
         \ 'exe': 'prettier-eslint',
-        \ 'args': ['--stdin'],
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
         \ 'stdin': 1,
         \ }
 endfunction
