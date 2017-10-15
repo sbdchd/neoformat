@@ -13,11 +13,11 @@ function! neoformat#formatters#pandoc#pandoc() abort
        \ '+emoji',
        \ ]
 
-   let l:target_flags = ['markdown'
-       \ '+raw_tex'
-       \ '-native_spans'
-       \ '-simple_tables'
-       \ '-multiline_tables'
+   let l:target_flags = ['markdown',
+       \ '+raw_tex',
+       \ '-native_spans',
+       \ '-simple_tables',
+       \ '-multiline_tables',
        \ '+emoji',
        \ ]
 
@@ -27,7 +27,7 @@ function! neoformat#formatters#pandoc#pandoc() abort
             \ 'args': ['-f' ,
             \ join(l:input_flags,''),
             \ '-t',
-            \   join(l:target_flags,''),
+            \ join(l:target_flags,''),
             \ '--normalize',
             \ '-s',
             \ '--wrap=auto',
