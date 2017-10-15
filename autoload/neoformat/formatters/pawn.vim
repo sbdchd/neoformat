@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#pawn#uncrustify() abort
     return {
         \ 'exe': 'uncrustify',
-        \ 'args': ['-q', '-l PAWN', '-f'],
+        \ 'args': ['-q', '-l PAWN'],
         \ 'stdin': 1,
         \ }
 endfunction
