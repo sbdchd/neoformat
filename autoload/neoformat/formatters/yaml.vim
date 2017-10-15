@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#yaml#pandoc() abort
    return {
             \ 'exe': 'python3',
-            \ 'args': ['-m', 'pyaml']
+            \ 'args': ['-m', 'pyaml'],
             \ 'stdin': 1,
             \ }
 endfunction
