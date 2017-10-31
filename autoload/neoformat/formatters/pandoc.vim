@@ -28,7 +28,6 @@ function! neoformat#formatters#pandoc#pandoc() abort
             \ join(l:input_flags,''),
             \ '-t',
             \ join(l:target_flags,''),
-            \ '--normalize',
             \ '-s',
             \ '--wrap=auto',
             \ '--atx-headers',
