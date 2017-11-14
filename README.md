@@ -282,6 +282,7 @@ that caused Neoformat to be invoked.
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
+    [`prettier`](https://github.com/prettier/prettier)
 - Objective-C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
