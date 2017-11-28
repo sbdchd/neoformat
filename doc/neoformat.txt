@@ -92,6 +92,7 @@ Options:
 | `no_append` | do not append the `path` of the file to the formatter command,
 	     used when the `path` is in the middle of a command | default: 0 |
 	     optional
+| `env`       | list of environment variables to prepend to the command | default: [] | optional
 
 Example:
 
