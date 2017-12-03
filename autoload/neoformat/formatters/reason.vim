@@ -1,4 +1,4 @@
-function! neoformat#formatters#reason() abort
+function! neoformat#formatters#reason#enabled() abort
     return ['refmt']
 endfunction
 
