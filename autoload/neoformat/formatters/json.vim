@@ -24,3 +24,12 @@ function! neoformat#formatters#json#prettier() abort
         \ 'stdin': 1,
         \ }
 endfunction
+
+function! neoformat#formatters#json#fixjson() abort
+    let l:filename = fnamemodify(bufname('%'), ':t')
+    return {
+        \ 'exe': 'fixjson',
+        \ 'args': ['--stdin-filename', l:filename],
+        \ 'stdin': 1,
+        \ }
+endfunction
