@@ -6,6 +6,7 @@ function! neoformat#formatters#ruby#rufo() abort
      return {
         \ 'exe': 'rufo',
         \ 'stdin': 1,
+        \ 'valid_exit_codes': [0, 3]
         \ }
 endfunction
 
