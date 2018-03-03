@@ -11,7 +11,6 @@ endfunction
 function! neoformat#formatters#ocaml#ocamlformat() abort
     return {
         \ 'exe': 'ocamlformat',
-        \ 'args': ['--inplace'],
-        \ 'replace': 1,
+        \ 'args': ['--name', '%:p']
         \ }
 endfunction
