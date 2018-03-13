@@ -304,6 +304,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`autopep8`](https://github.com/hhatto/autopep8)
     [isort](https://github.com/timothycrosley/isort)
     [docformatter](https://github.com/myint/docformatter)
+    [autoflake](https://github.com/myint/autoflake)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
