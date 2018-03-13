@@ -303,6 +303,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8)
     [isort](https://github.com/timothycrosley/isort)
+    [docformatter](https://github.com/myint/docformatter)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
