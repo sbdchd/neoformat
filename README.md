@@ -218,6 +218,8 @@ that caused Neoformat to be invoked.
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`astyle`](http://astyle.sourceforge.net)
+- CMake
+  - [`cmake_format`](https://github.com/cheshirekow/cmake_format)
 - Crystal
   - `crystal tool format` (ships with [`crystal`](http://crystal-lang.org))
 - CSS
