@@ -303,7 +303,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`pug-beautifier`](https://github.com/vingorius/pug-beautifier)
 - Python
   - [`yapf`](https://github.com/google/yapf),
-    [`autopep8`](https://github.com/hhatto/autopep8)
+    [`autopep8`](https://github.com/hhatto/autopep8),
+    [`black`](https://github.com/ambv/black)
     [isort](https://github.com/timothycrosley/isort)
     [docformatter](https://github.com/myint/docformatter)
 - Reason
