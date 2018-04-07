@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#haskell#hindent() abort
     return {
         \ 'exe' : 'hindent',
-        \ 'args': ['--indent-size ' . shiftwidth(), '--line-length 80'],
+        \ 'args': ['--indent-size ' . shiftwidth()],
         \ 'stdin' : 1,
         \ }
 endfunction
