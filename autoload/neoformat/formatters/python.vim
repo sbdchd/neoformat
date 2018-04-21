@@ -1,5 +1,5 @@
 function! neoformat#formatters#python#enabled() abort
-    return ['yapf', 'autopep8', 'isort', 'docformatter', 'autoflake']
+    return ['yapf', 'autopep8', 'black', 'isort', 'docformatter', 'autoflake']
 endfunction
 
 function! neoformat#formatters#python#yapf() abort
@@ -21,7 +21,7 @@ endfunction
 function! neoformat#formatters#python#isort() abort
     return {
                 \ 'exe': 'isort',
-                \ 'args': ['-', '--quiet'],
+                \ 'args': ['-', '--quiet', '--use-parentheses', '--trailing-comma',],
                 \ 'stdin': 1,
                 \ }
 endfunction
@@ -35,11 +35,19 @@ function! neoformat#formatters#python#docformatter() abort
                 \ }
 endfunction
 
-
 function! neoformat#formatters#python#autoflake() abort
     return {
                 \ 'exe': 'autoflake',
-                \ 'args': ['--in-place', '--remove-duplicate-keys'],
+                \ 'args': ['--in-place', '--remove-duplicate-keys', '--expand-star-imports'],
                 \ 'stdin': 0,
+                \ }
+endfunction
+
+function! neoformat#formatters#python#black() abort
+    return {
+                \ 'exe': 'black',
+                \ 'stdin': 1,
+                \ 'args': ['-', '2>/dev/null'],
+
                 \ }
 endfunction
