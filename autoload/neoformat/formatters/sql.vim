@@ -13,7 +13,7 @@ endfunction
 function! neoformat#formatters#sql#pg_format() abort
     return {
         \ 'exe': 'pg_format',
-        \ 'args': ['--reindent', '-'],
+        \ 'args': ['-'],
         \ 'stdin': 1,
         \ }
 endfunction
