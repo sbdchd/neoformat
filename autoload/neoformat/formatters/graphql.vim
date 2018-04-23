@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#graphql#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--parser', 'graphql'],
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p', '--parser', 'graphql'],
         \ 'stdin': 1
         \ }
 endfunction

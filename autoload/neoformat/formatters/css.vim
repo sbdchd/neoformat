@@ -40,7 +40,7 @@ endfunction
 function! neoformat#formatters#css#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--parser', 'css'],
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p', '--parser', 'css'],
         \ 'stdin': 1
         \ }
 endfunction
