@@ -1,5 +1,5 @@
 function! neoformat#formatters#json#enabled() abort
-    return ['jsbeautify', 'prettydiff', 'jq', 'prettier']
+    return ['jsbeautify', 'prettydiff', 'prettier', 'jq', 'fixjson']
 endfunction
 
 function! neoformat#formatters#json#jsbeautify() abort
