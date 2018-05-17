@@ -25,3 +25,15 @@ function! s:better_echo(msg) abort
         echom 'Neoformat: ' . a:msg
     endif
 endfunction
+
+function! neoformat#utils#var(name) abort
+    return neoformat#utils#var_default(a:name, 0)
+endfunction
+
+function! neoformat#utils#var_default(name, default) abort
+    if exists('b:' . a:name)
+        return get(b:, a:name)
+    endif
+
+    return get(g:, a:name, a:default)
+endfunction

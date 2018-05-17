@@ -43,7 +43,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
     for formatter in formatters
 
         if &formatprg != '' && split(&formatprg)[0] ==# formatter
-                    \ && get(g:, 'neoformat_try_formatprg', 0)
+                    \ && neoformat#utils#var('neoformat_try_formatprg')
             call neoformat#utils#log('using formatprg')
             let fmt_prg_def = split(&formatprg)
             let definition = {
@@ -120,7 +120,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
                 let endmsg = 'no change necessary with ' . cmd.name
             endif
-            if !get(g:, 'neoformat_run_all_formatters', 0)
+            if !neoformat#utils#var('neoformat_run_all_formatters')
                 return neoformat#utils#msg(endmsg)
             endif
             call neoformat#utils#log('running next formatter')
@@ -141,7 +141,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort
-    if &formatprg != '' && get(g:, 'neoformat_try_formatprg', 0)
+    if &formatprg != '' && neoformat#utils#var('neoformat_try_formatprg')
         call neoformat#utils#log('adding formatprg to enabled formatters')
         let format_prg_exe = [split(&formatprg)[0]]
     else
@@ -279,17 +279,17 @@ function! s:basic_format() abort
         let g:neoformat_basic_format_trim = 0
     endif
 
-    if g:neoformat_basic_format_align
+    if neoformat#utils#var('neoformat_basic_format_align')
         call neoformat#utils#log('aligning with basic formatter')
         let v = winsaveview()
         silent! execute 'normal gg=G'
         call winrestview(v)
     endif
-    if g:neoformat_basic_format_retab
+    if neoformat#utils#var('neoformat_basic_format_retab')
         call neoformat#utils#log('converting tabs with basic formatter')
         retab
     endif
-    if g:neoformat_basic_format_trim
+    if neoformat#utils#var('neoformat_basic_format_trim')
         call neoformat#utils#log('trimming whitespace with basic formatter')
         " http://stackoverflow.com/q/356126
         let search = @/
