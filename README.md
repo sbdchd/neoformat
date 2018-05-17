@@ -134,6 +134,14 @@ succeeds)
 let g:neoformat_run_all_formatters = 1
 ```
 
+Above options can be activated or deactivated per buffer. For example:
+
+```viml
+    " runs all formatters for current buffer without tab to spaces conversion
+    let b:neoformat_run_all_formatters = 1
+    let b:neoformat_basic_format_retab = 0
+```
+
 Have Neoformat only msg when there is an error
 
 ```viml

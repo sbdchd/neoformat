@@ -117,19 +117,25 @@ Have Neoformat use &formatprg as a formatter
 <
 Enable basic formatting when a filetype is not found. Disabled by default.
 >
-    " Enable alignment
+    " Enable alignment globally
     let g:neoformat_basic_format_align = 1
 
-    " Enable tab to spaces conversion
+    " Enable tab to spaces conversion globally
     let g:neoformat_basic_format_retab = 1
 
-    " Enable trimmming of trailing whitespace
+    " Enable trimmming of trailing whitespace globally
     let g:neoformat_basic_format_trim = 1
 
 Run all enabled formatters (by default Neoformat stops after the first
 formatter succeeds)
 
     let g:neoformat_run_all_formatters = 1
+
+Above options can be activated or deactivated per buffer. For example:
+
+    " runs all formatters for current buffer without tab to spaces conversion
+    let b:neoformat_run_all_formatters = 1
+    let b:neoformat_basic_format_retab = 0
 
 Have Neoformat only msg when there is an error
 >
