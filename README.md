@@ -105,7 +105,9 @@ let g:neoformat_enabled_python = ['autopep8']
 Configure enabled formatters.
 
 ```viml
-let g:neoformat_enabled_python = ['autopep8', 'yapf', 'docformatter']
+
+let g:neoformat_enabled_python = ['autopep8', 'yapf', 'docformatter', 'autoflake']
+
 ```
 
 Have Neoformat use &formatprg as a formatter
@@ -323,6 +325,7 @@ that caused Neoformat to be invoked.
     [`black`](https://github.com/ambv/black)
   - [`isort`](https://github.com/timothycrosley/isort)
   - [`docformatter`](https://github.com/myint/docformatter)
+  - [`autoflake`](https://github.com/myint/autoflake)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby

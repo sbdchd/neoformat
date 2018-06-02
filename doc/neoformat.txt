@@ -315,6 +315,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`black`](https://github.com/ambv/black)
     [isort](https://github.com/timothycrosley/isort)
     [docformatter](https://github.com/myint/docformatter)
+    [autoflake](https://github.com/myint/autoflake)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
