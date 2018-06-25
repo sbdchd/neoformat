@@ -313,12 +313,13 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8),
     [`black`](https://github.com/ambv/black)
-    [isort](https://github.com/timothycrosley/isort)
-    [docformatter](https://github.com/myint/docformatter)
+    [`isort`](https://github.com/timothycrosley/isort)
+    [`docformatter`](https://github.com/myint/docformatter)
+    [`pyment`](https://github.com/dadadel/pyment)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
-  - [rufo](https://github.com/asterite/rufo)
+  - [`rufo`](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
   - [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
@@ -337,8 +338,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
 - SQL
-  - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
-  - `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
+  - `sqlformat` (ships with [`sqlparse`](https://github.com/andialbrecht/sqlparse))
+  - `pg_format` (ships with [`pgFormatter`](https://github.com/darold/pgFormatter))
 - Terraform
   - [`terraform`](https://www.terraform.io/docs/commands/fmt.html)
 - Typescript

@@ -323,6 +323,7 @@ that caused Neoformat to be invoked.
     [`black`](https://github.com/ambv/black)
   - [`isort`](https://github.com/timothycrosley/isort)
   - [`docformatter`](https://github.com/myint/docformatter)
+  - [`pyment`](https://github.com/dadadel/pyment)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby

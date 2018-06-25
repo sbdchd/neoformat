@@ -1,5 +1,5 @@
 function! neoformat#formatters#python#enabled() abort
-    return ['yapf', 'autopep8', 'black', 'isort', 'docformatter']
+    return ['yapf', 'autopep8', 'black', 'isort', 'docformatter', 'pyment']
 endfunction
 
 function! neoformat#formatters#python#yapf() abort
@@ -40,5 +40,14 @@ function! neoformat#formatters#python#black() abort
                 \ 'exe': 'black',
                 \ 'stdin': 1,
                 \ 'args': ['-', '2>/dev/null'],
+                \ }
+endfunction
+
+
+function! neoformat#formatters#python#pyment() abort
+    return {
+                \ 'exe': 'pyment',
+                \ 'stdin': 1,
+                \ 'args': ['-w', '-'],
                 \ }
 endfunction
