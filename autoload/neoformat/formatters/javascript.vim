@@ -55,7 +55,7 @@ endfunction
 function! neoformat#formatters#javascript#eslint_d() abort
     return {
         \ 'exe': 'eslint_d',
-        \ 'args': ['--stdin','--fix-to-stdout'],
+        \ 'args': ['--stdin', '--stdin-filename', '%:p', '--fix-to-stdout'],
         \ 'stdin': 1,
         \ }
 endfunction
