@@ -229,6 +229,7 @@ function! s:generate_cmd(definition, filetype) abort
 
     let no_append = get(a:definition, 'no_append', 0)
     let using_stdin = get(a:definition, 'stdin', 0)
+    let using_stderr = get(a:definition, 'stderr', 0)
 
     let filename = expand('%:t')
 
@@ -250,6 +251,9 @@ function! s:generate_cmd(definition, filetype) abort
     let _fullcmd = join(inline_environment, ' ') . ' ' . executable . ' ' . join(args_expanded) . ' ' . (no_append ? '' : path)
     " make sure there aren't any double spaces in the cmd
     let fullcmd = join(split(_fullcmd))
+    if !using_stderr
+        let fullcmd = fullcmd . ' 2>> ' . expand(tmp_dir . '/stderr.log')
+    endif
 
     return {
         \ 'exe':       fullcmd,
