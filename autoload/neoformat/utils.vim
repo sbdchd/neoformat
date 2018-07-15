@@ -1,9 +1,12 @@
 function! neoformat#utils#log(msg) abort
-    if !exists('g:neoformat_verbose')
-        let g:neoformat_verbose = 0
-    endif
-    if &verbose || g:neoformat_verbose
+    if s:should_be_verbose()
         return s:better_echo(a:msg)
+    endif
+endfunction
+
+function! neoformat#utils#log_file_content(path) abort
+    if s:should_be_verbose()
+        return s:better_echo(readfile(a:path))
     endif
 endfunction
 
@@ -16,6 +19,13 @@ function! neoformat#utils#msg(msg) abort
         return
     endif
     return s:better_echo(a:msg)
+endfunction
+
+function! s:should_be_verbose() abort
+    if !exists('g:neoformat_verbose')
+        let g:neoformat_verbose = 0
+    endif
+    return &verbose || g:neoformat_verbose
 endfunction
 
 function! s:better_echo(msg) abort
