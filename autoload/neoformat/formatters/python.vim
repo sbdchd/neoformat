@@ -21,7 +21,7 @@ endfunction
 function! neoformat#formatters#python#isort() abort
     return {
                 \ 'exe': 'isort',
-                \ 'args': ['-', '--quiet', '--use-parentheses', '--trailing-comma',],
+                \ 'args': ['-', '--quiet',],
                 \ 'stdin': 1,
                 \ }
 endfunction
