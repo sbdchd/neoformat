@@ -258,8 +258,13 @@ function! s:generate_cmd(definition, filetype) abort
     " make sure there aren't any double spaces in the cmd
     let fullcmd = join(split(_fullcmd))
     if !using_stderr
-        let stderr_log = expand(tmp_dir . '/stderr.log')
-        let fullcmd = fullcmd . ' 2> ' . stderr_log
+        if neoformat#utils#should_be_verbose()
+            let stderr_log = expand(tmp_dir . '/stderr.log')
+            let fullcmd = fullcmd . ' 2> ' . stderr_log
+        else
+            let stderr_log = ''
+            let fullcmd = fullcmd . ' 2> ' . '/dev/null'
+        endif
     endif
 
     return {

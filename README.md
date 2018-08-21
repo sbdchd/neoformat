@@ -82,6 +82,7 @@ Options:
 | `args`             | list of arguments                                                                                                 | \[]     | optional            |
 | `replace`          | overwrite the file, instead of updating the buffer                                                                | 0       | optional            |
 | `stdin`            | send data to the stdin of the formatter                                                                           | 0       | optional            |
+| `stderr`           | capture stderr output from formatter                                                                              | 0       | optional            |
 | `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command | 0       | optional            |
 | `env`              | list of environment variable definitions to be prepended to the formatter command                                 | \[]     | optional            |
 | `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                  | \[0]    | optional            |
