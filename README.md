@@ -366,4 +366,5 @@ that caused Neoformat to be invoked.
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - YAML
-  - [`pyaml`](https://pypi.python.org/pypi/pyaml)
+  - [`pyaml`](https://pypi.python.org/pypi/pyaml),
+    [`prettier`](https://github.com/prettier/prettier)
