@@ -350,6 +350,8 @@ that caused Neoformat to be invoked.
 - SQL
   - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
   - `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
+- Swift
+  - [`Swiftformat`](https://github.com/nicklockwood/SwiftFormat)
 - Terraform
   - [`terraform`](https://www.terraform.io/docs/commands/fmt.html),
 - Typescript
