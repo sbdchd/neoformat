@@ -39,7 +39,7 @@ function! neoformat#formatters#python#black() abort
     return {
                 \ 'exe': 'black',
                 \ 'stdin': 1,
-                \ 'args': ['-', '2>/dev/null'],
+                \ 'args': ['-'],
                 \ }
 endfunction
 
