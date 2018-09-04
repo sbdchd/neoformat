@@ -6,6 +6,7 @@ Introduction		|neoformat-introduction|
 Install			|neoformat-install|
 Usage			|neoformat-usage|
 Managing Undo History	|neoformat-managing-undo-history|
+Argument Templates	|neoformat-argument-templates|
 Supported Filetypes	|neoformat-supported-filetypes|
 
 ==============================================================================
@@ -92,6 +93,16 @@ Options:
 | `stderr`    | used to specify whether stderr output should be read along with
 	     the stdin, otherwise redirects stderr to `stderr.log` file in neoformat's
 	     temporary directory | default 0 | optional
+| `range_mode` | Sets behavior when neoformat is run with a range (e.g. visual mode).
+              when using this mode, make sure the range arguments are sent via `args`
+	      (See |neoformat-argument-templates|)
+	      mode 0: only the selected lines are sent to the formatter
+	      mode 1: The range is passed as an argument. the formatter
+	              returns the entire buffer, with only those lines formatted.
+	      mode 2: The range is passed as an argument. the entire file is
+	              sent to the formatter with a range argument. The formatter
+	              returns only the lines that it formatted.
+	      default: 0 | optional
 | `no_append` | do not append the `path` of the file to the formatter command,
 	     used when the `path` is in the middle of a command | default: 0 |
 	     optional
@@ -201,6 +212,37 @@ example:
 When |undojoin| is used this way pressing |u| will "skip over" the Neoformat
 changes - it will revert both the changes made by Neoformat and the change
 that caused Neoformat to be invoked.
+
+==============================================================================
+ARGUMENT TEMPLATES				*neoformat-argument-templates*
+
+The following strings will be expanded in the 'args' field:
+
+  - <start_line> - starting line of range
+  - <end_line> - ending line of range
+  - <lines> - number of lines in range
+  - <start_byte> - starting byte of range (from line2byte)
+  - <end_byte> - ending byte of range (from line2byte)
+  - <bytes> - number of bytes in range
+  - any expressions supported by |expand()|
+
+Examples:
+
+   let g:neoformat_cpp_clangformat = {
+      \ 'exe': 'clang-format',
+      \ 'args': ['-lines=<start_line>:<end_line>'],
+      \ 'range_mode': 1,
+      \ 'stdin', 1,
+      \ }
+
+or
+
+   let g:neoformat_cpp_clangformat = {
+      \ 'exe': 'clang-format',
+      \ 'args': ['-offset=<start_byte>', '-length=<bytes>'],
+      \ 'range_mode': 1,
+      \ 'stdin', 1,
+      \ }
 
 ==============================================================================
 SUPPORTED FILETYPES				*neoformat-supported-filetypes*

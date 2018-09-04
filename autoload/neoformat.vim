@@ -75,20 +75,40 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             continue
         endif
 
-        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+        if cmd.range_mode > 0
+          " Pass the entire buffer, the formatter itself takes a range.
+          let stdin = getbufline(bufnr('%'), 1, '$')
+        else
+          let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+        end
+
         let original_buffer = getbufline(bufnr('%'), 1, '$')
+
+        let exe = cmd.exe
+        let replacements = {
+          \ 'start_byte': line2byte(a:start_line),
+          \ 'end_byte': line2byte(a:end_line),
+          \ 'bytes': line2byte(a:end_line) - line2byte(a:start_line),
+          \ 'start_line': a:start_line,
+          \ 'end_line': a:end_line,
+          \ 'lines': a:end_line - a:start_line,
+          \ }
+
+        for [key, value] in items(replacements)
+          let exe = substitute(exe, '<'.key.'>', value, 'g')
+        endfor
 
         call neoformat#utils#log(stdin)
 
-        call neoformat#utils#log(cmd.exe)
+        call neoformat#utils#log(exe)
         if cmd.stdin
             call neoformat#utils#log('using stdin')
             let stdin_str = join(stdin, "\n")
-            let stdout = split(system(cmd.exe, stdin_str), '\n')
+            let stdout = split(system(exe, stdin_str), '\n')
         else
             call neoformat#utils#log('using tmp file')
             call writefile(stdin, cmd.tmp_file_path)
-            let stdout = split(system(cmd.exe), '\n')
+            let stdout = split(system(exe), '\n')
         endif
 
         " read from /tmp file if formatter replaces file on format
@@ -108,11 +128,16 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             call neoformat#utils#log_file_content(cmd.stderr_log)
         endif
         if process_ran_succesfully
-            " 1. append the lines that are before and after the formatterd content
-            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
-            let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
+            if cmd.range_mode == 1
+              " In range_mode 1, the formatter outputs the entire file contents.
+              let new_buffer = stdout
+            else
+              " 1. append the lines that are before and after the formatterd content
+              let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
+              let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
+              let new_buffer = lines_before + stdout + lines_after
+            endif
 
-            let new_buffer = lines_before + stdout + lines_after
             if new_buffer !=# original_buffer
 
                 call s:deletelines(len(new_buffer), line('$'))
@@ -279,6 +304,7 @@ function! s:generate_cmd(definition, filetype) abort
         \ 'name':      a:definition.exe,
         \ 'replace':   get(a:definition, 'replace', 0),
         \ 'tmp_file_path': path,
+        \ 'range_mode': get(a:definition, 'range_mode', 0),
         \ 'valid_exit_codes': get(a:definition, 'valid_exit_codes', [0]),
         \ }
 endfunction

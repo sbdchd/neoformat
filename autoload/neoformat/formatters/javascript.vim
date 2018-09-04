@@ -39,8 +39,11 @@ endfunction
 function! neoformat#formatters#javascript#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p',
+                 \ '--range-start', '<start_byte>',
+                 \ '--range-end',  '<end_byte>'],
         \ 'stdin': 1,
+        \ 'range_mode': 1,
         \ }
 endfunction
 
