@@ -39,7 +39,7 @@ endfunction
 function! neoformat#formatters#javascript#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ }
 endfunction
@@ -47,7 +47,7 @@ endfunction
 function! neoformat#formatters#javascript#prettiereslint() abort
     return {
         \ 'exe': 'prettier-eslint',
-        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ }
 endfunction
@@ -55,7 +55,7 @@ endfunction
 function! neoformat#formatters#javascript#eslint_d() abort
     return {
         \ 'exe': 'eslint_d',
-        \ 'args': ['--stdin', '--stdin-filename', '%:p', '--fix-to-stdout'],
+        \ 'args': ['--stdin', '--stdin-filename', '"%:p"', '--fix-to-stdout'],
         \ 'stdin': 1,
         \ }
 endfunction

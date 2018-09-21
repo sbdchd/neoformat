@@ -11,6 +11,6 @@ endfunction
 function! neoformat#formatters#ocaml#ocamlformat() abort
     return {
         \ 'exe': 'ocamlformat',
-        \ 'args': ['--name', '%:p']
+        \ 'args': ['--name', '"%:p"']
         \ }
 endfunction

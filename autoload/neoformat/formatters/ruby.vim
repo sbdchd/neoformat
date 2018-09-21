@@ -20,7 +20,7 @@ endfunction
 function! neoformat#formatters#ruby#rubocop() abort
      return {
         \ 'exe': 'rubocop',
-        \ 'args': ['--auto-correct', '--stdin', '%:p', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
+        \ 'args': ['--auto-correct', '--stdin', '"%:p"', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
         \ 'stdin': 1,
         \ 'stderr': 1
         \ }
