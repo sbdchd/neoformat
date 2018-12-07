@@ -262,8 +262,13 @@ function! s:generate_cmd(definition, filetype) abort
             let stderr_log = expand(tmp_dir . '/stderr.log')
             let fullcmd = fullcmd . ' 2> ' . stderr_log
         else
-            let stderr_log = ''
-            let fullcmd = fullcmd . ' 2> ' . '/dev/null'
+            if (has('win32') || has('win64'))
+                let stderr_log = ''
+                let fullcmd = fullcmd . ' 2> ' . 'NUL'
+            else
+                let stderr_log = ''
+                let fullcmd = fullcmd . ' 2> ' . '/dev/null'
+            endif
         endif
     endif
 
