@@ -47,7 +47,6 @@ function! neoformat#formatters#python#black() abort
     return {
                 \ 'exe': 'black',
                 \ 'stdin': 1,
-<<<<<<< HEAD
                 \ 'args': ['-'],
                 \ }
 endfunction
@@ -65,9 +64,5 @@ function! neoformat#formatters#python#pydevf() abort
     return {
                 \ 'exe': 'pydevf',
                 \ 'replace': 1,
-=======
-                \ 'args': ['-', '2>/dev/null'],
-
->>>>>>> afcc17cd042ce85aedb678591fb35fecd786a1f2
                 \ }
 endfunction
