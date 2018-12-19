@@ -38,7 +38,7 @@ endfunction
 function! neoformat#formatters#python#autoflake() abort
     return {
                 \ 'exe': 'autoflake',
-                \ 'args': ['--in-place', '--remove-duplicate-keys', '--expand-star-imports'],
+                \ 'args': ['--remove-all-unused-imports', '--in-place', '--remove-duplicate-keys', '--expand-star-imports'],
                 \ 'stdin': 0,
                 \ }
 endfunction
@@ -47,7 +47,6 @@ function! neoformat#formatters#python#black() abort
     return {
                 \ 'exe': 'black',
                 \ 'stdin': 1,
-<<<<<<< HEAD
                 \ 'args': ['-'],
                 \ }
 endfunction
@@ -65,9 +64,6 @@ function! neoformat#formatters#python#pydevf() abort
     return {
                 \ 'exe': 'pydevf',
                 \ 'replace': 1,
-=======
                 \ 'args': ['-', '2>/dev/null'],
-
->>>>>>> afcc17cd042ce85aedb678591fb35fecd786a1f2
                 \ }
 endfunction
