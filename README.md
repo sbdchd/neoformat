@@ -246,6 +246,8 @@ that caused Neoformat to be invoked.
     [`dfmt`](https://github.com/Hackerpilot/dfmt)
 - Dart
   - [`dartfmt`](https://www.dartlang.org/tools/)
+- Dhall
+  - [`dhall format`](https://dhall-lang.org)
 - Elixir
   - [`mix format`](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 - Elm
