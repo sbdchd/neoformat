@@ -350,6 +350,7 @@ that caused Neoformat to be invoked.
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
 - SQL
+  - [`sqlfmt`](https://github.com/jackc/sqlfmt)
   - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
   - `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
 - Swift
