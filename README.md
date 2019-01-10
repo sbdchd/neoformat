@@ -339,6 +339,8 @@ that caused Neoformat to be invoked.
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`csscomb`](http://csscomb.com)
+- Sbt
+  - [`scalafmt`](http://scalameta.org/scalafmt/)
 - Scala
   - [`scalariform`](https://github.com/scala-ide/scalariform),
     [`scalafmt`](http://scalameta.org/scalafmt/)
