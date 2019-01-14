@@ -112,7 +112,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
             let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
 
-            if get(a:definition, 'indent_output')
+            if get(definition, 'indent_output')
                 let stdout = s:indent_output(stdout, lines_before)
             endif
             let new_buffer = lines_before + stdout + lines_after
@@ -150,6 +150,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 endfunction
 
 function! s:indent_output(output, lines_before)
+    if empty(a:output)
+        return []
+    endif
+
     " guess indent based on the previous line
     let prev_line = a:lines_before[-1]
 		" see if the line is indented with tabs
