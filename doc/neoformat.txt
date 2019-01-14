@@ -96,6 +96,7 @@ Options:
 	     used when the `path` is in the middle of a command | default: 0 |
 	     optional
 | `env`       | list of environment variables to prepend to the command | default: [] | optional
+| `indent_output` | wether or not to indent the output automatically, based on the previous line | default: 0 | optional
 
 | `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices | \[0] | optional
 
