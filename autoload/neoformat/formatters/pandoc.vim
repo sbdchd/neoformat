@@ -11,6 +11,7 @@ function! neoformat#formatters#pandoc#pandoc() abort
        \ '+mmd_link_attributes',
        \ '+tex_math_double_backslash',
        \ '+emoji',
+       \ '+task_lists',
        \ ]
 
    let l:target_flags = ['markdown',
@@ -19,21 +20,20 @@ function! neoformat#formatters#pandoc#pandoc() abort
        \ '-simple_tables',
        \ '-multiline_tables',
        \ '+emoji',
+       \ '+task_lists',
        \ ]
 
-   " The sed is to make checkboxes not get escaped.
    return {
             \ 'exe': 'pandoc',
-            \ 'args': ['-f' ,
-            \ join(l:input_flags,''),
-            \ '-t',
-            \ join(l:target_flags,''),
-            \ '-s',
-            \ '--wrap=auto',
-            \ '--atx-headers',
-            \ '|',
-            \ "sed -e 's/\\\\\\[/[/g'", "-e 's/\\\\\\]/]/g'",],
+            \ 'args': [
+                \ '-f' ,
+                \ join(l:input_flags, ''),
+                \ '-t',
+                \ join(l:target_flags, ''),
+                \ '-s',
+                \ '--wrap=auto',
+                \ '--atx-headers',
+            \],
             \ 'stdin': 1,
             \ }
 endfunction
-
