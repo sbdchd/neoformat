@@ -41,7 +41,8 @@ def test_visual_selection_multi_filetype():
     output_file = '/tmp/neoformat_' + filename_before
     copyfile(filename_before, output_file)
 
-    for test in [('python', 4, 7), ('css', 9, 9), ('css', 14, 15)]:
+
+    for test in [('json', 1, 5), ('typescript', 7, 10)]:
         (filetype, start_line, end_line) = test
         print(start_line)
         vim_cmd = f'{start_line},{end_line}Neoformat! {filetype}'

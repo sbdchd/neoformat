@@ -1,14 +1,11 @@
+{
+ "key1":
+"val",
+"key2":    5
+}
 
 
-
-def main():
-
-
-  pass
-
-
-.body{color:red;}
-
-
-.textleft{
-text-align:left;}
+function doit(obj:   Pancakes)
+{
+    return "This " + obj.name " + "is yummy";
+}
