@@ -1,5 +1,5 @@
 function! neoformat#formatters#haskell#enabled() abort
-    return ['hindent', 'stylishhaskell', 'hfmt', 'brittany', 'sortimports']
+    return ['hindent', 'stylishhaskell', 'hfmt', 'brittany', 'sortimports', 'floskell']
 endfunction
 
 function! neoformat#formatters#haskell#hindent() abort
@@ -35,6 +35,13 @@ endfunction
 function! neoformat#formatters#haskell#sortimports() abort
     return {
         \ 'exe': 'sort-imports',
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#haskell#floskell() abort
+    return {
+        \ 'exe': 'floskell',
         \ 'stdin': 1,
         \ }
 endfunction

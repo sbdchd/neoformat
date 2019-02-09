@@ -265,6 +265,7 @@ that caused Neoformat to be invoked.
   - [`hfmt`](https://github.com/danstiner/hfmt)
   - [`brittany`](https://github.com/lspitzner/brittany)
   - [`sort-imports`](https://github.com/evanrelf/sort-imports)
+  - [`floskell`](https://github.com/ennocramer/floskell)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
