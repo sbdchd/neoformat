@@ -248,6 +248,8 @@ that caused Neoformat to be invoked.
   - [`dartfmt`](https://www.dartlang.org/tools/)
 - Dhall
   - [`dhall format`](https://dhall-lang.org)
+- dune
+  - [`dune format`](https://github.com/ocaml/dune)
 - Elixir
   - [`mix format`](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 - Elm
