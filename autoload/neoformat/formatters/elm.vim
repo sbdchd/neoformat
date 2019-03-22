@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#elm#elmformat() abort
     return {
         \ 'exe': 'elm-format',
-        \ 'args': ['--stdin'],
+        \ 'args': ['--stdin', '--elm-version=0.19'],
         \ 'stdin': 1,
         \ }
 endfunction
