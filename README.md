@@ -270,6 +270,7 @@ that caused Neoformat to be invoked.
   - [`floskell`](https://github.com/ennocramer/floskell)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
+    [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - Jade
   - [`pug-beautifier`](https://github.com/vingorius/pug-beautifier)

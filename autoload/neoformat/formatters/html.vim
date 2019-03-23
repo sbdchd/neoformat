@@ -1,5 +1,5 @@
 function! neoformat#formatters#html#enabled() abort
-    return ['htmlbeautify', 'tidy', 'prettydiff']
+    return ['htmlbeautify', 'prettier', 'tidy', 'prettydiff']
 endfunction
 
 function! neoformat#formatters#html#tidy() abort
@@ -12,6 +12,14 @@ function! neoformat#formatters#html#tidy() abort
         \          '--tidy-mark no',
         \          '-wrap ' . &textwidth
         \         ]
+        \ }
+endfunction
+
+function! neoformat#formatters#html#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
         \ }
 endfunction
 

@@ -265,6 +265,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`floskell`](https://github.com/ennocramer/floskell)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
+    [`prettier`](https://github.com/jlongster/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - Jade
   - [`pug-beautifier`](https://github.com/vingorius/pug-beautifier)
