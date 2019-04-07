@@ -305,6 +305,8 @@ that caused Neoformat to be invoked.
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
     [`prettier`](https://github.com/prettier/prettier)
+- Nim
+  - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
 - Objective-C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
