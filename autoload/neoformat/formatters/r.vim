@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#r#styler() abort
     return {
         \ 'exe': 'R',
-        \ 'args': ['-e "library(styler)"', '-e "style_file(\"%:p\")"'],
+        \ 'args': ['--slave', '--no-restore', '--no-save', '-e "styler::style_text(readr::read_file((file(\"stdin\"))))"', '2>/dev/null'],
         \ 'replace': 1,
         \}
 endfunction
