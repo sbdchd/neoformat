@@ -337,7 +337,8 @@ that caused Neoformat to be invoked.
   - [`docformatter`](https://github.com/myint/docformatter)
   - [`pyment`](https://github.com/dadadel/pyment)
 - R
-  - [styler](https://github.com/r-lib/styler)
+  - [`styler`](https://github.com/r-lib/styler),
+    [`formatR`](https://github.com/yihui/formatR)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
