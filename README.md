@@ -262,12 +262,12 @@ that caused Neoformat to be invoked.
 - GraphQL
   - [`prettier`](https://github.com/prettier/prettier)
 - Haskell
-  - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell)
-  - [`hindent`](https://github.com/chrisdone/hindent)
-  - [`hfmt`](https://github.com/danstiner/hfmt)
-  - [`brittany`](https://github.com/lspitzner/brittany)
-  - [`sort-imports`](https://github.com/evanrelf/sort-imports)
-  - [`floskell`](https://github.com/ennocramer/floskell)
+  - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell),
+    [`hindent`](https://github.com/chrisdone/hindent),
+    [`hfmt`](https://github.com/danstiner/hfmt),
+    [`brittany`](https://github.com/lspitzner/brittany),
+    [`sort-imports`](https://github.com/evanrelf/sort-imports),
+    [`floskell`](https://github.com/ennocramer/floskell)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
     [`prettier`](https://github.com/prettier/prettier),
@@ -312,8 +312,8 @@ that caused Neoformat to be invoked.
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`astyle`](http://astyle.sourceforge.net)
 - OCaml
-  - [`ocp-indent`](http://www.typerex.org/ocp-indent.html)
-  - [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat)
+  - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
+    [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat)
 - Pandoc Markdown
   - [`pandoc`](https://pandoc.org/MANUAL.html)
 - Pawn
@@ -321,9 +321,9 @@ that caused Neoformat to be invoked.
 - Perl
   - [`perltidy`](http://perltidy.sourceforge.net)
 - PHP
-  - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier)
-  - [`php-cs-fixer`](http://cs.sensiolabs.org/)
-  - [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
+  - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier),
+    [`php-cs-fixer`](http://cs.sensiolabs.org/),
+    [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
@@ -331,11 +331,11 @@ that caused Neoformat to be invoked.
 - Python
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8),
-    [`black`](https://github.com/ambv/black)
-    [`pydevf`](https://github.com/fabioz/PyDev.Formatter)
-  - [`isort`](https://github.com/timothycrosley/isort)
-  - [`docformatter`](https://github.com/myint/docformatter)
-  - [`pyment`](https://github.com/dadadel/pyment)
+    [`black`](https://github.com/ambv/black),
+    [`pydevf`](https://github.com/fabioz/PyDev.Formatter),
+    [`isort`](https://github.com/timothycrosley/isort),
+    [`docformatter`](https://github.com/myint/docformatter),
+    [`pyment`](https://github.com/dadadel/pyment)
 - R
   - [`styler`](https://github.com/r-lib/styler),
     [`formatR`](https://github.com/yihui/formatR)
@@ -343,7 +343,7 @@ that caused Neoformat to be invoked.
   - [`refmt`](https://github.com/facebook/reason)
 - Ruby
   - [`rufo`](https://github.com/ruby-formatter/rufo),
-  - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
+    [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
     [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
@@ -364,9 +364,9 @@ that caused Neoformat to be invoked.
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
 - SQL
-  - [`sqlfmt`](https://github.com/jackc/sqlfmt)
-  - `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse))
-  - `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
+  - [`sqlfmt`](https://github.com/jackc/sqlfmt),
+    `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
+    `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
 - Swift
   - [`Swiftformat`](https://github.com/nicklockwood/SwiftFormat)
 - Terraform
