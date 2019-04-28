@@ -26,7 +26,7 @@ def test_formatters():
     for filename in listdir('before'):
         output_file = '/tmp/neoformat_' + filename
         formatter = filename.split('.')[0]
-        cmd = f'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | w! {output_file} | q! " --headless ./before/{filename}'
+        cmd = f'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | sleep 1 | w! {output_file} | q! " --headless ./before/{filename}'
         run_cmd(cmd)
         before = readlines(output_file)
         after = readlines('./after/' + filename)
@@ -45,7 +45,7 @@ def test_visual_selection_multi_filetype():
         (filetype, start_line, end_line) = test
         print(start_line)
         vim_cmd = f'{start_line},{end_line}Neoformat! {filetype}'
-        cmd = f'nvim -u vimrc -c "set verbose=1 | {vim_cmd} | wq " --headless {output_file}'
+        cmd = f'nvim -u vimrc -c "set verbose=1 | {vim_cmd} | sleep 1 | wq " --headless {output_file}'
         run_cmd(cmd)
 
     before = readlines(output_file)
@@ -62,7 +62,7 @@ def test_visual_selection_with_filetype_and_formatter():
     for filename in listdir(dir_before):
         (filetype, formatter, start_line, end_line) = filename.split('_')
         output_file = '/tmp/neoformat_' + filename
-        cmd = f'nvim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} {formatter} | w! {output_file} | q! " --headless {dir_before + filename}'
+        cmd = f'nvim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} {formatter} | sleep 1 |w! {output_file} | q! " --headless {dir_before + filename}'
         run_cmd(cmd)
         before = readlines(output_file)
         after = readlines(dir_after + filename)
@@ -81,7 +81,7 @@ def test_formatprg_with_neoformat():
     let &formatprg = 'css-beautify -s 6 -n'
     let g:neoformat_try_formatprg = 1
     '''
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | sleep 1 | w! {output_file} | q! " --headless {dir_before + filename}'
     run_cmd(cmd)
     before = readlines(output_file)
     after = readlines('./after/cssbeautify-indent-6.css')
@@ -99,7 +99,7 @@ def test_formatprg_without_enable():
     viml = '''
     let &formatprg = 'css-beautify -s 6 -n'
     '''
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | sleep 1 | w! {output_file} | q! " --headless {dir_before + filename}'
     run_cmd(cmd)
     before = readlines(output_file)
     after = readlines('./after/cssbeautify.css')
