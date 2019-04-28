@@ -1,0 +1,24 @@
+FROM python:3.6.8-stretch
+
+RUN apt-get update
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+RUN apt-get install -y nodejs sudo build-essential libssl-dev git
+
+RUN wget https://github.com/neovim/neovim/archive/v0.3.4.tar.gz
+RUN tar -zxvf v0.3.4.tar.gz
+RUN apt-get install -y cmake
+RUN apt-get install -y libtool-bin
+RUN apt-get install -y gettext
+RUN cd neovim-0.3.4 && make CMAKE_BUILD_TYPE=RelWithDebInfo &&  make install
+
+WORKDIR /home/
+ADD test/install_docker.sh test/
+RUN test/install_docker.sh
+
+ADD test/requirements.txt test/
+RUN pip3 install -r test/requirements.txt
+
+ADD . .
+RUN cd test && pytest -v test.py

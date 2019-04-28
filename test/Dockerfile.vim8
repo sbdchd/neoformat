@@ -1,0 +1,21 @@
+FROM python:3.6.8-stretch
+
+RUN apt-get update
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+RUN apt-get install -y nodejs sudo build-essential libssl-dev git
+
+RUN wget https://github.com/vim/vim/archive/v8.1.1234.tar.gz
+RUN tar -zxvf v8.1.1234.tar.gz
+RUN cd vim-8.1.1234 && ./configure && make install
+
+WORKDIR /home/
+ADD test/install_docker.sh test/
+RUN test/install_docker.sh
+
+ADD test/requirements.txt test/
+RUN pip3 install -r test/requirements.txt
+
+ADD . .
+RUN cd test && pytest -v test.py
