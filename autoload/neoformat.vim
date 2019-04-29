@@ -96,7 +96,9 @@ function! s:update_buffer(bnr, start_line, end_line, contents, original_snippet)
   if exists('*nvim_buf_set_lines')
       let lines = nvim_buf_get_lines(a:bnr, a:start_line - 1, a:end_line, v:true)
       if lines ==# a:original_snippet
-          call nvim_buf_set_lines(a:bnr, a:start_line - 1, a:end_line, v:true, a:contents)
+          if lines !=# a:contents
+            call nvim_buf_set_lines(a:bnr, a:start_line - 1, a:end_line, v:true, a:contents)
+          endif
       else
           call neoformat#utils#warn('buffer changed while running format')
       end
