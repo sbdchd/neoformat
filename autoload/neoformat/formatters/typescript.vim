@@ -19,9 +19,15 @@ function! neoformat#formatters#typescript#prettier() abort
 endfunction
 
 function! neoformat#formatters#typescript#tslint() abort
+    let args = ['--fix']
+
+    if filereadable('tslint.json')
+        let args = ['-c tslint.json'] + args
+    endif
+
     return {
         \ 'exe': 'tslint',
-        \ 'args': ['--fix', '-c tslint.json'],
+        \ 'args': args,
         \ 'replace': 1
         \ }
 endfunction
