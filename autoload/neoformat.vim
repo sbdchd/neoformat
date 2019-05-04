@@ -86,7 +86,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
           \ 'failed': [],
           \ 'changed': [],
           \ 'pending': pending_commands,
-          \ 'complete':Complete_cb,
+          \ 'complete': Complete_cb,
           \ 'msg': Msg_cb,
           \ 'stdin': stdin,
           \})
@@ -135,13 +135,11 @@ function! s:run_formatters(job) abort
   endif
 
   let cmd = a:job.pending[0]
-  let a:job.cmd = cmd
-  let a:job.pending = a:job.pending[1:]
 
   call neoformat#utils#log(a:job.stdin)
   call neoformat#utils#log(cmd.exe)
 
-  call s:job_init(a:job)
+  call s:job_init(a:job, cmd)
 
   if exists('*jobstart')
        call s:job_run_jobstart(a:job)
@@ -374,8 +372,11 @@ function! s:basic_format() abort
     endif
 endfunction
 
-function! s:job_init(job) abort
+function! s:job_init(job, cmd) abort
     let a:job.output = ''
+
+    let a:job.cmd = a:cmd
+    let a:job.pending = a:job.pending[1:]
 endfunction
 
 function! s:job_exit(job, exitcode) abort
