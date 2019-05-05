@@ -2,14 +2,25 @@ sudo: required
 services:
   - docker
 
-env:
-  COMPOSE_VERSION: 1.23.2
-
 before_install:
+ - export COMPOSE_VERSION=1.23.2
  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
  - chmod +x docker-compose
  - sudo mv docker-compose /usr/local/bin
 
+matrix:
+  include:
+    - env: SERVICE=nvim_0_1_7
+    - env: SERVICE=nvim_0_3_0
+    - env: SERVICE=nvim_0_4_0
+    - env: SERVICE=vim_8_1
+    - env: SERVICE=vim_8_0_0184
+    - env: SERVICE=vim_8_0_0001
+    - env: SERVICE=vim_7_4_001
+
+
+install:
+  - docker-compose -f test/docker-compose.yml build $SERVICE
+
 script:
-  - docker-compose -f test/docker-compose.yml build
-  - docker-compose -f test/docker-compose.yml up
+  - docker-compose -f test/docker-compose.yml run $SERVICE

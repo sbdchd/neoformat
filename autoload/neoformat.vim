@@ -102,17 +102,23 @@ function! s:update_buffer(bnr, start_line, end_line, contents, original_snippet)
       else
           call neoformat#utils#warn('buffer changed while running format')
       end
-  elseif bufnr('%') == a:bnr
+  else
       let lines_after = getbufline(a:bnr, a:end_line + 1, '$')
       let lines_before = getbufline(a:bnr, 1, a:start_line - 1)
       let new_buffer = lines_before + a:contents + lines_after
       let original_buffer = getbufline(a:bnr, 1, '$')
+
       if new_buffer !=# original_buffer
-          call s:deletelines(len(new_buffer), line('$'))
-          call setline(1, new_buffer)
+          if exists('*deletebufline') && exists('appendbufline')
+              call deletebufline(a:bnr, 1, '$')
+              call appendbufline(a:bnr, '$', a:contents)
+          elseif bufnr('%') == a:bnr
+              call s:deletelines(len(new_buffer), line('$'))
+              call setline(1, new_buffer)
+          else
+              call neoformat#utils#warn('buffer changed while running format')
+          endif
       endif
-  else
-      call neoformat#utils#warn('buffer changed while running format')
   endif
 endfunction
 
@@ -143,6 +149,8 @@ function! s:run_formatters(job) abort
 
   if exists('*jobstart') && has('nvim-0.3.0')
        call s:job_run_jobstart(a:job)
+  elseif exists('*job_start') && exists('*deletebufline')
+       call s:job_run_job_start(a:job)
   else
        call s:job_run_system(a:job)
   endif
@@ -186,12 +194,49 @@ function! s:job_run_jobstart(job) abort
 
     call neoformat#utils#log('doing jobstart ' . cmd.exe)
     let id = jobstart(cmd.exe, job_start_opts)
-    call neoformat#utils#log('channel_id:' . id)
     if cmd.stdin
         call chansend(id, a:job.stdin)
     endif
     call chanclose(id, 'stdin')
 endfunction
+
+
+function! s:job_run_job_start(job) abort
+    let cmd = a:job.cmd
+
+    let job_start_opts = {
+          \ 'in_mode': 'raw',
+          \ 'exit_cb': { job, exitcode -> s:job_exit(a:job, exitcode) },
+          \ 'out_cb': { ch, data -> s:job_stdout(a:job, [data]) },
+          \ 'out_mode': 'raw',
+          \ 'err_cb': { ch, data -> s:job_stderr(a:job, [data]) },
+          \ 'err_mode': 'raw',
+          \ }
+
+    if cmd.stdin
+        call neoformat#utils#log('using stdin')
+    else
+        call neoformat#utils#log('using tmp file')
+        call writefile(a:job.stdin, cmd.tmp_file_path)
+    endif
+
+    call neoformat#utils#log('doing job_start ' . cmd.exe)
+    let id = job_start(['/bin/bash', '-c', cmd.exe], job_start_opts)
+    if job_status(id) == 'fail'
+      call neoformat#utils#log('failed to start')
+      " Documentation says:
+      "    If the job fails to start then job_status() on the returned
+      "    Job object results in "fail" and none of the callbacks will be
+      "    invoked.
+      call s:job_exit(a:job, -1)
+    endif
+    let channel = job_getchannel(id)
+    if cmd.stdin
+        call ch_sendraw(channel, join(a:job.stdin, "\n"))
+    endif
+    call ch_close_in(channel)
+endfunction
+
 
 function! s:get_enabled_formatters(filetype) abort
     if &formatprg != '' && neoformat#utils#var('neoformat_try_formatprg')
@@ -380,7 +425,6 @@ function! s:job_init(job, cmd) abort
 endfunction
 
 function! s:job_exit(job, exitcode) abort
-    call neoformat#utils#log('exit: ' . a:exitcode)
     let cmd = a:job.cmd
 
     if cmd.replace

@@ -2,7 +2,7 @@
 
 import subprocess
 
-from os import listdir
+from os import listdir, environ
 from shutil import copyfile
 
 def run_cmd(cmd):
@@ -12,7 +12,7 @@ def detect_vim():
     if run_cmd("nvim --version") == 0:
         return "nvim --headless"
     if run_cmd("vim --version") == 0:
-        return "vim"
+        return "vim -Es"
 
 VIM = detect_vim()
 
@@ -120,7 +120,14 @@ def test_vader():
     '''
     cmd = f'{VIM} -u vimrc -c "Vader! *.vader"'
     exit_code = run_cmd(cmd)
-    assert exit_code == 0
+    # before version 8.0.0184 in -Es mode whenever vim prints something in stderr
+    # exit code is bumped to +1. If assertion fail, it exits with exitcode 2,
+    # on success it uses exit code 1
+    # After 8.0.0184 it uses 0 for success
+    if environ.get('EXPECT_1_IN_VADER'):
+        assert exit_code == 1
+    else:
+        assert exit_code == 0
 
 
 def test_autocompletion():
@@ -129,7 +136,12 @@ def test_autocompletion():
     '''
     cmd = f'{VIM} -u vimrc -c "source autocomplete_test.vim"'
     exit_code = run_cmd(cmd)
-    assert exit_code == 0
+    # For some reason version 7.4 uses exit code 1 for success, but 8.0 uses 0
+    # This is not the same issue as in vader tests
+    if environ.get('EXPECT_1_AUTOCOMPLETE'):
+        assert exit_code == 1
+    else:
+        assert exit_code == 0
 
 
 def test_viml_syntax():
