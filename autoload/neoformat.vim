@@ -79,16 +79,16 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
     let bnr = bufnr('%')
     let stdin = getbufline(bnr, a:start_line, a:end_line)
-    let Complete_cb = { output -> s:update_buffer(bnr, a:start_line, a:end_line, output, stdin) }
-    let Msg_cb = { changed, failed -> s:job_complete_msg(changed, failed) }
 
     call s:run_formatters({
           \ 'failed': [],
           \ 'changed': [],
           \ 'pending': pending_commands,
-          \ 'complete': Complete_cb,
-          \ 'msg': Msg_cb,
           \ 'stdin': stdin,
+          \ 'original_snippet': stdin,
+          \ 'bnr': bnr,
+          \ 'start_line': a:start_line,
+          \ 'end_line': a:end_line
           \})
 endfunction
 
@@ -129,8 +129,8 @@ endfunction
 
 function! s:run_formatters(job) abort
   if len(a:job.pending) == 0
-      call a:job.msg(a:job.changed, a:job.failed)
-      call a:job.complete(a:job.stdin)
+      call s:job_complete_msg(a:job.changed, a:job.failed)
+      call s:update_buffer(a:job.bnr, a:job.start_line, a:job.end_line, a:job.stdin, a:job.original_snippet)
       return
   endif
 
@@ -141,7 +141,7 @@ function! s:run_formatters(job) abort
 
   call s:job_init(a:job, cmd)
 
-  if exists('*jobstart')
+  if exists('*jobstart') && has('nvim-0.3.0')
        call s:job_run_jobstart(a:job)
   else
        call s:job_run_system(a:job)
