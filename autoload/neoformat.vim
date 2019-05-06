@@ -109,9 +109,9 @@ function! s:update_buffer(bnr, start_line, end_line, contents, original_snippet)
       let original_buffer = getbufline(a:bnr, 1, '$')
 
       if new_buffer !=# original_buffer
-          if exists('*deletebufline') && exists('appendbufline')
+          if exists('*deletebufline') && exists('*setbufline')
               call deletebufline(a:bnr, 1, '$')
-              call appendbufline(a:bnr, '$', a:contents)
+              call setbufline(a:bnr, 1, new_buffer)
           elseif bufnr('%') == a:bnr
               call s:deletelines(len(new_buffer), line('$'))
               call setline(1, new_buffer)
