@@ -233,6 +233,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
+    [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com)
 - CSV
   - [`prettydiff`](https://github.com/prettydiff/prettydiff)
@@ -293,7 +294,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Less
   - [`csscomb`](http://csscomb.com),
     [`prettier`](https://github.com/prettier/prettier),
-    [`prettydiff`](https://github.com/prettydiff/prettydiff)
+    [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
 - Markdown
@@ -343,6 +345,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
+    [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com)
 - Sbt
   - [`scalafmt`](http://scalameta.org/scalafmt/)
@@ -352,6 +355,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - SCSS
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
+    [`stylelint`](https://stylelint.io/)
     [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`csscomb`](http://csscomb.com)

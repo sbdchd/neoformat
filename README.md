@@ -237,6 +237,7 @@ that caused Neoformat to be invoked.
   - `css-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
+    [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com),
     [`prettier`](https://github.com/prettier/prettier)
 - CSV
@@ -299,7 +300,8 @@ that caused Neoformat to be invoked.
 - Less
   - [`csscomb`](http://csscomb.com),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
-    [`prettier`](https://github.com/prettier/prettier)
+    [`prettier`](https://github.com/prettier/prettier),
+    [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
 - Markdown
@@ -349,6 +351,7 @@ that caused Neoformat to be invoked.
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
+    [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com)
 - Sbt
   - [`scalafmt`](http://scalameta.org/scalafmt/)
@@ -357,6 +360,7 @@ that caused Neoformat to be invoked.
     [`scalafmt`](http://scalameta.org/scalafmt/)
 - SCSS
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
+    [`stylelint`](https://stylelint.io/),
     [`stylefmt`](https://github.com/morishitter/stylefmt),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`csscomb`](http://csscomb.com),
