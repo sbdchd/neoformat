@@ -48,7 +48,7 @@ endfunction
 function! neoformat#formatters#css#stylelint() abort
     return {
             \ 'exe': 'stylelint',
-            \ 'args': ['--fix'],
+            \ 'args': ['--fix', '--stdin-filename', '"%:t"'],
             \ 'stdin': 1,
             \ }
 endfunction
