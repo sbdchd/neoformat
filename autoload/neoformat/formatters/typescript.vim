@@ -1,5 +1,5 @@
 function! neoformat#formatters#typescript#enabled() abort
-   return ['tsfmt', 'prettier', 'tslint', 'eslint_d', 'clang-format']
+   return ['tsfmt', 'prettier', 'tslint', 'eslint_d', 'clangformat']
 endfunction
 
 function! neoformat#formatters#typescript#tsfmt() abort
@@ -40,7 +40,7 @@ function! neoformat#formatters#typescript#eslint_d() abort
         \ }
 endfunction
 
-function! neoformat#formatters#javascript#clangformat() abort
+function! neoformat#formatters#typescript#clangformat() abort
     return {
             \ 'exe': 'clang-format',
             \ 'stdin': 1
