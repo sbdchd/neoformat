@@ -43,6 +43,7 @@ endfunction
 function! neoformat#formatters#typescript#clangformat() abort
     return {
             \ 'exe': 'clang-format',
+            \ 'args': ['-assume-filename=' . expand('%:t')],
             \ 'stdin': 1
             \ }
 endfunction

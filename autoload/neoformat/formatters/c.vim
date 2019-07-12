@@ -13,6 +13,7 @@ endfunction
 function! neoformat#formatters#c#clangformat() abort
     return {
             \ 'exe': 'clang-format',
+            \ 'args': ['-assume-filename=' . expand('%:t')],
             \ 'stdin': 1,
             \ }
 endfunction

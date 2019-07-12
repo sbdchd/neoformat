@@ -1,5 +1,5 @@
 function! neoformat#formatters#java#enabled() abort
-   return ['uncrustify', 'astyle', 'clang-format']
+   return ['uncrustify', 'astyle', 'clangformat']
 endfunction
 
 function! neoformat#formatters#java#uncrustify() abort
@@ -23,6 +23,7 @@ endfunction
 function! neoformat#formatters#java#clangformat() abort
     return {
             \ 'exe': 'clang-format',
+            \ 'args': ['-assume-filename=' . expand('%:t')],
             \ 'stdin': 1,
             \ }
 endfunction
