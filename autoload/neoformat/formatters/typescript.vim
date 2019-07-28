@@ -19,7 +19,7 @@ function! neoformat#formatters#typescript#prettier() abort
 endfunction
 
 function! neoformat#formatters#typescript#tslint() abort
-    let args = ['--fix']
+    let args = ['--fix', '--force']
 
     if filereadable('tslint.json')
         let args = ['-c tslint.json'] + args
