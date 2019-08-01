@@ -309,6 +309,8 @@ that caused Neoformat to be invoked.
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
     [`prettier`](https://github.com/prettier/prettier)
+- Matlab
+  - [`remark`](https://github.com/affenwiesel/matlab-formatter-vscode)
 - Nim
   - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
 - Objective-C
