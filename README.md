@@ -260,6 +260,8 @@ that caused Neoformat to be invoked.
 - Go
   - [`gofmt`](https://golang.org/cmd/gofmt/),
     [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
+- GLSL
+  - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - GraphQL
   - [`prettier`](https://github.com/prettier/prettier)
 - Haskell
