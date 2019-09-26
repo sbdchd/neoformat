@@ -308,6 +308,7 @@ that caused Neoformat to be invoked.
     [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
+  - [`lua-fmt`](https://github.com/trixnz/lua-fmt)
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
     [`prettier`](https://github.com/prettier/prettier)
