@@ -11,12 +11,13 @@ function! neoformat#Neoformat(bang, user_input, start_line, end_line) abort
 endfunction
 
 function! s:neoformat(bang, user_input, start_line, end_line) abort
+    let end_line = a:end_line
 
     if !&modifiable
         return neoformat#utils#warn('buffer not modifiable')
     endif
 
-    let using_visual_selection = a:start_line != 1 || a:end_line != line('$')
+    let using_visual_selection = a:start_line != 1 || end_line != line('$')
 
     let inputs = split(a:user_input)
     if a:bang
@@ -75,7 +76,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             continue
         endif
 
-        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+        let stdin = getbufline(bufnr('%'), a:start_line, end_line)
         let original_buffer = getbufline(bufnr('%'), 1, '$')
 
         call neoformat#utils#log(stdin)
@@ -102,14 +103,14 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         call neoformat#utils#log(v:shell_error)
 
         let process_ran_succesfully = index(cmd.valid_exit_codes, v:shell_error) != -1
-        
+
         if cmd.stderr_log != ''
             call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
             call neoformat#utils#log_file_content(cmd.stderr_log)
         endif
         if process_ran_succesfully
             " 1. append the lines that are before and after the formatterd content
-            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
+            let lines_after = getbufline(bufnr('%'), end_line + 1, '$')
             let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
 
             let new_buffer = lines_before + stdout + lines_after
@@ -128,6 +129,9 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             if !neoformat#utils#var('neoformat_run_all_formatters')
                 return neoformat#utils#msg(endmsg)
             endif
+            " If the number of lines changed, update the end_line so that the
+            " next formatter grabs the correct lines
+            let end_line = a:start_line + len(stdout)
             call neoformat#utils#log('running next formatter')
         else
             call add(formatters_failed, cmd.name)
