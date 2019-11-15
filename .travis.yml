@@ -19,5 +19,5 @@ install:
     - ./test/install.sh
     - pip install -r test/requirements.txt
 
-script:
+script: travis_wait
     - cd test && pytest -v test.py
