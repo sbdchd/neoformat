@@ -37,15 +37,17 @@ def test_visual_selection_multi_filetype():
     '''
     Format different filetypes in one file
     '''
+    print("Step in visual selection multi filetype")
     filename_before = 'visual_selection_before.txt'
     output_file = '/tmp/neoformat_' + filename_before
     copyfile(filename_before, output_file)
 
-    for test in [('python', 4, 7), ('css', 9, 9), ('css', 14, 15)]:
+    for test in [('python', 4, 7), ('css', 9, 9), ('css', 12, 13)]:
         (filetype, start_line, end_line) = test
         print(start_line)
         vim_cmd = f'{start_line},{end_line}Neoformat! {filetype}'
         cmd = f'nvim -u vimrc -c "set verbose=1 | {vim_cmd} | wq " --headless {output_file}'
+        print(cmd)
         run_cmd(cmd)
 
     before = readlines(output_file)
