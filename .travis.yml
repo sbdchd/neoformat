@@ -20,4 +20,4 @@ install:
     - pip install -r test/requirements.txt
 
 script:
-    - cd test && travis_wait pytest -v test.py
+    - cd test && travis_wait 30 pytest -v test.py
