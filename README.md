@@ -31,7 +31,7 @@ Or specify a certain formatter (must be defined for the current filetype)
 
 Or format a visual selection of code in a different filetype
 
-__Note:__ you must use a ! and pass the filetype of the selection
+**Note:** you must use a ! and pass the filetype of the selection
 
 ```viml
 :Neoformat! python
@@ -378,6 +378,8 @@ that caused Neoformat to be invoked.
   - [`sqlfmt`](https://github.com/jackc/sqlfmt),
     `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
     `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
+- Svelte
+  - [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
 - Swift
   - [`Swiftformat`](https://github.com/nicklockwood/SwiftFormat)
 - Terraform
