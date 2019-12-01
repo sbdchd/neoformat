@@ -371,6 +371,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`sqlfmt`](https://github.com/jackc/sqlfmt)
   - `sqlformat` (ships with [`sqlparse`](https://github.com/andialbrecht/sqlparse))
   - `pg_format` (ships with [`pgFormatter`](https://github.com/darold/pgFormatter))
+- Starlark
+  - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - Svelte
   - [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
 - Swift
