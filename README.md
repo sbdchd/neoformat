@@ -272,6 +272,9 @@ that caused Neoformat to be invoked.
     [`sort-imports`](https://github.com/evanrelf/sort-imports),
     [`floskell`](https://github.com/ennocramer/floskell)
     [`ormolu`](https://github.com/tweag/ormolu)
+    ```vim
+    let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]
+    ```
 - PureScript
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML
