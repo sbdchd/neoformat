@@ -1,5 +1,5 @@
 function! neoformat#formatters#haskell#enabled() abort
-    return ['hindent', 'stylishhaskell', 'hfmt', 'brittany', 'sortimports', 'floskell']
+    return ['hindent', 'stylishhaskell', 'hfmt', 'brittany', 'sortimports', 'floskell', 'ormolu']
 endfunction
 
 function! neoformat#formatters#haskell#hindent() abort
@@ -43,5 +43,17 @@ function! neoformat#formatters#haskell#floskell() abort
     return {
         \ 'exe': 'floskell',
         \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#haskell#ormolu() abort
+    let opts = get(g:, 'ormolu_ghc_opt', [])
+    if opts != []
+        let opts = '-o' . join(opts, ',')
+    endif
+    return {
+        \ 'exe' : 'ormolu',
+        \ 'args': ['-p'],
+        \ 'stdin' : 1,
         \ }
 endfunction
