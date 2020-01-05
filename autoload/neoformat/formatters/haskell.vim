@@ -49,11 +49,13 @@ endfunction
 function! neoformat#formatters#haskell#ormolu() abort
     let opts = get(g:, 'ormolu_ghc_opt', [])
     if opts != []
-        let opts = '-o' . join(opts, ',')
+        let opts = '-o' . join(opts, ' -o')
+    else
+        let opts = ''
     endif
     return {
         \ 'exe' : 'ormolu',
-        \ 'args': ['-p'],
+        \ 'args': ['-p', opts],
         \ 'stdin' : 1,
         \ }
 endfunction
