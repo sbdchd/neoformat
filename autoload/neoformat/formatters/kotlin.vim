@@ -9,3 +9,13 @@ function! neoformat#formatters#kotlin#ktlint() abort
             \ 'replace': 1,
             \ }
 endfunction
+
+function! neoformat#formatters#kotlin#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+
