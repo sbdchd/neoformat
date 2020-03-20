@@ -1,5 +1,5 @@
 function! neoformat#formatters#xml#enabled() abort
-   return ['tidy', 'prettydiff']
+   return ['tidy', 'prettydiff', 'prettier']
 endfunction
 
 function! neoformat#formatters#xml#tidy() abort

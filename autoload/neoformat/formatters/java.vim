@@ -1,5 +1,5 @@
 function! neoformat#formatters#java#enabled() abort
-   return ['uncrustify', 'astyle', 'clangformat']
+   return ['uncrustify', 'astyle', 'clangformat', 'prettier']
 endfunction
 
 function! neoformat#formatters#java#uncrustify() abort

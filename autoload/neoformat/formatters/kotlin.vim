@@ -1,5 +1,5 @@
 function! neoformat#formatters#kotlin#enabled() abort
-    return ['ktlint']
+    return ['ktlint', 'prettier']
 endfunction
 
 function! neoformat#formatters#kotlin#ktlint() abort
