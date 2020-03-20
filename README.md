@@ -285,7 +285,8 @@ that caused Neoformat to be invoked.
   - [`pug-beautifier`](https://github.com/vingorius/pug-beautifier)
 - Java
   - [`uncrustify`](http://uncrustify.sourceforge.net),
-    [`astyle`](http://astyle.sourceforge.net)
+    [`astyle`](http://astyle.sourceforge.net),
+    [`prettier`](https://github.com/prettier/prettier)
 - JavaScript
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettier`](https://github.com/prettier/prettier),
@@ -302,7 +303,8 @@ that caused Neoformat to be invoked.
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson)
 - Kotlin
-  - [`ktlint`](https://github.com/shyiko/ktlint)
+  - [`ktlint`](https://github.com/shyiko/ktlint),
+    [`prettier`](https://github.com/prettier/prettier)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
@@ -410,7 +412,8 @@ that caused Neoformat to be invoked.
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - XML
   - [`tidy`](http://www.html-tidy.org),
-    [`prettydiff`](https://github.com/prettydiff/prettydiff)
+    [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`prettier`](https://github.com/prettier/prettier)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier)
