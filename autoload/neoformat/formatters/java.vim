@@ -28,4 +28,12 @@ function! neoformat#formatters#java#clangformat() abort
             \ }
 endfunction
 
+function! neoformat#formatters#java#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
 

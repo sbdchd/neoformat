@@ -19,3 +19,13 @@ endfunction
 function! neoformat#formatters#xml#prettydiff() abort
     return neoformat#formatters#html#prettydiff()
 endfunction
+
+function! neoformat#formatters#xml#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+
