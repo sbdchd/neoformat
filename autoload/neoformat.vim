@@ -89,7 +89,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         if cmd.stdin
             call neoformat#utils#log('using stdin')
             let stdin_str = join(stdin, "\n")
+            let previous_cwd = getcwd()
+            execute 'cd ' . expand('%:h')
             let stdout = split(system(cmd.exe, stdin_str), '\n')
+            execute 'cd ' . previous_cwd
         else
             call neoformat#utils#log('using tmp file')
             call writefile(stdin, cmd.tmp_file_path)
