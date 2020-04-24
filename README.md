@@ -320,6 +320,8 @@ that caused Neoformat to be invoked.
     [`prettier`](https://github.com/prettier/prettier)
 - Matlab
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
+- Nginx
+  - [nginxbeautifier](https://github.com/vasilevich/nginxbeautifier)
 - Nim
   - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
 - Nix
