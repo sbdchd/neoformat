@@ -257,6 +257,8 @@ that caused Neoformat to be invoked.
   - [`elm-format`](https://github.com/avh4/elm-format)
 - Fish
   - [`fish_indent`](http://fishshell.com)
+- Gleam
+  - [`gleam format`](https://github.com/gleam-lang/gleam/)
 - Go
   - [`gofmt`](https://golang.org/cmd/gofmt/),
     [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
