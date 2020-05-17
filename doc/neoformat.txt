@@ -353,6 +353,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`formatR`](https://github.com/yihui/formatR)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
+  - [`bsrefmt`](https://github.com/bucklescript/bucklescript)
 - Ruby
   - [`rufo`](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
