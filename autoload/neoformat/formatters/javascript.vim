@@ -72,7 +72,7 @@ endfunction
 function! neoformat#formatters#javascript#denofmt() abort
     return {
         \ 'exe': 'deno',
-        \ 'args': ['fmt'],
-        \ 'replace': 1,
+        \ 'args': ['fmt','-'],
+        \ 'stdin': 1,
         \ }
 endfunction
