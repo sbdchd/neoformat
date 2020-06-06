@@ -1,5 +1,5 @@
 function! neoformat#formatters#typescript#enabled() abort
-   return ['tsfmt', 'prettier', 'tslint', 'eslint_d', 'clangformat']
+   return ['tsfmt', 'prettier', 'tslint', 'eslint_d', 'clangformat', 'denofmt']
 endfunction
 
 function! neoformat#formatters#typescript#tsfmt() abort
@@ -46,4 +46,8 @@ function! neoformat#formatters#typescript#clangformat() abort
             \ 'args': ['-assume-filename=' . expand('%:t')],
             \ 'stdin': 1
             \ }
+endfunction
+
+function! neoformat#formatters#typescript#denofmt() abort
+    return neoformat#formatters#javascript#denofmt()
 endfunction
