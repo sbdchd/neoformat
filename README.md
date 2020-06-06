@@ -296,8 +296,9 @@ that caused Neoformat to be invoked.
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`esformatter`](https://github.com/millermedeiros/esformatter/),
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
-    [`eslint_d`](https://github.com/mantoni/eslint_d.js)
-    [`standard`](https://standardjs.com/)
+    [`eslint_d`](https://github.com/mantoni/eslint_d.js),
+    [`standard`](https://standardjs.com/),
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
@@ -407,9 +408,10 @@ that caused Neoformat to be invoked.
 - TypeScript
   - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
     [`prettier`](https://github.com/prettier/prettier),
-    [`tslint`](https://palantir.github.io/tslint)
-    [`eslint_d`](https://github.com/mantoni/eslint_d.js)
+    [`tslint`](https://palantir.github.io/tslint),
+    [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Vue
