@@ -225,6 +225,7 @@ that caused Neoformat to be invoked.
 - C#
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net)
+    [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
 - C++
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
