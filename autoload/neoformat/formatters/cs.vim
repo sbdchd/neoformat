@@ -17,3 +17,11 @@ function! neoformat#formatters#cs#astyle() abort
         \ 'stdin': 1,
         \ }
 endfunction
+
+function! neoformat#formatters#cs#clangformat() abort
+    return {
+            \ 'exe': 'clang-format',
+            \ 'args': ['-assume-filename=' . expand('%:t')],
+            \ 'stdin': 1,
+            \ }
+endfunction
