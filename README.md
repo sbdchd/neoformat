@@ -413,6 +413,8 @@ that caused Neoformat to be invoked.
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`deno fmt`](https://deno.land/manual/tools/formatter)
+- V
+  - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Vue

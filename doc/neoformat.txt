@@ -396,6 +396,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`tslint`](https://palantir.github.io/tslint)
     [`eslint_d`](https://github.com/mantoni/eslint_d.js)
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
+- V
+  - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Vue
