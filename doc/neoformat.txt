@@ -220,6 +220,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - C#
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net)
+    [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - C++
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -281,6 +282,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Java
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net)
+    [`prettier`](https://github.com/prettier/prettier)
 - JavaScript
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettier`](https://github.com/jlongster/prettier),
@@ -288,7 +290,9 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`esformatter`](https://github.com/millermedeiros/esformatter/),
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
+    [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`standard`](https://standardjs.com/)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
@@ -297,6 +301,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`fixjson`](https://github.com/rhysd/fixjson)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint)
+    [`prettier`](https://github.com/prettier/prettier)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
@@ -306,6 +311,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
+  - [`lua-fmt`](https://github.com/trixnz/lua-fmt)
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
     [`prettier`](https://github.com/prettier/prettier),
@@ -396,6 +402,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`tslint`](https://palantir.github.io/tslint)
     [`eslint_d`](https://github.com/mantoni/eslint_d.js)
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - V
   - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
@@ -408,6 +415,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - XML
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
+    [`prettier`](https://github.com/prettier/prettier)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier)
