@@ -1,5 +1,5 @@
 function! neoformat#formatters#cs#enabled() abort
-    return ['uncrustify', 'astyle']
+    return ['uncrustify', 'astyle', 'clangformat']
 endfunction
 
 function! neoformat#formatters#cs#uncrustify() abort
