@@ -10,6 +10,14 @@ function! neoformat#Neoformat(bang, user_input, start_line, end_line) abort
     let &filetype = original_filetype
 endfunction
 
+let s:neoformat_eol = {'astyle': "\r\n"}
+
+function! s:geteol(exe)
+	let l:exe = split(a:exe, ' ')[0]
+	let l:eol = get(g:, 'neoformat#eol', s:neoformat_eol)
+	return has_key(l:eol, l:exe) ? l:eol[l:exe] : "\n"
+endfunction
+
 function! s:neoformat(bang, user_input, start_line, end_line) abort
 
     if !&modifiable
@@ -84,11 +92,11 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         if cmd.stdin
             call neoformat#utils#log('using stdin')
             let stdin_str = join(stdin, "\n")
-            let stdout = split(system(cmd.exe, stdin_str), '\n')
+            let stdout = split(system(cmd.exe, stdin_str), s:geteol(cmd.exe))
         else
             call neoformat#utils#log('using tmp file')
             call writefile(stdin, cmd.tmp_file_path)
-            let stdout = split(system(cmd.exe), '\n')
+            let stdout = split(system(cmd.exe), s:geteol(cmd.exe))
         endif
 
         " read from /tmp file if formatter replaces file on format
