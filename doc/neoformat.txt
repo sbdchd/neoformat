@@ -273,6 +273,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`floskell`](https://github.com/ennocramer/floskell)
   - [`ormolu`](https://github.com/tweag/ormolu)
     `let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]`
+- Puppet
+  - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML

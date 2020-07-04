@@ -280,6 +280,8 @@ that caused Neoformat to be invoked.
     ```vim
     let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]
     ```
+- Puppet
+  - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML
