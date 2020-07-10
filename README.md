@@ -264,7 +264,9 @@ that caused Neoformat to be invoked.
   - [`gleam format`](https://github.com/gleam-lang/gleam/)
 - Go
   - [`gofmt`](https://golang.org/cmd/gofmt/),
-    [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
+    [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports),
+    [`gofumpt`](https://github.com/mvdan/gofumpt),
+    [`gofumports`](https://github.com/mvdan/gofumpt)
 - GLSL
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - GraphQL
