@@ -305,6 +305,7 @@ that caused Neoformat to be invoked.
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`standard`](https://standardjs.com/),
+    [`semistandard`](https://github.com/standard/semistandard),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),

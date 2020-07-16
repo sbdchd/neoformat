@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascript#enabled() abort
-    return ['jsbeautify', 'standard', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
+    return ['jsbeautify', 'standard', 'semistandard', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
 endfunction
 
 function! neoformat#formatters#javascript#jsbeautify() abort
@@ -73,6 +73,14 @@ function! neoformat#formatters#javascript#denofmt() abort
     return {
         \ 'exe': 'deno',
         \ 'args': ['fmt','-'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#javascript#semistandard() abort
+    return {
+        \ 'exe': 'semistandard',
+        \ 'args': ['--stdin','--fix'],
         \ 'stdin': 1,
         \ }
 endfunction
