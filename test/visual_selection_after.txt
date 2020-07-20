@@ -1,16 +1,9 @@
-
-
-
-def main():
-
-    pass
-
-
-.body {
-  color: red;
+{
+        "key1": "val",
+        "key2": 5
 }
 
 
-.textleft {
-  text-align: left;
+function doit(obj: Pancakes) {
+    return "This " + obj.name " + "is yummy";
 }

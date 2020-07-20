@@ -5,7 +5,9 @@ endfunction
 function! neoformat#formatters#python#yapf() abort
     return {
                 \ 'exe': 'yapf',
+                \ 'args': ['--lines', '<start_line>-<end_line>'],
                 \ 'stdin': 1,
+                \ 'range_mode': 1,
                 \ }
 endfunction
 

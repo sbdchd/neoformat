@@ -86,18 +86,20 @@ Options:
 | `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command | 0       | optional            |
 | `env`              | list of environment variable definitions to be prepended to the formatter command                                 | \[]     | optional            |
 | `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                  | \[0]    | optional            |
+| `range_mode`       | determines behavior when a range is used with Neoformat                                                           | 0       | optional            |
 
 Example:
 
 ```viml
 let g:neoformat_python_autopep8 = {
             \ 'exe': 'autopep8',
-            \ 'args': ['-s 4', '-E'],
+            \ 'args': ['-s 4', '-E', '--range <start_line> <end_line>'],
             \ 'replace': 1 " replace the file, instead of updating buffer (default: 0),
             \ 'stdin': 1, " send data to stdin of formatter (default: 0)
             \ 'env': ["DEBUG=1"], " prepend environment variables to formatter command
             \ 'valid_exit_codes': [0, 23],
             \ 'no_append': 1,
+            \ 'range_mode': 1,
             \ }
 
 let g:neoformat_enabled_python = ['autopep8']
