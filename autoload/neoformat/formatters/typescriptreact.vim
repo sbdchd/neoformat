@@ -13,7 +13,7 @@ endfunction
 function! neoformat#formatters#typescriptreact#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
+        \ 'args': ['--stdin-filepath', '"%:p"', '--parser', 'typescript'],
         \ 'stdin': 1
         \ }
 endfunction
