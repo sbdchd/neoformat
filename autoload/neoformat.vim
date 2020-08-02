@@ -108,7 +108,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         call neoformat#utils#log(v:shell_error)
 
         let process_ran_succesfully = index(cmd.valid_exit_codes, v:shell_error) != -1
-        
+
         if cmd.stderr_log != ''
             call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
             call neoformat#utils#log_file_content(cmd.stderr_log)
