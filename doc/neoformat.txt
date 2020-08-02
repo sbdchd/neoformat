@@ -255,6 +255,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`elm-format`](https://github.com/avh4/elm-format)
 - Fish
   - [`fish_indent`](http://fishshell.com)
+- F#
+  - [`fantomas`](https://github.com/fsprojects/fantomas)
 - Gleam
   - [gleam format](https://github.com/gleam-lang/gleam/)
 - Go

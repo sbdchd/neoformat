@@ -260,6 +260,8 @@ that caused Neoformat to be invoked.
   - [`elm-format`](https://github.com/avh4/elm-format)
 - Fish
   - [`fish_indent`](http://fishshell.com)
+- F#
+  - [`fantomas`](https://github.com/fsprojects/fantomas)
 - Gleam
   - [`gleam format`](https://github.com/gleam-lang/gleam/)
 - Go
