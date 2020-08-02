@@ -78,7 +78,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
         let original_buffer = getbufline(bufnr('%'), 1, '$')
 
-        call neoformat#utils#log(stdin)
+	" include stdin in output only if specified
+        if !neoformat#utils#should_be_compact()
+            call neoformat#utils#log(stdin)
+	endif
 
         call neoformat#utils#log(cmd.exe)
         if cmd.stdin
@@ -96,7 +99,10 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             let stdout = readfile(cmd.tmp_file_path)
         endif
 
-        call neoformat#utils#log(stdout)
+	" include stdout in output only if specified
+        if !neoformat#utils#should_be_compact()
+            call neoformat#utils#log(stdout)
+	endif
 
         call neoformat#utils#log(cmd.valid_exit_codes)
         call neoformat#utils#log(v:shell_error)
