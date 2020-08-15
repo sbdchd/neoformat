@@ -365,7 +365,7 @@ that caused Neoformat to be invoked.
 - Python
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8),
-    [`black`](https://github.com/ambv/black),
+    [`black`](https://github.com/psf/black),
     [`pydevf`](https://github.com/fabioz/PyDev.Formatter),
     [`isort`](https://github.com/timothycrosley/isort),
     [`docformatter`](https://github.com/myint/docformatter),
