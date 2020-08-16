@@ -178,6 +178,7 @@ See Config above for options
       return {'exe': {{ other formatter name }}
     endfunction
 <
+3. Update `README.md` and `doc/neoformat.txt`
 
 ==============================================================================
 MANAGING UNDO HISTORY			*neoformat-managing-undo-history*
