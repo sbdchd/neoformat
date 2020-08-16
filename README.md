@@ -218,6 +218,8 @@ that caused Neoformat to be invoked.
   - [`asmfmt`](https://github.com/klauspost/asmfmt)
 - Bazel
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
+- Beancount
+  - [`bean-format`](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
 - C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
