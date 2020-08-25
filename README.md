@@ -341,6 +341,7 @@ that caused Neoformat to be invoked.
   - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
 - Nix
   - [`nixfmt`](https://github.com/serokell/nixfmt)
+  - [`nixpkgs-fmt`](https://github.com/nix-community/nixpkgs-fmt)
 - Objective-C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
