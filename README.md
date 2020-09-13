@@ -421,6 +421,7 @@ that caused Neoformat to be invoked.
 - TypeScript
   - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
     [`prettier`](https://github.com/prettier/prettier),
+    [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
     [`tslint`](https://palantir.github.io/tslint),
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
