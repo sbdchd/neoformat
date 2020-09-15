@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#erlang#erlfmt() abort
     return {
         \ 'exe': 'erlfmt',
-        \ 'args': ['erlfmt', "-"],
+        \ 'args': ["-"],
         \ 'stdin': 1
         \ }
 endfunction
