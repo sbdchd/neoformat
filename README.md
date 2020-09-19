@@ -264,6 +264,8 @@ that caused Neoformat to be invoked.
   - [`fish_indent`](http://fishshell.com)
 - F#
   - [`fantomas`](https://github.com/fsprojects/fantomas)
+- GDScript
+  - [`gdformat`](https://github.com/Scony/godot-gdscript-toolkit)
 - Gleam
   - [`gleam format`](https://github.com/gleam-lang/gleam/)
 - Go
