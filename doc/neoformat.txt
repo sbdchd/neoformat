@@ -261,7 +261,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - F#
   - [`fantomas`](https://github.com/fsprojects/fantomas)
 - GDScript
-  - [gdformat](https://github.com/Scony/godot-gdscript-toolkit)
+  - [`gdformat`](https://github.com/Scony/godot-gdscript-toolkit)
 - Gleam
   - [gleam format](https://github.com/gleam-lang/gleam/)
 - Go
