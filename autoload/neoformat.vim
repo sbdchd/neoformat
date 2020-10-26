@@ -1,13 +1,18 @@
 function! neoformat#Neoformat(bang, user_input, start_line, end_line) abort
-    let search = @/
     let view = winsaveview()
+    let search = @/
     let original_filetype = &filetype
 
     call s:neoformat(a:bang, a:user_input, a:start_line, a:end_line)
 
+    " Setting &filetype might destroy existing folds, so only do that
+    " if the filetype got changed (which can only be possible when
+    " invoking with a bang)
+    if a:bang && &filetype != original_filetype
+        let &filetype = original_filetype
+    endif
     let @/ = search
     call winrestview(view)
-    let &filetype = original_filetype
 endfunction
 
 function! s:neoformat(bang, user_input, start_line, end_line) abort

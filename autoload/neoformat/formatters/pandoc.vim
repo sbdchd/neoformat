@@ -19,6 +19,7 @@ function! neoformat#formatters#pandoc#pandoc() abort
        \ '-native_spans',
        \ '-simple_tables',
        \ '-multiline_tables',
+       \ '-fenced_code_attributes',
        \ '+emoji',
        \ '+task_lists',
        \ ]

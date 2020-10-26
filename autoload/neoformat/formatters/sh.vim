@@ -3,9 +3,11 @@ function! neoformat#formatters#sh#enabled() abort
 endfunction
 
 function! neoformat#formatters#sh#shfmt() abort
+    let opts = get(g:, 'shfmt_opt', '')
+
     return {
             \ 'exe': 'shfmt',
-            \ 'args': ['-i ' . shiftwidth()],
+            \ 'args': ['-i ' . shiftwidth(), opts],
             \ 'stdin': 1,
             \ }
 endfunction

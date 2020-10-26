@@ -178,6 +178,7 @@ See Config above for options
       return {'exe': {{ other formatter name }}
     endfunction
 <
+3. Update `README.md` and `doc/neoformat.txt`
 
 ==============================================================================
 MANAGING UNDO HISTORY			*neoformat-managing-undo-history*
@@ -213,6 +214,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`asmfmt`](https://github.com/klauspost/asmfmt)
 - Bazel
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
+- Beancount
+  - [`bean-format`](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
 - C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -220,10 +223,13 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - C#
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net)
+    [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - C++
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`astyle`](http://astyle.sourceforge.net)
+- Cabal
+  - [`cabal-fmt`](https://github.com/phadej/cabal-fmt)
 - CMake
   - [`cmake_format`](https://github.com/cheshirekow/cmake_format)
 - Crystal
@@ -252,9 +258,17 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`elm-format`](https://github.com/avh4/elm-format)
 - Fish
   - [`fish_indent`](http://fishshell.com)
+- F#
+  - [`fantomas`](https://github.com/fsprojects/fantomas)
+- GDScript
+  - [`gdformat`](https://github.com/Scony/godot-gdscript-toolkit)
+- Gleam
+  - [gleam format](https://github.com/gleam-lang/gleam/)
 - Go
   - [`gofmt`](https://golang.org/cmd/gofmt/),
-    [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports)
+    [`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports),
+    [`gofumpt`](https://github.com/mvdan/gofumpt),
+    [`gofumports`](https://github.com/mvdan/gofumpt)
 - GLSL
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - GraphQL
@@ -266,6 +280,10 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`brittany`](https://github.com/lspitzner/brittany)
   - [`sort-imports`](https://github.com/evanrelf/sort-imports)
   - [`floskell`](https://github.com/ennocramer/floskell)
+  - [`ormolu`](https://github.com/tweag/ormolu)
+    `let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]`
+- Puppet
+  - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML
@@ -277,6 +295,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Java
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net)
+    [`prettier`](https://github.com/prettier/prettier)
 - JavaScript
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettier`](https://github.com/jlongster/prettier),
@@ -284,7 +303,10 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`esformatter`](https://github.com/millermedeiros/esformatter/),
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
-    [`standard`](https://standardjs.com/)
+    [`eslint_d`](https://github.com/mantoni/eslint_d.js),
+    [`standard`](https://standardjs.com/),
+    [`semistandard`](https://github.com/standard/semistandard),
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
@@ -293,6 +315,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`fixjson`](https://github.com/rhysd/fixjson)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint)
+    [`prettier`](https://github.com/prettier/prettier)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
@@ -302,13 +325,19 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
+  - [`lua-fmt`](https://github.com/trixnz/lua-fmt)
 - Markdown
   - [`remark`](https://github.com/wooorm/remark)
     [`prettier`](https://github.com/prettier/prettier),
 - Matlab
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
+- Nginx
+  - [nginxbeautifier](https://github.com/vasilevich/nginxbeautifier)
 - Nim
   - nimpretty (ships with [nim](https://nim-lang.org/)),
+- Nix
+  - [`nixfmt`](https://github.com/serokell/nixfmt)
+  - [`nixpkgs-fmt`](https://github.com/nix-community/nixpkgs-fmt)
 - Objective-C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -326,6 +355,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier)
   - [`php-cs-fixer`](http://cs.sensiolabs.org/)
   - [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
+- PowerShell
+  - [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
@@ -333,7 +364,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Python
   - [`yapf`](https://github.com/google/yapf),
     [`autopep8`](https://github.com/hhatto/autopep8),
-    [`black`](https://github.com/ambv/black),
+    [`black`](https://github.com/psf/black),
     [`pydevf`](https://github.com/fabioz/PyDev.Formatter),
     [`isort`](https://github.com/timothycrosley/isort),
     [`docformatter`](https://github.com/myint/docformatter),
@@ -343,6 +374,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`formatR`](https://github.com/yihui/formatR)
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
+  - [`bsrefmt`](https://github.com/bucklescript/bucklescript)
 - Ruby
   - [`rufo`](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
@@ -371,6 +403,10 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`sqlfmt`](https://github.com/jackc/sqlfmt)
   - `sqlformat` (ships with [`sqlparse`](https://github.com/andialbrecht/sqlparse))
   - `pg_format` (ships with [`pgFormatter`](https://github.com/darold/pgFormatter))
+- Starlark
+  - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
+- Svelte
+  - [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
 - Swift
   - [`Swiftformat`](https://github.com/nicklockwood/SwiftFormat)
 - Terraform
@@ -378,9 +414,13 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - TypeScript
   - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
     [`prettier`](https://github.com/prettier/prettier),
+    [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
     [`tslint`](https://palantir.github.io/tslint)
     [`eslint_d`](https://github.com/mantoni/eslint_d.js)
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
+- V
+  - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Vue
@@ -391,6 +431,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - XML
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
+    [`prettier`](https://github.com/prettier/prettier)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier)

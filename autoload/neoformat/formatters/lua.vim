@@ -10,7 +10,7 @@ endfunction
 
 function! neoformat#formatters#lua#luafmt() abort
     return {
-        \ 'exe': 'luafmt'
+        \ 'exe': 'luafmt',
         \ 'args': ['--stdin'],
         \ 'stdin': 1,
         \ }
