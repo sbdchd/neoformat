@@ -444,3 +444,5 @@ that caused Neoformat to be invoked.
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier)
+- zig
+  - [`zig fmt`](https://github.com/ziglang/zig)
