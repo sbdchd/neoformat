@@ -278,15 +278,22 @@ that caused Neoformat to be invoked.
 - GraphQL
   - [`prettier`](https://github.com/prettier/prettier)
 - Haskell
-  - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell),
+  - [`stylishhaskell`](https://github.com/jaspervdj/stylish-haskell),
     [`hindent`](https://github.com/chrisdone/hindent),
     [`hfmt`](https://github.com/danstiner/hfmt),
     [`brittany`](https://github.com/lspitzner/brittany),
-    [`sort-imports`](https://github.com/evanrelf/sort-imports),
+    [`sortimports`](https://github.com/evanrelf/sort-imports),
     [`floskell`](https://github.com/ennocramer/floskell)
     [`ormolu`](https://github.com/tweag/ormolu)
     ```vim
     let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]
+    ```
+  - You must use formatter's name without "`-`"
+    ```vim
+    " right
+    let g:neoformat_enabled_haskell = ['sortimports', 'stylishhaskell']
+    " wrong
+    let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
     ```
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
