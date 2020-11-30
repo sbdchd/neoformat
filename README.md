@@ -369,7 +369,8 @@ that caused Neoformat to be invoked.
     [`php-cs-fixer`](http://cs.sensiolabs.org/),
     [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
 - PowerShell
-  - [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
+  - [`PSScriptAnalyzer`](https://github.com/PowerShell/PSScriptAnalyzer),
+    [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
