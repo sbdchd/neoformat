@@ -459,3 +459,8 @@ that caused Neoformat to be invoked.
     [`prettier`](https://github.com/prettier/prettier)
 - zig
   - [`zig fmt`](https://github.com/ziglang/zig)
+- zsh
+  - [`shfmt`](https://github.com/mvdan/sh)
+    ```vim
+    let g:shfmt_opt="-ci"
+    ```
