@@ -1,5 +1,5 @@
 function! neoformat#formatters#sass#enabled() abort
-   return ['sassconvert', 'csscomb']
+   return ['sassconvert', 'stylelint', 'csscomb']
 endfunction
 
 function! neoformat#formatters#sass#sassconvert() abort
@@ -14,3 +14,6 @@ function! neoformat#formatters#sass#csscomb() abort
     return neoformat#formatters#css#csscomb()
 endfunction
 
+function! neoformat#formatters#sass#stylelint() abort
+    return neoformat#formatters#css#stylelint()
+endfunction

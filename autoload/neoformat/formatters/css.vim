@@ -1,5 +1,5 @@
 function! neoformat#formatters#css#enabled() abort
-    return ['stylefmt', 'prettier', 'cssbeautify', 'prettydiff', 'csscomb']
+    return ['stylelint', 'stylefmt', 'prettier', 'cssbeautify', 'prettydiff', 'csscomb']
 endfunction
 
 function! neoformat#formatters#css#cssbeautify() abort
@@ -40,7 +40,15 @@ endfunction
 function! neoformat#formatters#css#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'css'],
+        \ 'args': ['--stdin-filepath', '"%:p"', '--parser', 'css'],
         \ 'stdin': 1
         \ }
+endfunction
+
+function! neoformat#formatters#css#stylelint() abort
+    return {
+            \ 'exe': 'stylelint',
+            \ 'args': ['--fix', '--stdin-filename', '"%:t"'],
+            \ 'stdin': 1,
+            \ }
 endfunction

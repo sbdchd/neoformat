@@ -20,6 +20,7 @@ function! neoformat#formatters#php#phpcbf() abort
     return {
            \ 'exe': 'phpcbf',
            \ 'stdin': 1,
+           \ 'args': ['-'],
            \ 'valid_exit_codes': [0,1],
            \ }
 endfunction

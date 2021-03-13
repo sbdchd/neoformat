@@ -1,5 +1,5 @@
 function! neoformat#formatters#kotlin#enabled() abort
-    return ['ktlint']
+    return ['ktlint', 'prettier']
 endfunction
 
 function! neoformat#formatters#kotlin#ktlint() abort
@@ -9,3 +9,13 @@ function! neoformat#formatters#kotlin#ktlint() abort
             \ 'replace': 1,
             \ }
 endfunction
+
+function! neoformat#formatters#kotlin#prettier() abort
+    return {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+
