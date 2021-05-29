@@ -312,6 +312,10 @@ function! s:basic_format() abort
         let g:neoformat_basic_format_trim = 0
     endif
 
+    if !exists('g:neoformat_basic_format_trim_newline')
+        let g:neoformat_basic_format_trim_newline = 0
+    endif
+
     if neoformat#utils#var('neoformat_basic_format_align')
         call neoformat#utils#log('aligning with basic formatter')
         let v = winsaveview()
@@ -329,6 +333,16 @@ function! s:basic_format() abort
         let view = winsaveview()
         " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
         silent! %s/\s\+$//e
+        " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
+        let @/=search
+        call winrestview(view)
+    endif
+    if neoformat#utils#var('neoformat_basic_format_trim_newline')
+        call neoformat#utils#log('trimming newline with basic formatter')
+        let search = @/
+        let view = winsaveview()
+        " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
+        silent! %s/\n\+\%$//e
         " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
         let @/=search
         call winrestview(view)
