@@ -45,6 +45,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
 
     let formatters_failed = []
     let formatters_changed = []
+    let end_line = a:end_line
     for formatter in formatters
 
         if &formatprg != '' && split(&formatprg)[0] ==# formatter
@@ -80,7 +81,7 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             continue
         endif
 
-        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+        let stdin = getbufline(bufnr('%'), a:start_line, end_line)
         let original_buffer = getbufline(bufnr('%'), 1, '$')
 
         call neoformat#utils#log(stdin)
@@ -113,12 +114,15 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             call neoformat#utils#log_file_content(cmd.stderr_log)
         endif
         if process_ran_succesfully
-            " 1. append the lines that are before and after the formatterd content
-            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
+            " 1. append the lines that are before and after the formatted content
+            let lines_after = getbufline(bufnr('%'), end_line + 1, '$')
             let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
 
             let new_buffer = lines_before + stdout + lines_after
             if new_buffer !=# original_buffer
+                " previous formatter may have added or removed lines which moves
+                " the end_line for the next formatter
+                let end_line = end_line + len(stdout) - len(stdin)
 
                 call s:deletelines(len(new_buffer), line('$'))
 
