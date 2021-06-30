@@ -43,10 +43,9 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         endif
     endif
 
-    let formatters_failed = []
-    let formatters_changed = []
-    for formatter in formatters
+    let pending_commands = []
 
+    for formatter in formatters
         if &formatprg != '' && split(&formatprg)[0] ==# formatter
                     \ && neoformat#utils#var('neoformat_try_formatprg')
             call neoformat#utils#log('using formatprg')
@@ -80,75 +79,169 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             continue
         endif
 
-        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
-        let original_buffer = getbufline(bufnr('%'), 1, '$')
-
-        call neoformat#utils#log(stdin)
-
-        call neoformat#utils#log(cmd.exe)
-        if cmd.stdin
-            call neoformat#utils#log('using stdin')
-            let stdin_str = join(stdin, "\n")
-            let stdout = split(system(cmd.exe, stdin_str), '\n')
-        else
-            call neoformat#utils#log('using tmp file')
-            call writefile(stdin, cmd.tmp_file_path)
-            let stdout = split(system(cmd.exe), '\n')
-        endif
-
-        " read from /tmp file if formatter replaces file on format
-        if cmd.replace
-            let stdout = readfile(cmd.tmp_file_path)
-        endif
-
-        call neoformat#utils#log(stdout)
-
-        call neoformat#utils#log(cmd.valid_exit_codes)
-        call neoformat#utils#log(v:shell_error)
-
-        let process_ran_succesfully = index(cmd.valid_exit_codes, v:shell_error) != -1
-
-        if cmd.stderr_log != ''
-            call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
-            call neoformat#utils#log_file_content(cmd.stderr_log)
-        endif
-        if process_ran_succesfully
-            " 1. append the lines that are before and after the formatterd content
-            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
-            let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
-
-            let new_buffer = lines_before + stdout + lines_after
-            if new_buffer !=# original_buffer
-
-                call s:deletelines(len(new_buffer), line('$'))
-
-                call setline(1, new_buffer)
-
-                call add(formatters_changed, cmd.name)
-                let endmsg = cmd.name . ' formatted buffer'
-            else
-
-                let endmsg = 'no change necessary with ' . cmd.name
-            endif
-            if !neoformat#utils#var('neoformat_run_all_formatters')
-                return neoformat#utils#msg(endmsg)
-            endif
-            call neoformat#utils#log('running next formatter')
-        else
-            call add(formatters_failed, cmd.name)
-            call neoformat#utils#log(v:shell_error)
-            call neoformat#utils#log('trying next formatter')
-        endif
+        let pending_commands = add(pending_commands, cmd)
     endfor
-    if len(formatters_failed) > 0
-        call neoformat#utils#msg('formatters ' . join(formatters_failed, ", ") . ' failed to run')
+
+    let bnr = bufnr('%')
+    let stdin = getbufline(bnr, a:start_line, a:end_line)
+
+    call s:run_formatters({
+          \ 'failed': [],
+          \ 'changed': [],
+          \ 'pending': pending_commands,
+          \ 'stdin': stdin,
+          \ 'original_snippet': stdin,
+          \ 'bnr': bnr,
+          \ 'start_line': a:start_line,
+          \ 'end_line': a:end_line
+          \})
+endfunction
+
+function! s:update_buffer(bnr, start_line, end_line, contents, original_snippet) abort
+  if exists('*nvim_buf_set_lines')
+      let lines = nvim_buf_get_lines(a:bnr, a:start_line - 1, a:end_line, v:true)
+      if lines ==# a:original_snippet
+          if lines !=# a:contents
+            call nvim_buf_set_lines(a:bnr, a:start_line - 1, a:end_line, v:true, a:contents)
+          endif
+      else
+          call neoformat#utils#warn('buffer changed while running format')
+      end
+  else
+      let lines_after = getbufline(a:bnr, a:end_line + 1, '$')
+      let lines_before = getbufline(a:bnr, 1, a:start_line - 1)
+      let new_buffer = lines_before + a:contents + lines_after
+      let original_buffer = getbufline(a:bnr, 1, '$')
+
+      if new_buffer !=# original_buffer
+          if exists('*deletebufline') && exists('*setbufline')
+              call deletebufline(a:bnr, 1, '$')
+              call setbufline(a:bnr, 1, new_buffer)
+          elseif bufnr('%') == a:bnr
+              call s:deletelines(len(new_buffer), line('$'))
+              call setline(1, new_buffer)
+          else
+              call neoformat#utils#warn('buffer changed while running format')
+          endif
+      endif
+  endif
+endfunction
+
+function! s:job_complete_msg(changed, failed) abort
+    if len(a:failed) > 0
+        call neoformat#utils#msg('formatters ' . join(a:failed, ', ') . ' failed to run')
     endif
-    if len(formatters_changed) > 0
-        call neoformat#utils#msg(join(formatters_changed, ", ") . ' formatted buffer')
-    elseif len(formatters_failed) == 0
+    if len(a:changed) > 0
+        call neoformat#utils#msg(join(a:changed, ', ') . ' formatted buffer')
+    elseif len(a:failed) == 0
         call neoformat#utils#msg('no change necessary')
     endif
 endfunction
+
+function! s:run_formatters(job) abort
+  if len(a:job.pending) == 0
+      call s:job_complete_msg(a:job.changed, a:job.failed)
+      call s:update_buffer(a:job.bnr, a:job.start_line, a:job.end_line, a:job.stdin, a:job.original_snippet)
+      return
+  endif
+
+  let cmd = a:job.pending[0]
+
+  call neoformat#utils#log(a:job.stdin)
+  call neoformat#utils#log(cmd.exe)
+
+  call s:job_init(a:job, cmd)
+
+  if exists('*jobstart') && has('nvim-0.3.0')
+       call s:job_run_jobstart(a:job)
+  elseif exists('*job_start') && exists('*deletebufline')
+       call s:job_run_job_start(a:job)
+  else
+       call s:job_run_system(a:job)
+  endif
+endfunction
+
+
+function! s:job_run_system(job) abort
+    let cmd = a:job.cmd
+    let stdin = a:job.stdin
+
+    if cmd.stdin
+        call neoformat#utils#log('using stdin')
+        let stdin_str = join(stdin, "\n")
+        let stdout = system(cmd.exe, stdin_str)
+    else
+        call neoformat#utils#log('using tmp file')
+        call writefile(stdin, cmd.tmp_file_path)
+        let stdout = system(cmd.exe)
+    endif
+
+    call s:job_stdout(a:job, [stdout])
+    call s:job_exit(a:job, v:shell_error)
+endfunction
+
+function! s:job_run_jobstart(job) abort
+    let cmd = a:job.cmd
+
+    let job_start_opts = {
+          \ 'on_exit': { job_id, exitcode, event -> s:job_exit(a:job, exitcode) },
+          \ 'on_stdout': { job_id, data, event -> s:job_stdout(a:job, data) },
+          \ 'stdout_buffered':v:true,
+          \ 'on_stderr': { job_id, data, event -> s:job_stderr(a:job, data) },
+          \ }
+
+    if cmd.stdin
+        call neoformat#utils#log('using stdin')
+    else
+        call neoformat#utils#log('using tmp file')
+        call writefile(a:job.stdin, cmd.tmp_file_path)
+    endif
+
+    call neoformat#utils#log('doing jobstart ' . cmd.exe)
+    let id = jobstart(cmd.exe, job_start_opts)
+    if cmd.stdin
+        call chansend(id, a:job.stdin)
+    endif
+    call chanclose(id, 'stdin')
+endfunction
+
+
+function! s:job_run_job_start(job) abort
+    let cmd = a:job.cmd
+
+    let job_start_opts = {
+          \ 'in_mode': 'raw',
+          \ 'exit_cb': { job, exitcode -> s:job_exit(a:job, exitcode) },
+          \ 'out_cb': { ch, data -> s:job_stdout(a:job, [data]) },
+          \ 'out_mode': 'raw',
+          \ 'err_cb': { ch, data -> s:job_stderr(a:job, [data]) },
+          \ 'err_mode': 'raw',
+          \ }
+
+    if cmd.stdin
+        call neoformat#utils#log('using stdin')
+    else
+        call neoformat#utils#log('using tmp file')
+        call writefile(a:job.stdin, cmd.tmp_file_path)
+    endif
+
+    call neoformat#utils#log('doing job_start ' . cmd.exe)
+    let id = job_start(['/bin/bash', '-c', cmd.exe], job_start_opts)
+    if job_status(id) == 'fail'
+      call neoformat#utils#log('failed to start')
+      " Documentation says:
+      "    If the job fails to start then job_status() on the returned
+      "    Job object results in "fail" and none of the callbacks will be
+      "    invoked.
+      call s:job_exit(a:job, -1)
+    endif
+    let channel = job_getchannel(id)
+    if cmd.stdin
+        call ch_sendraw(channel, join(a:job.stdin, "\n"))
+    endif
+    call ch_close_in(channel)
+endfunction
+
 
 function! s:get_enabled_formatters(filetype) abort
     if &formatprg != '' && neoformat#utils#var('neoformat_try_formatprg')
@@ -333,4 +426,54 @@ function! s:basic_format() abort
         let @/=search
         call winrestview(view)
     endif
+endfunction
+
+function! s:job_init(job, cmd) abort
+    let a:job.output = ''
+
+    let a:job.cmd = a:cmd
+    let a:job.pending = a:job.pending[1:]
+endfunction
+
+function! s:job_exit(job, exitcode) abort
+    let cmd = a:job.cmd
+
+    if cmd.replace
+        let stdout = readfile(cmd.tmp_file_path)
+    else
+        let stdout = split(a:job.output, "\n")
+    endif
+
+    let process_ran_succesfully = index(cmd.valid_exit_codes, a:exitcode) != -1
+    if cmd.stderr_log != ''
+        call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
+        call neoformat#utils#log_file_content(cmd.stderr_log)
+    endif
+    if process_ran_succesfully
+        if a:job.stdin !=# stdout
+            call add(a:job.changed, cmd.name)
+            let a:job.stdin = stdout
+        endif
+
+        if !neoformat#utils#var('neoformat_run_all_formatters')
+            " clear the queue, so this is the last formatter
+            let a:job.pending = []
+        else
+            call neoformat#utils#log('running next formatter')
+        endif
+    else
+        call add(a:job.failed, cmd.name)
+        call neoformat#utils#log(a:exitcode)
+        call neoformat#utils#log('trying next formatter')
+    endif
+
+    call s:run_formatters(a:job)
+endfunction
+
+function! s:job_stdout(job, data) abort
+    let a:job.output = a:job.output . join(a:data, "\n")
+endfunction
+
+function! s:job_stderr(job, data) abort
+    call neoformat#utils#log('stderr: ' . join(a:data))
 endfunction

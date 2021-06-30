@@ -1,0 +1,55 @@
+version: "3.4"
+services:
+  nvim_0_1_7:
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: nvim_system
+  nvim_0_3_0:
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: nvim_source
+      args:
+        NVIM_VERSION: 0.3.0
+  nvim_0_4_0:
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: nvim_source
+      args:
+        NVIM_VERSION: nightly
+        NVIM_TARBALL: nightly.tar.gz
+  vim_8_1:
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: vim_source
+      args:
+        VIM_VERSION: 8.1.1234
+  vim_8_0_0184:
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: vim_source
+      args:
+        VIM_VERSION: 8.0.0184
+  vim_8_0_0001:
+    environment:
+      - EXPECT_1_IN_VADER=1
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: vim_source
+      args:
+        VIM_VERSION: 8.0.0001
+  vim_7_4_001:
+    environment:
+      - EXPECT_1_IN_VADER=1
+      - EXPECT_1_AUTOCOMPLETE=1
+    build:
+      context: ..
+      dockerfile: test/Dockerfile
+      target: vim_source
+      args:
+        VIM_VERSION: 7.4.001

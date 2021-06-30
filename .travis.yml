@@ -1,23 +1,26 @@
-language: python
-
 sudo: required
-
-cache:
-    - pip
-    - npm
-
-env:
-    - PATH="$PATH:/home/travis/build/sbdchd/neoformat/test/bin"
-
-python:
-    - "3.6"
+services:
+  - docker
 
 before_install:
-    - nvm install $NODE_VERSION
+ - export COMPOSE_VERSION=1.23.2
+ - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+ - chmod +x docker-compose
+ - sudo mv docker-compose /usr/local/bin
+
+matrix:
+  include:
+    - env: SERVICE=nvim_0_1_7
+    - env: SERVICE=nvim_0_3_0
+    - env: SERVICE=nvim_0_4_0
+    - env: SERVICE=vim_8_1
+    - env: SERVICE=vim_8_0_0184
+    - env: SERVICE=vim_8_0_0001
+    - env: SERVICE=vim_7_4_001
+
 
 install:
-    - ./test/install.sh
-    - pip install -r test/requirements.txt
+  - docker-compose -f test/docker-compose.yml build $SERVICE
 
 script:
-    - cd test && pytest -v test.py
+  - docker-compose -f test/docker-compose.yml run $SERVICE

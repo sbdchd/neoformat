@@ -13,6 +13,8 @@ set noswapfile
 
 " seems like cp doesn't have standard exit codes
 let g:neoformat_copy_cp = {
-      \ 'exe': 'exit64',
+      \ 'exe': '/bin/bash',
+      \ 'args': ['-c', '"(exit 64)"'],
+      \ 'stdin': 1,
       \ 'valid_exit_codes': [1, 64],
       \ }
