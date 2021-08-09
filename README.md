@@ -303,6 +303,7 @@ that caused Neoformat to be invoked.
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
+  - [`purs-tidy`](https://github.com/natefaubion/purescript-tidy)
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
