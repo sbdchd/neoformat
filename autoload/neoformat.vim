@@ -220,11 +220,26 @@ function! s:split_filetypes(filetype) abort
     return split(a:filetype, '\.')[0]
 endfunction
 
+function! s:get_node_exe(exe) abort
+    let node_exe = findfile('node_modules/.bin/' . a:exe, getcwd() . ';')
+    if !empty(node_exe) && executable(node_exe)
+        return node_exe
+    endif
+
+    return a:exe
+endfunction
+
 function! s:generate_cmd(definition, filetype) abort
     let executable = get(a:definition, 'exe', '')
     if executable == ''
         call neoformat#utils#log('no exe field in definition')
         return {}
+    endif
+
+    if exists('g:neoformat_try_node_exe')
+                \ && g:neoformat_try_node_exe
+                \ && get(a:definition, 'try_node_exe', 0)
+        let executable = s:get_node_exe(executable)
     endif
 
     if &shell =~ '\v%(powershell|pwsh)'

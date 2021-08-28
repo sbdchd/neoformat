@@ -74,16 +74,17 @@ Define custom formatters.
 
 Options:
 
-| name               | description                                                                                                       | default | optional / required |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------- | ------------------- |
-| `exe`              | the name the formatter executable in the path                                                                     | n/a     | **required**        |
-| `args`             | list of arguments                                                                                                 | \[]     | optional            |
-| `replace`          | overwrite the file, instead of updating the buffer                                                                | 0       | optional            |
-| `stdin`            | send data to the stdin of the formatter                                                                           | 0       | optional            |
-| `stderr`           | capture stderr output from formatter                                                                              | 0       | optional            |
-| `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command | 0       | optional            |
-| `env`              | list of environment variable definitions to be prepended to the formatter command                                 | \[]     | optional            |
-| `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                  | \[0]    | optional            |
+| name               | description                                                                                                                                                   | default | optional / required |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------- |
+| `exe`              | the name the formatter executable in the path                                                                                                                 | n/a     | **required**        |
+| `args`             | list of arguments                                                                                                                                             | \[]     | optional            |
+| `replace`          | overwrite the file, instead of updating the buffer                                                                                                            | 0       | optional            |
+| `stdin`            | send data to the stdin of the formatter                                                                                                                       | 0       | optional            |
+| `stderr`           | capture stderr output from formatter                                                                                                                          | 0       | optional            |
+| `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command                                             | 0       | optional            |
+| `env`              | list of environment variable definitions to be prepended to the formatter command                                                                             | \[]     | optional            |
+| `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                                                              | \[0]    | optional            |
+| `try_node_exe`     | attempt to find `exe` in a `node_modules/.bin` directory in the current working directory or one of its parents (requires setting `g:neoformat_try_node_exe`) | 0       | optional            |
 
 Example:
 
@@ -153,6 +154,14 @@ When debugging, you can enable either of following variables for extra logging.
 let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat
 " Or
 let &verbose            = 1 " also increases verbosity of the editor as a whole
+```
+
+Have Neoformat look for a formatter executable in the `node_modules/.bin`
+directory in the current working directory or one of its parents (only applies
+to formatters with `try_node_exe` set to `1`):
+
+```viml
+let g:neoformat_try_node_exe = 1
 ```
 
 ## Adding a New Formatter

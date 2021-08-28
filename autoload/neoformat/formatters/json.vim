@@ -22,6 +22,7 @@ function! neoformat#formatters#json#prettier() abort
         \ 'exe': 'prettier',
         \ 'args': ['--stdin-filepath', '"%:p"', '--parser', 'json'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -31,5 +32,6 @@ function! neoformat#formatters#json#fixjson() abort
         \ 'exe': 'fixjson',
         \ 'args': ['--stdin-filename', l:filename],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction

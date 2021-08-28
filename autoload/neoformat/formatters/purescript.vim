@@ -7,6 +7,7 @@ function! neoformat#formatters#purescript#purstidy() abort
         \ 'exe': 'purs-tidy',
         \ 'args': ['format'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -15,5 +16,6 @@ function! neoformat#formatters#purescript#purty() abort
         \ 'exe': 'purty',
         \ 'args': ['-'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction

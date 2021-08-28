@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#starlark#buildifier() abort
     return {
                 \ 'exe': 'buildifier',
-                \ 'stdin': 1
+                \ 'stdin': 1,
+                \ 'try_node_exe': 1,
                 \ }
 endfunction

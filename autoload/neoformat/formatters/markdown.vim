@@ -7,6 +7,7 @@ function! neoformat#formatters#markdown#prettier() abort
         \ 'exe': 'prettier',
         \ 'args': ['--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -15,5 +16,6 @@ function! neoformat#formatters#markdown#remark() abort
             \ 'exe': 'remark',
             \ 'args': ['--no-color', '--silent'],
             \ 'stdin': 1,
+            \ 'try_node_exe': 1,
             \ }
 endfunction
