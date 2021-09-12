@@ -334,14 +334,14 @@ that caused Neoformat to be invoked.
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`standard`](https://standardjs.com/),
     [`semistandard`](https://github.com/standard/semistandard),
-    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson)
-- JSONC
+- JSONC (JSON with comments)
   - [`prettier`](https://github.com/prettier/prettier)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
