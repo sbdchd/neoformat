@@ -341,6 +341,8 @@ that caused Neoformat to be invoked.
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson)
+- JSONC
+  - [`prettier`](https://github.com/prettier/prettier)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
     [`prettier`](https://github.com/prettier/prettier)
