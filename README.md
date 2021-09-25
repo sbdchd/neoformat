@@ -57,7 +57,9 @@ The `undojoin` command will put changes made by Neoformat into the same
 [Managing Undo History](#managing-undo-history).
 
 ## Install
+
 The best way to install Neoformat is with your favorite plugin manager for Vim, such as [vim-plug](https://github.com/junegunn/vim-plug):
+
 ```viml
 Plug 'sbdchd/neoformat'
 ```
@@ -309,6 +311,8 @@ that caused Neoformat to be invoked.
     " wrong
     let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
     ```
+- Toml
+  - [`taplo`](https://taplo.tamasfe.dev/cli)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
