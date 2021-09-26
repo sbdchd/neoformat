@@ -258,6 +258,8 @@ that caused Neoformat to be invoked.
     [`prettier`](https://github.com/prettier/prettier)
 - CSV
   - [`prettydiff`](https://github.com/prettydiff/prettydiff)
+- CUDA
+    [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
 - D
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`dfmt`](https://github.com/Hackerpilot/dfmt)
