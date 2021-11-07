@@ -433,6 +433,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - `pg_format` (ships with [`pgFormatter`](https://github.com/darold/pgFormatter))
 - Starlark
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
+- SugarSS
+  - [`stylelint`](https://stylelint.io/)
 - Svelte
   - [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
 - Swift
