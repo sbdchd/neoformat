@@ -270,6 +270,11 @@ that caused Neoformat to be invoked.
   - [`dhall format`](https://dhall-lang.org)
 - dune
   - [`dune format`](https://github.com/ocaml/dune)
+- Ebuild
+  - [`shfmt`](https://github.com/mvdan/sh)
+    ```vim
+    let g:shfmt_opt="-ci"
+    ```
 - Elixir
   - [`mix format`](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 - Elm
