@@ -427,6 +427,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`csscomb`](http://csscomb.com)
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
+- Solidity
+  - [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity)
 - SQL
   - [`sqlfmt`](https://github.com/jackc/sqlfmt)
   - `sqlformat` (ships with [`sqlparse`](https://github.com/andialbrecht/sqlparse))

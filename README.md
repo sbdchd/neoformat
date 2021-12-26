@@ -449,6 +449,8 @@ that caused Neoformat to be invoked.
     ```vim
     let g:shfmt_opt="-ci"
     ```
+- Solidity
+  - [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity)
 - SQL
   - [`sqlfmt`](https://github.com/jackc/sqlfmt),
     `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
