@@ -400,7 +400,8 @@ that caused Neoformat to be invoked.
 - PHP
   - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier),
     [`php-cs-fixer`](http://cs.sensiolabs.org/),
-    [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
+    [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer),
+    [`prettier`](https://github.com/prettier/plugin-php)
 - PowerShell
   - [`PSScriptAnalyzer`](https://github.com/PowerShell/PSScriptAnalyzer),
     [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
