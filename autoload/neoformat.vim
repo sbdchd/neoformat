@@ -31,117 +31,131 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
         let &filetype = len(inputs) > 1 ? inputs[0] : a:user_input
     endif
 
-    let filetype = s:split_filetypes(&filetype)
-
+    let filetypes = s:split_filetypes(&filetype)
     let using_user_passed_formatter = (!empty(a:user_input) && !a:bang)
                 \ || (len(inputs) > 1 && a:bang)
 
     if using_user_passed_formatter
-        let formatters = len(inputs) > 1 ? [inputs[1]] : [a:user_input]
+        let filetype = s:split_filetype(&filetype)
+        let formatters = len(inputs) > 1 ? [[filetype, [inputs[1]]]] : [[filetype, [a:user_input]]]
     else
-        let formatters = s:get_enabled_formatters(filetype)
-        if formatters == []
-            call neoformat#utils#msg('formatter not defined for ' . filetype . ' filetype')
+        let slice = 0
+        let use_subfiletype_formatters = neoformat#utils#var('neoformat_all_subfiletypes_formatters')
+        if use_subfiletype_formatters
+            let slice = -1
+        endif
+        let formatters = []
+        let formatters_len = 0
+        for filetype in filetypes[:slice]
+            let filetype_formatters = s:get_enabled_formatters(filetype)
+            let formatters_len += len(filetype_formatters)
+            call add(formatters, [filetype, filetype_formatters])
+        endfor
+        if formatters_len == 0
+            call neoformat#utils#msg('formatter not defined for ' . &filetype . ' filetype')
             return s:basic_format()
         endif
     endif
 
     let formatters_failed = []
     let formatters_changed = []
-    for formatter in formatters
+    for filetype_formatters in formatters
+        let filetype = filetype_formatters[0]
+        for formatter in filetype_formatters[1]
 
-        if &formatprg != '' && split(&formatprg)[0] ==# formatter
-                    \ && neoformat#utils#var('neoformat_try_formatprg')
-            call neoformat#utils#log('using formatprg')
-            let fmt_prg_def = split(&formatprg)
-            let definition = {
-                    \ 'exe': fmt_prg_def[0],
-                    \ 'args': fmt_prg_def[1:],
-                    \ 'stdin': 1,
-                    \ }
-        elseif exists('b:neoformat_' . filetype . '_' . formatter)
-            let definition = b:neoformat_{filetype}_{formatter}
-        elseif exists('g:neoformat_' . filetype . '_' . formatter)
-            let definition = g:neoformat_{filetype}_{formatter}
-        elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
-            let definition =  neoformat#formatters#{filetype}#{formatter}()
-        else
-            call neoformat#utils#log('definition not found for formatter: ' . formatter)
-            if using_user_passed_formatter
-                call neoformat#utils#msg('formatter definition for ' . a:user_input . ' not found')
-
-                return s:basic_format()
-            endif
-            continue
-        endif
-
-        let cmd = s:generate_cmd(definition, filetype)
-        if cmd == {}
-            if using_user_passed_formatter
-                return neoformat#utils#warn('formatter ' . a:user_input . ' failed')
-            endif
-            continue
-        endif
-
-        let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
-        let original_buffer = getbufline(bufnr('%'), 1, '$')
-
-        call neoformat#utils#log(stdin)
-
-        call neoformat#utils#log(cmd.exe)
-        if cmd.stdin
-            call neoformat#utils#log('using stdin')
-            let stdin_str = join(stdin, "\n")
-            let stdout = split(system(cmd.exe, stdin_str), '\n')
-        else
-            call neoformat#utils#log('using tmp file')
-            call writefile(stdin, cmd.tmp_file_path)
-            let stdout = split(system(cmd.exe), '\n')
-        endif
-
-        " read from /tmp file if formatter replaces file on format
-        if cmd.replace
-            let stdout = readfile(cmd.tmp_file_path)
-        endif
-
-        call neoformat#utils#log(stdout)
-
-        call neoformat#utils#log(cmd.valid_exit_codes)
-        call neoformat#utils#log(v:shell_error)
-
-        let process_ran_succesfully = index(cmd.valid_exit_codes, v:shell_error) != -1
-
-        if cmd.stderr_log != ''
-            call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
-            call neoformat#utils#log_file_content(cmd.stderr_log)
-        endif
-        if process_ran_succesfully
-            " 1. append the lines that are before and after the formatterd content
-            let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
-            let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
-
-            let new_buffer = lines_before + stdout + lines_after
-            if new_buffer !=# original_buffer
-
-                call s:deletelines(len(new_buffer), line('$'))
-
-                call setline(1, new_buffer)
-
-                call add(formatters_changed, cmd.name)
-                let endmsg = cmd.name . ' formatted buffer'
+            if &formatprg != '' && split(&formatprg)[0] ==# formatter
+                        \ && neoformat#utils#var('neoformat_try_formatprg')
+                call neoformat#utils#log('using formatprg')
+                let fmt_prg_def = split(&formatprg)
+                let definition = {
+                        \ 'exe': fmt_prg_def[0],
+                        \ 'args': fmt_prg_def[1:],
+                        \ 'stdin': 1,
+                        \ }
+            elseif exists('b:neoformat_' . filetype . '_' . formatter)
+                let definition = b:neoformat_{filetype}_{formatter}
+            elseif exists('g:neoformat_' . filetype . '_' . formatter)
+                let definition = g:neoformat_{filetype}_{formatter}
+            elseif s:autoload_func_exists('neoformat#formatters#' . filetype . '#' . formatter)
+                let definition =  neoformat#formatters#{filetype}#{formatter}()
             else
+                call neoformat#utils#log('definition not found for formatter: ' . formatter)
+                if using_user_passed_formatter
+                    call neoformat#utils#msg('formatter definition for ' . a:user_input . ' not found')
 
-                let endmsg = 'no change necessary with ' . cmd.name
+                    return s:basic_format()
+                endif
+                continue
             endif
-            if !neoformat#utils#var('neoformat_run_all_formatters')
-                return neoformat#utils#msg(endmsg)
+
+            let cmd = s:generate_cmd(definition, filetype)
+            if cmd == {}
+                if using_user_passed_formatter
+                    return neoformat#utils#warn('formatter ' . a:user_input . ' failed')
+                endif
+                continue
             endif
-            call neoformat#utils#log('running next formatter')
-        else
-            call add(formatters_failed, cmd.name)
+
+            let stdin = getbufline(bufnr('%'), a:start_line, a:end_line)
+            let original_buffer = getbufline(bufnr('%'), 1, '$')
+
+            call neoformat#utils#log(stdin)
+
+            call neoformat#utils#log(cmd.exe)
+            if cmd.stdin
+                call neoformat#utils#log('using stdin')
+                let stdin_str = join(stdin, "\n")
+                let stdout = split(system(cmd.exe, stdin_str), '\n')
+            else
+                call neoformat#utils#log('using tmp file')
+                call writefile(stdin, cmd.tmp_file_path)
+                let stdout = split(system(cmd.exe), '\n')
+            endif
+
+            " read from /tmp file if formatter replaces file on format
+            if cmd.replace
+                let stdout = readfile(cmd.tmp_file_path)
+            endif
+
+            call neoformat#utils#log(stdout)
+
+            call neoformat#utils#log(cmd.valid_exit_codes)
             call neoformat#utils#log(v:shell_error)
-            call neoformat#utils#log('trying next formatter')
-        endif
+
+            let process_ran_succesfully = index(cmd.valid_exit_codes, v:shell_error) != -1
+
+            if cmd.stderr_log != ''
+                call neoformat#utils#log('stderr output redirected to file' . cmd.stderr_log)
+                call neoformat#utils#log_file_content(cmd.stderr_log)
+            endif
+            if process_ran_succesfully
+                " 1. append the lines that are before and after the formatterd content
+                let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
+                let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
+
+                let new_buffer = lines_before + stdout + lines_after
+                if new_buffer !=# original_buffer
+
+                    call s:deletelines(len(new_buffer), line('$'))
+
+                    call setline(1, new_buffer)
+
+                    call add(formatters_changed, cmd.name)
+                    let endmsg = cmd.name . ' formatted buffer'
+                else
+
+                    let endmsg = 'no change necessary with ' . cmd.name
+                endif
+                if !neoformat#utils#var('neoformat_run_all_formatters')
+                    return neoformat#utils#msg(endmsg)
+                endif
+                call neoformat#utils#log('running next formatter')
+            else
+                call add(formatters_failed, cmd.name)
+                call neoformat#utils#log(v:shell_error)
+                call neoformat#utils#log('trying next formatter')
+            endif
+        endfor
     endfor
     if len(formatters_failed) > 0
         call neoformat#utils#msg('formatters ' . join(formatters_failed, ", ") . ' failed to run')
@@ -202,7 +216,7 @@ function! neoformat#CompleteFormatters(ArgLead, CmdLine, CursorPos) abort
     if a:ArgLead =~ '[^A-Za-z0-9]'
         return []
     endif
-    let filetype = s:split_filetypes(&filetype)
+    let filetype = s:split_filetype(&filetype)
     return filter(s:get_enabled_formatters(filetype),
                 \ "v:val =~? '^" . a:ArgLead ."'")
 endfunction
@@ -216,11 +230,19 @@ function! s:autoload_func_exists(func_name) abort
     return 1
 endfunction
 
-function! s:split_filetypes(filetype) abort
-    if a:filetype == ''
+function! s:split_filetype(filetype) abort
+    let filetypes = s:split_filetypes(a:filetype)
+    if filetypes == []
         return ''
     endif
-    return split(a:filetype, '\.')[0]
+    return filetypes[0]
+endfunction
+
+function! s:split_filetypes(filetype) abort
+    if a:filetype == ''
+        return []
+    endif
+    return split(a:filetype, '\.')
 endfunction
 
 function! s:get_node_exe(exe) abort
