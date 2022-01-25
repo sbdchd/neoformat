@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascriptreact#enabled() abort
-    return ['jsbeautify', 'standard', 'semistandard', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
+    return ['jsbeautify', 'standard', 'semistandard', 'prettierd', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
 endfunction
 
 function! neoformat#formatters#javascriptreact#jsbeautify() abort
@@ -37,6 +37,14 @@ function! neoformat#formatters#javascriptreact#prettier() abort
         \ 'args': ['--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#javascriptreact#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
         \ }
 endfunction
 

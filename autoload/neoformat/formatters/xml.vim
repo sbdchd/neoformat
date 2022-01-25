@@ -1,5 +1,5 @@
 function! neoformat#formatters#xml#enabled() abort
-   return ['tidy', 'prettydiff', 'prettier']
+   return ['tidy', 'prettydiff', 'prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#xml#tidy() abort
@@ -30,4 +30,10 @@ function! neoformat#formatters#xml#prettier() abort
         \ }
 endfunction
 
-
+function! neoformat#formatters#xml#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction

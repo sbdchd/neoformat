@@ -1,5 +1,5 @@
 function! neoformat#formatters#solidity#enabled() abort
-    return ['prettier']
+    return ['prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#solidity#prettier() abort
@@ -11,3 +11,10 @@ function! neoformat#formatters#solidity#prettier() abort
         \ }
 endfunction
 
+function! neoformat#formatters#solidity#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction

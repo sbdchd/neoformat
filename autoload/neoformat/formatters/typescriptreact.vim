@@ -20,6 +20,14 @@ function! neoformat#formatters#typescriptreact#prettier() abort
         \ }
 endfunction
 
+function! neoformat#formatters#typescriptreact#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
 function! neoformat#formatters#typescriptreact#prettiereslint() abort
     return {
         \ 'exe': 'prettier-eslint',

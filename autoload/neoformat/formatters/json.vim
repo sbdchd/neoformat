@@ -1,5 +1,5 @@
 function! neoformat#formatters#json#enabled() abort
-    return ['jsbeautify', 'prettydiff', 'prettier', 'jq', 'fixjson', 'denofmt']
+    return ['jsbeautify', 'prettydiff', 'prettierd', 'prettier', 'jq', 'fixjson', 'denofmt']
 endfunction
 
 function! neoformat#formatters#json#jsbeautify() abort
@@ -23,6 +23,14 @@ function! neoformat#formatters#json#prettier() abort
         \ 'args': ['--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#json#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
         \ }
 endfunction
 

@@ -1,5 +1,5 @@
 function! neoformat#formatters#php#enabled() abort
-    return ['phpbeautifier', 'phpcsfixer', 'phpcbf', 'prettier']
+    return ['phpbeautifier', 'phpcsfixer', 'phpcbf', 'prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#php#phpbeautifier() abort
@@ -31,5 +31,13 @@ function! neoformat#formatters#php#prettier() abort
         \ 'args': ['--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#php#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
         \ }
 endfunction

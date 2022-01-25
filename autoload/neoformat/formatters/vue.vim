@@ -1,5 +1,5 @@
 function! neoformat#formatters#vue#enabled() abort
-    return ['prettier']
+    return ['prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#vue#prettier() abort
@@ -8,5 +8,13 @@ function! neoformat#formatters#vue#prettier() abort
         \ 'args': ['--stdin-filepath', '"%:p"', '--parser', 'vue'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#vue#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
         \ }
 endfunction
