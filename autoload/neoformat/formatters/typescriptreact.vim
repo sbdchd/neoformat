@@ -1,5 +1,5 @@
 function! neoformat#formatters#typescriptreact#enabled() abort
-   return ['tsfmt', 'prettier', 'prettiereslint', 'tslint', 'eslint_d', 'clangformat', 'denofmt']
+   return ['tsfmt', 'prettierd', 'prettier', 'prettiereslint', 'tslint', 'eslint_d', 'clangformat', 'denofmt']
 endfunction
 
 function! neoformat#formatters#typescriptreact#tsfmt() abort
