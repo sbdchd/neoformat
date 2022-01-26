@@ -302,8 +302,8 @@ that caused Neoformat to be invoked.
 - GN
   - [`gn`](https://gn.googlesource.com/gn)
 - GraphQL
-    [`prettierd`](https://github.com/fsouza/prettierd),
-  - [`prettier`](https://github.com/prettier/prettier)
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier)
 - Haskell
   - [`stylishhaskell`](https://github.com/jaspervdj/stylish-haskell),
     [`hindent`](https://github.com/chrisdone/hindent),
