@@ -1,5 +1,5 @@
 function! neoformat#formatters#ruby#enabled() abort
-   return ['rufo', 'rubybeautify', 'rubocop', 'prettier']
+   return ['rufo', 'rubybeautify', 'standard', 'rubocop', 'prettier']
 endfunction
 
 function! neoformat#formatters#ruby#rufo() abort
@@ -17,10 +17,21 @@ function! neoformat#formatters#ruby#rubybeautify() abort
         \ }
 endfunction
 
+let s:clean_output = "awk '/^====================$/{p++;if(p==1){next}}p'"
+
 function! neoformat#formatters#ruby#rubocop() abort
      return {
         \ 'exe': 'rubocop',
-        \ 'args': ['--auto-correct', '--stdin', '"%:p"', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
+        \ 'args': ['--auto-correct', '--stdin', '"%:p"', '2>/dev/null', '|', s:clean_output],
+        \ 'stdin': 1,
+        \ 'stderr': 1
+        \ }
+endfunction
+
+function! neoformat#formatters#ruby#standard() abort
+     return {
+        \ 'exe': 'standardrb',
+        \ 'args': ['--fix', '--stdin', '"%:p"', '2>/dev/null', '|', s:clean_output],
         \ 'stdin': 1,
         \ 'stderr': 1
         \ }

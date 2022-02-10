@@ -445,7 +445,8 @@ that caused Neoformat to be invoked.
 - Ruby
   - [`rufo`](https://github.com/ruby-formatter/rufo),
     [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
-    [`rubocop`](https://github.com/bbatsov/rubocop)
+    [`rubocop`](https://github.com/rubocop/rubocop),
+    [`standard`](https://github.com/testdouble/standard)
     [`prettier`](https://github.com/prettier/plugin-ruby)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
@@ -481,7 +482,7 @@ that caused Neoformat to be invoked.
 - Starlark
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - SugarSS
-    [`stylelint`](https://stylelint.io/)
+  [`stylelint`](https://stylelint.io/)
 - Svelte
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
