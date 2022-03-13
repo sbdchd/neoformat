@@ -442,6 +442,9 @@ that caused Neoformat to be invoked.
     [`rubocop`](https://github.com/bbatsov/rubocop)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
+    ```vim
+    let g:rustfmt_edition_opt="2021"
+    ```
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylelint`](https://stylelint.io/),
