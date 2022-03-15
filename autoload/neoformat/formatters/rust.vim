@@ -6,6 +6,8 @@ function! neoformat#formatters#rust#rustfmt() abort
     let opts = get(g:, 'rustfmt_edition_opt', '')
     if opts != ''
         let opts = '--edition ' . opts
+    endif
+
     return {
         \ 'exe': 'rustfmt',
         \ 'args': [opts],
