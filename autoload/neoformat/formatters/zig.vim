@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#zig#zigfmt() abort
 return {
 	\ 'exe': 'zig',
-	\ 'args': ['fmt'],
-	\ 'replace': 1
+	\ 'args': ['fmt', '--stdin'],
+	\ 'stdin': 1
 	\ }
 endfunction

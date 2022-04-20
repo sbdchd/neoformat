@@ -512,7 +512,8 @@ that caused Neoformat to be invoked.
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - zig
-  - [`zig fmt`](https://github.com/ziglang/zig)
+  - [`zigformat`](https://github.com/Himujjal/zigformat)
+    [`zig fmt`](https://github.com/ziglang/zig)
 - zsh
   - [`shfmt`](https://github.com/mvdan/sh)
     ```vim
