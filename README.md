@@ -441,6 +441,7 @@ that caused Neoformat to be invoked.
   - [`rufo`](https://github.com/ruby-formatter/rufo),
     [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
     [`rubocop`](https://github.com/bbatsov/rubocop)
+    [`prettier`](https://github.com/prettier/plugin-ruby)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
