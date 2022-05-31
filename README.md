@@ -419,6 +419,8 @@ that caused Neoformat to be invoked.
 - PowerShell
   - [`PSScriptAnalyzer`](https://github.com/PowerShell/PSScriptAnalyzer),
     [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
+- Prisma
+  - [`prettier`](https://github.com/umidbekk/prettier-plugin-prisma)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
