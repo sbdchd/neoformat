@@ -1,5 +1,5 @@
 function! neoformat#formatters#scss#enabled() abort
-   return ['sassconvert', 'stylelint', 'stylefmt', 'prettier', 'prettydiff', 'csscomb']
+   return ['sassconvert', 'stylelint', 'stylefmt', 'prettierd', 'prettier', 'prettydiff', 'csscomb']
 endfunction
 
 function! neoformat#formatters#scss#sassconvert() abort
@@ -7,6 +7,7 @@ function! neoformat#formatters#scss#sassconvert() abort
             \ 'exe': 'sass-convert',
             \ 'args': ['-F scss', '-T scss', '--indent ' . (&expandtab ? shiftwidth() : 't')],
             \ 'stdin': 1,
+            \ 'try_node_exe': 1,
             \ }
 endfunction
 
@@ -24,6 +25,10 @@ endfunction
 
 function! neoformat#formatters#scss#prettier() abort
     return neoformat#formatters#css#prettier()
+endfunction
+
+function! neoformat#formatters#scss#prettierd() abort
+    return neoformat#formatters#css#prettierd()
 endfunction
 
 function! neoformat#formatters#scss#stylelint() abort

@@ -1,5 +1,5 @@
 function! neoformat#formatters#java#enabled() abort
-   return ['uncrustify', 'astyle', 'clangformat', 'prettier']
+   return ['uncrustify', 'astyle', 'clangformat', 'prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#java#uncrustify() abort
@@ -36,4 +36,10 @@ function! neoformat#formatters#java#prettier() abort
         \ }
 endfunction
 
-
+function! neoformat#formatters#java#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction

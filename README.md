@@ -58,7 +58,7 @@ The `undojoin` command will put changes made by Neoformat into the same
 
 ## Install
 
-[vim-plug](https://github.com/junegunn/vim-plug)
+The best way to install Neoformat is with your favorite plugin manager for Vim, such as [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```viml
 Plug 'sbdchd/neoformat'
@@ -76,16 +76,17 @@ Define custom formatters.
 
 Options:
 
-| name               | description                                                                                                       | default | optional / required |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------- | ------- | ------------------- |
-| `exe`              | the name the formatter executable in the path                                                                     | n/a     | **required**        |
-| `args`             | list of arguments                                                                                                 | \[]     | optional            |
-| `replace`          | overwrite the file, instead of updating the buffer                                                                | 0       | optional            |
-| `stdin`            | send data to the stdin of the formatter                                                                           | 0       | optional            |
-| `stderr`           | capture stderr output from formatter                                                                              | 0       | optional            |
-| `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command | 0       | optional            |
-| `env`              | list of environment variable definitions to be prepended to the formatter command                                 | \[]     | optional            |
-| `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                  | \[0]    | optional            |
+| name               | description                                                                                                                                                   | default | optional / required |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------- |
+| `exe`              | the name the formatter executable in the path                                                                                                                 | n/a     | **required**        |
+| `args`             | list of arguments                                                                                                                                             | \[]     | optional            |
+| `replace`          | overwrite the file, instead of updating the buffer                                                                                                            | 0       | optional            |
+| `stdin`            | send data to the stdin of the formatter                                                                                                                       | 0       | optional            |
+| `stderr`           | capture stderr output from formatter                                                                                                                          | 0       | optional            |
+| `no_append`        | do not append the `path` of the file to the formatter command, used when the `path` is in the middle of a command                                             | 0       | optional            |
+| `env`              | list of environment variable definitions to be prepended to the formatter command                                                                             | \[]     | optional            |
+| `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices                                                                              | \[0]    | optional            |
+| `try_node_exe`     | attempt to find `exe` in a `node_modules/.bin` directory in the current working directory or one of its parents (requires setting `g:neoformat_try_node_exe`) | 0       | optional            |
 
 Example:
 
@@ -157,6 +158,14 @@ let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat
 let &verbose            = 1 " also increases verbosity of the editor as a whole
 ```
 
+Have Neoformat look for a formatter executable in the `node_modules/.bin`
+directory in the current working directory or one of its parents (only applies
+to formatters with `try_node_exe` set to `1`):
+
+```viml
+let g:neoformat_try_node_exe = 1
+```
+
 ## Adding a New Formatter
 
 Note: you should replace everything `{{ }}` accordingly
@@ -220,6 +229,8 @@ that caused Neoformat to be invoked.
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - Beancount
   - [`bean-format`](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
+- Bib
+  - [bibclean](https://github.com/tobywf/bibclean)
 - C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -244,24 +255,37 @@ that caused Neoformat to be invoked.
     [`stylefmt`](https://github.com/morishitter/stylefmt),
     [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - CSV
   - [`prettydiff`](https://github.com/prettydiff/prettydiff)
+- Cue
+  - [`cue fmt`](https://cuelang.org/)
 - D
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`dfmt`](https://github.com/Hackerpilot/dfmt)
 - Dart
   - [`dartfmt`](https://www.dartlang.org/tools/)
+  - [`dart format`](https://dart.dev/tools/dart-format)
 - Dhall
   - [`dhall format`](https://dhall-lang.org)
 - dune
   - [`dune format`](https://github.com/ocaml/dune)
+- Ebuild
+  - [`shfmt`](https://github.com/mvdan/sh)
+    ```vim
+    let g:shfmt_opt="-ci"
+    ```
 - Elixir
   - [`mix format`](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 - Elm
   - [`elm-format`](https://github.com/avh4/elm-format)
+- Erlang
+  - [`erlfmt`](https://github.com/WhatsApp/erlfmt)
 - Fish
   - [`fish_indent`](http://fishshell.com)
+- Fortran
+  - [`fprettify`](https://github.com/pseewald/fprettify)
 - F#
   - [`fantomas`](https://github.com/fsprojects/fantomas)
 - GDScript
@@ -275,25 +299,39 @@ that caused Neoformat to be invoked.
     [`gofumports`](https://github.com/mvdan/gofumpt)
 - GLSL
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
+- GN
+  - [`gn`](https://gn.googlesource.com/gn)
 - GraphQL
-  - [`prettier`](https://github.com/prettier/prettier)
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier)
 - Haskell
-  - [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell),
+  - [`stylishhaskell`](https://github.com/jaspervdj/stylish-haskell),
     [`hindent`](https://github.com/chrisdone/hindent),
     [`hfmt`](https://github.com/danstiner/hfmt),
     [`brittany`](https://github.com/lspitzner/brittany),
-    [`sort-imports`](https://github.com/evanrelf/sort-imports),
+    [`sortimports`](https://github.com/evanrelf/sort-imports),
     [`floskell`](https://github.com/ennocramer/floskell)
     [`ormolu`](https://github.com/tweag/ormolu)
     ```vim
     let g:ormolu_ghc_opt=["TypeApplications", "RankNTypes"]
     ```
+  - You must use formatter's name without "`-`"
+    ```vim
+    " right
+    let g:neoformat_enabled_haskell = ['sortimports', 'stylishhaskell']
+    " wrong
+    let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
+    ```
+- Toml
+  - [`taplo`](https://taplo.tamasfe.dev/cli)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
+  - [`purs-tidy`](https://github.com/natefaubion/purescript-tidy)
   - [`purty`](https://gitlab.com/joneshf/purty)
 - HTML
   - `html-beautify` (ships with [`js-beautify`](https://github.com/beautify-web/js-beautify)),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - Jade
@@ -301,9 +339,11 @@ that caused Neoformat to be invoked.
 - Java
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - JavaScript
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -312,29 +352,41 @@ that caused Neoformat to be invoked.
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`standard`](https://standardjs.com/),
     [`semistandard`](https://github.com/standard/semistandard),
-    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson)
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
+- JSONC (JSON with comments)
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
 - Less
   - [`csscomb`](http://csscomb.com),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`stylelint`](https://stylelint.io/)
 - Lua
   - [`luaformatter`](https://github.com/LuaDevelopmentTools/luaformatter)
   - [`lua-fmt`](https://github.com/trixnz/lua-fmt)
+  - [`lua-format`](https://github.com/Koihik/LuaFormatter)
+  - [`stylua`](https://github.com/JohnnyMorganz/StyLua)
 - Markdown
-  - [`remark`](https://github.com/wooorm/remark)
-    [`prettier`](https://github.com/prettier/prettier)
+  - [`remark`](https://github.com/wooorm/remark),
+    [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier),
+    [`deno fmt`](https://deno.land/manual/tools/formatter)
 - Matlab
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
 - Nginx
@@ -344,6 +396,7 @@ that caused Neoformat to be invoked.
 - Nix
   - [`nixfmt`](https://github.com/serokell/nixfmt)
   - [`nixpkgs-fmt`](https://github.com/nix-community/nixpkgs-fmt)
+  - [`alejandra`](https://github.com/kamadorueda/alejandra)
 - Objective-C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
@@ -360,9 +413,12 @@ that caused Neoformat to be invoked.
 - PHP
   - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier),
     [`php-cs-fixer`](http://cs.sensiolabs.org/),
-    [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer)
+    [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer),
+    [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/plugin-php)
 - PowerShell
-  - [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
+  - [`PSScriptAnalyzer`](https://github.com/PowerShell/PSScriptAnalyzer),
+    [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
 - Proto
   - [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
 - Pug (formally Jade)
@@ -385,6 +441,7 @@ that caused Neoformat to be invoked.
   - [`rufo`](https://github.com/ruby-formatter/rufo),
     [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
     [`rubocop`](https://github.com/bbatsov/rubocop)
+    [`prettier`](https://github.com/prettier/plugin-ruby)
 - Rust
   - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
 - Sass
@@ -402,26 +459,34 @@ that caused Neoformat to be invoked.
     [`stylefmt`](https://github.com/morishitter/stylefmt),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`csscomb`](http://csscomb.com),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - Shell
   - [`shfmt`](https://github.com/mvdan/sh)
     ```vim
     let g:shfmt_opt="-ci"
     ```
+- Solidity
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity)
 - SQL
   - [`sqlfmt`](https://github.com/jackc/sqlfmt),
     `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
     `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
 - Starlark
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
+- SugarSS
+    [`stylelint`](https://stylelint.io/)
 - Svelte
-  - [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier-plugin-svelte`](https://github.com/UnwrittenFun/prettier-plugin-svelte)
 - Swift
   - [`Swiftformat`](https://github.com/nicklockwood/SwiftFormat)
 - Terraform
   - [`terraform`](https://www.terraform.io/docs/commands/fmt.html),
 - TypeScript
   - [`tsfmt`](https://github.com/vvakame/typescript-formatter),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`prettier-eslint`](https://github.com/kentcdodds/prettier-eslint-cli),
     [`tslint`](https://palantir.github.io/tslint),
@@ -433,14 +498,25 @@ that caused Neoformat to be invoked.
 - VALA
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Vue
-  - [`prettier`](https://github.com/prettier/prettier)
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier)
 - XHTML
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - XML
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
+    [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier)
+- zig
+  - [`zigformat`](https://github.com/Himujjal/zigformat)
+    [`zig fmt`](https://github.com/ziglang/zig)
+- zsh
+  - [`shfmt`](https://github.com/mvdan/sh)
+    ```vim
+    let g:shfmt_opt="-ci"
+    ```

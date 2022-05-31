@@ -1,17 +1,17 @@
-function! neoformat#formatters#svelte#enabled() abort
+function! neoformat#formatters#solidity#enabled() abort
     return ['prettierd', 'prettier']
 endfunction
 
-function! neoformat#formatters#svelte#prettier() abort
+function! neoformat#formatters#solidity#prettier() abort
     return {
         \ 'exe': 'prettier',
-        \ 'args': ['--stdin-filepath', '"%:p"', '--parser=svelte', '--plugin-search-dir=.'],
+        \ 'args': ['--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
         \ }
 endfunction
 
-function! neoformat#formatters#svelte#prettierd() abort
+function! neoformat#formatters#solidity#prettierd() abort
     return {
         \ 'exe': 'prettierd',
         \ 'args': ['"%:p"'],
