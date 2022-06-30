@@ -229,6 +229,8 @@ that caused Neoformat to be invoked.
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - Beancount
   - [`bean-format`](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
+- Blade
+  - [`blade-formatter`](https://github.com/shufo/blade-formatter)
 - Bib
   - [bibclean](https://github.com/tobywf/bibclean)
 - C
