@@ -41,3 +41,10 @@ function! neoformat#formatters#php#prettierd() abort
         \ 'stdin': 1,
         \ }
 endfunction
+
+function! neoformat#formatters#php#laravelpint() abort
+    return {
+        \ 'exe': 'pint',
+        \ 'replace': 1,
+        \ }
+endfunction

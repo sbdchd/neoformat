@@ -418,6 +418,7 @@ that caused Neoformat to be invoked.
     [`phpcbf`](https://github.com/squizlabs/PHP_CodeSniffer),
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/plugin-php)
+    [`laravel-pint`](https://github.com/laravel/pint),
 - PowerShell
   - [`PSScriptAnalyzer`](https://github.com/PowerShell/PSScriptAnalyzer),
     [`PowerShell-Beautifier`](https://github.com/DTW-DanWard/PowerShell-Beautifier)
