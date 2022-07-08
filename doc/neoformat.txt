@@ -493,7 +493,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier),
-    [`prettierd`](https://github.com/fsouza/prettierd)
+    [`prettierd`](https://github.com/fsouza/prettierd),
+    [`yamlfmt`](https://github.com/mmlb/yamlfmt)
 - zig
   - [`zigformat`](https://github.com/Himujjal/zigformat)
     [`zig fmt`](https://github.com/ziglang/zig)
