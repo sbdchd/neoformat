@@ -1,5 +1,5 @@
 function! neoformat#formatters#php#enabled() abort
-    return ['phpbeautifier', 'phpcsfixer', 'phpcbf', 'prettierd', 'prettier']
+    return ['phpbeautifier', 'phpcsfixer', 'phpcbf', 'prettierd', 'prettier', 'laravelpint']
 endfunction
 
 function! neoformat#formatters#php#phpbeautifier() abort
