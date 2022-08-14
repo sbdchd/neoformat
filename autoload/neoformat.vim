@@ -1,6 +1,3 @@
-" Set global flag to allow checking in custom user config
-let g:neoformat = 1
-
 function! neoformat#Neoformat(bang, user_input, start_line, end_line) abort
     let view = winsaveview()
     let search = @/
