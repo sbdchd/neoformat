@@ -1,5 +1,5 @@
 function! neoformat#formatters#cs#enabled() abort
-    return ['uncrustify', 'astyle', 'clangformat']
+    return ['uncrustify', 'astyle', 'clangformat', 'csharpier']
 endfunction
 
 function! neoformat#formatters#cs#uncrustify() abort
@@ -24,4 +24,12 @@ function! neoformat#formatters#cs#clangformat() abort
             \ 'args': ['-assume-filename=' . expand('%:t')],
             \ 'stdin': 1,
             \ }
+endfunction
+
+function! neoformat#formatters#cs#csharpier() abort
+    return {
+        \ 'exe': 'dotnet',
+        \ 'args': ['csharpier'],
+        \ 'stdin': 1,
+        \ }
 endfunction

@@ -241,6 +241,7 @@ that caused Neoformat to be invoked.
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`astyle`](http://astyle.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html)
+    [`csharpier`](https://csharpier.com/)
 - C++
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
