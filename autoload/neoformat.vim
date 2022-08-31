@@ -274,7 +274,7 @@ function! s:generate_cmd(definition, filetype) abort
     endif
 
     if get(a:definition, 'replace', 0)
-        let path = !using_stdin ? expand(tmp_dir . '/' . fnameescape(filename)) : ''
+        let path = !using_stdin ? expand(tmp_dir . '/' . fnameescape(filename), 1) : ''
     else
         let path = !using_stdin ? tempname() : ''
     endif
@@ -285,7 +285,7 @@ function! s:generate_cmd(definition, filetype) abort
     let fullcmd = join(split(_fullcmd))
     if !using_stderr
         if neoformat#utils#should_be_verbose()
-            let stderr_log = expand(tmp_dir . '/stderr.log')
+            let stderr_log = expand(tmp_dir . '/stderr.log', 1)
             let fullcmd = fullcmd . ' 2> ' . stderr_log
         else
             if (has('win32') || has('win64'))
