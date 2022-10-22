@@ -337,6 +337,8 @@ that caused Neoformat to be invoked.
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
+- HTMLDjango
+  - [djlint](https://djlint.com/)
 - Jade
   - [`pug-beautifier`](https://github.com/vingorius/pug-beautifier)
 - Java
