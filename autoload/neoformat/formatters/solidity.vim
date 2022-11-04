@@ -1,5 +1,5 @@
 function! neoformat#formatters#solidity#enabled() abort
-    return ['prettierd', 'prettier']
+    return ['forge', 'prettierd', 'prettier']
 endfunction
 
 function! neoformat#formatters#solidity#prettier() abort
@@ -16,5 +16,13 @@ function! neoformat#formatters#solidity#prettierd() abort
         \ 'exe': 'prettierd',
         \ 'args': ['"%:p"'],
         \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#solidity#forge() abort
+    return {
+        \ 'exe': 'forge',
+        \ 'args': ['fmt', '--check', '--raw', '"%:p"'],
+        \ 'valid_exit_codes': [0, 1],
         \ }
 endfunction

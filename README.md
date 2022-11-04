@@ -476,7 +476,8 @@ that caused Neoformat to be invoked.
     ```
 - Solidity
   - [`prettierd`](https://github.com/fsouza/prettierd),
-    [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity)
+    [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity),
+    [`forge fmt`](https://book.getfoundry.sh/)
 - SQL
   - [`sqlfmt`](https://github.com/jackc/sqlfmt),
     `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
