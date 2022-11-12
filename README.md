@@ -225,6 +225,8 @@ that caused Neoformat to be invoked.
     [`astyle`](http://astyle.sourceforge.net)
 - Assembly
   - [`asmfmt`](https://github.com/klauspost/asmfmt)
+- Astro
+  - [`prettier`](https://github.com/withastro/prettier-plugin-astro/)
 - Bazel
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - Beancount
