@@ -269,6 +269,8 @@ that caused Neoformat to be invoked.
 - D
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`dfmt`](https://github.com/Hackerpilot/dfmt)
+- D2
+  - [`d2 fmt`](https://d2lang.com/tour/auto-formatter)
 - Dart
   - [`dartfmt`](https://www.dartlang.org/tools/)
   - [`dart format`](https://dart.dev/tools/dart-format)
