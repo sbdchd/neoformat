@@ -250,6 +250,8 @@ that caused Neoformat to be invoked.
     [`astyle`](http://astyle.sourceforge.net)
 - Cabal
   - [`cabal-fmt`](https://github.com/phadej/cabal-fmt)
+- Caddyfile
+  - [`caddy fmt`](https://caddyserver.com/docs/command-line#caddy-fmt)
 - CMake
   - [`cmake_format`](https://github.com/cheshirekow/cmake_format)
 - Crystal
