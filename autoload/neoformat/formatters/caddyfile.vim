@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#caddyfile#caddyformat() abort
     return {
             \ 'exe': 'caddy',
-            \ 'args': ['fmt'],
+            \ 'args': ['fmt', '-'],
             \ 'stdin': 1,
             \ }
 endfunction
