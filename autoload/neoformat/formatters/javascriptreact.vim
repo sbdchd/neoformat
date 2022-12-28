@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascriptreact#enabled() abort
-    return ['jsbeautify', 'standard', 'semistandard', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
+    return ['jsbeautify', 'standard', 'semistandard', 'prettierd', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
 endfunction
 
 function! neoformat#formatters#javascriptreact#jsbeautify() abort
@@ -7,6 +7,7 @@ function! neoformat#formatters#javascriptreact#jsbeautify() abort
             \ 'exe': 'js-beautify',
             \ 'args': ['--indent-size ' .shiftwidth()],
             \ 'stdin': 1,
+            \ 'try_node_exe': 1,
             \ }
 endfunction
 
@@ -26,6 +27,7 @@ function! neoformat#formatters#javascriptreact#esformatter() abort
     return {
         \ 'exe': 'esformatter',
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -33,6 +35,15 @@ function! neoformat#formatters#javascriptreact#prettier() abort
     return {
         \ 'exe': 'prettier',
         \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#javascriptreact#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
         \ 'stdin': 1,
         \ }
 endfunction
@@ -42,6 +53,7 @@ function! neoformat#formatters#javascriptreact#prettiereslint() abort
         \ 'exe': 'prettier-eslint',
         \ 'args': ['--stdin', '--stdin-filepath', '"%:p"'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -50,6 +62,7 @@ function! neoformat#formatters#javascriptreact#eslint_d() abort
         \ 'exe': 'eslint_d',
         \ 'args': ['--stdin', '--stdin-filename', '"%:p"', '--fix-to-stdout'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -58,6 +71,7 @@ function! neoformat#formatters#javascriptreact#standard() abort
         \ 'exe': 'standard',
         \ 'args': ['--stdin','--fix'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction
 
@@ -74,5 +88,6 @@ function! neoformat#formatters#javascriptreact#semistandard() abort
         \ 'exe': 'semistandard',
         \ 'args': ['--stdin','--fix'],
         \ 'stdin': 1,
+        \ 'try_node_exe': 1,
         \ }
 endfunction

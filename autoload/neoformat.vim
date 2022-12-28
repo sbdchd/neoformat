@@ -224,13 +224,34 @@ function! s:split_filetypes(filetype) abort
     return split(a:filetype, '\.')[0]
 endfunction
 
+function! s:get_node_exe(exe) abort
+    let node_exe = findfile('node_modules/.bin/' . a:exe, getcwd() . ';')
+    if !empty(node_exe) && executable(node_exe)
+        return node_exe
+    endif
+
+    return a:exe
+endfunction
+
 function! s:generate_cmd(definition, filetype) abort
     let executable = get(a:definition, 'exe', '')
     if executable == ''
         call neoformat#utils#log('no exe field in definition')
         return {}
     endif
-    if !executable(executable)
+
+    if exists('g:neoformat_try_node_exe')
+                \ && g:neoformat_try_node_exe
+                \ && get(a:definition, 'try_node_exe', 0)
+        let executable = s:get_node_exe(executable)
+    endif
+
+    if &shell =~ '\v%(powershell|pwsh)'
+        if system('[bool](Get-Command ' . executable . ' -ErrorAction SilentlyContinue)') !~ 'True'
+            call neoformat#utils#log('executable: ' . executable . ' is not a cmdlet, function, script file, or an executable program')
+            return {}
+        endif
+    elseif !executable(executable)
         call neoformat#utils#log('executable: ' . executable . ' is not an executable')
         return {}
     endif
@@ -257,7 +278,7 @@ function! s:generate_cmd(definition, filetype) abort
     endif
 
     if get(a:definition, 'replace', 0)
-        let path = !using_stdin ? expand(tmp_dir . '/' . fnameescape(filename)) : ''
+        let path = !using_stdin ? expand(tmp_dir . '/' . fnameescape(filename), 1) : ''
     else
         let path = !using_stdin ? tempname() : ''
     endif
@@ -268,7 +289,7 @@ function! s:generate_cmd(definition, filetype) abort
     let fullcmd = join(split(_fullcmd))
     if !using_stderr
         if neoformat#utils#should_be_verbose()
-            let stderr_log = expand(tmp_dir . '/stderr.log')
+            let stderr_log = expand(tmp_dir . '/stderr.log', 1)
             let fullcmd = fullcmd . ' 2> ' . stderr_log
         else
             if (has('win32') || has('win64'))

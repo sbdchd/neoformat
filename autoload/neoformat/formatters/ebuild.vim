@@ -1,8 +1,8 @@
-function! neoformat#formatters#sh#enabled() abort
+function! neoformat#formatters#ebuild#enabled() abort
     return ['shfmt']
 endfunction
 
-function! neoformat#formatters#sh#shfmt() abort
+function! neoformat#formatters#ebuild#shfmt() abort
     let opts = neoformat#utils#var_default('shfmt_opt', '')
     return {
             \ 'exe': 'shfmt',
