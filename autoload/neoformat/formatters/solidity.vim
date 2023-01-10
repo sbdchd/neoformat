@@ -22,7 +22,7 @@ endfunction
 function! neoformat#formatters#solidity#forge() abort
     return {
         \ 'exe': 'forge',
-        \ 'args': ['fmt', '--check', '--raw', '"%:p"'],
-        \ 'valid_exit_codes': [0, 1],
+        \ 'args': ['fmt', '--raw', '-'],
+        \ 'stdin': 1
         \ }
 endfunction
