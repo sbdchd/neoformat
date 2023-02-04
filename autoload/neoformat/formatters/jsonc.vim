@@ -22,7 +22,7 @@ endfunction
 function! neoformat#formatters#jsonc#denofmt() abort
     return {
         \ 'exe': 'deno',
-        \ 'args': ['fmt','-'],
+        \ 'args': ['fmt','--ext','jsonc','-'],
         \ 'stdin': 1,
         \ }
 endfunction

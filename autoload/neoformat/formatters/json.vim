@@ -47,7 +47,7 @@ endfunction
 function! neoformat#formatters#json#denofmt() abort
     return {
         \ 'exe': 'deno',
-        \ 'args': ['fmt','-'],
+        \ 'args': ['fmt','--ext','json','-'],
         \ 'stdin': 1,
         \ }
 endfunction

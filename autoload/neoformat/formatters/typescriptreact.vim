@@ -71,5 +71,9 @@ function! neoformat#formatters#typescriptreact#clangformat() abort
 endfunction
 
 function! neoformat#formatters#typescriptreact#denofmt() abort
-    return neoformat#formatters#javascript#denofmt()
+    return {
+        \ 'exe': 'deno',
+        \ 'args': ['fmt','--ext','tsx','-'],
+        \ 'stdin': 1,
+        \ }
 endfunction
