@@ -1,5 +1,5 @@
 function! neoformat#formatters#xml#enabled() abort
-   return ['tidy', 'prettydiff', 'prettierd', 'prettier']
+   return ['tidy', 'prettydiff', 'prettierd', 'prettier', 'xmllint']
 endfunction
 
 function! neoformat#formatters#xml#tidy() abort
@@ -34,6 +34,14 @@ function! neoformat#formatters#xml#prettierd() abort
     return {
         \ 'exe': 'prettierd',
         \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#xml#xmllint() abort
+    return {
+        \ 'exe': 'xmllint',
+        \ 'args': ['--format', '--quiet', '-'],
         \ 'stdin': 1,
         \ }
 endfunction

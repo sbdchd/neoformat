@@ -522,7 +522,8 @@ that caused Neoformat to be invoked.
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`prettierd`](https://github.com/fsouza/prettierd),
-    [`prettier`](https://github.com/prettier/prettier)
+    [`prettier`](https://github.com/prettier/prettier),
+    [`xmllint`](https://gitlab.gnome.org/GNOME/libxml2)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettierd`](https://github.com/fsouza/prettierd),

@@ -494,7 +494,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`tidy`](http://www.html-tidy.org),
     [`prettydiff`](https://github.com/prettydiff/prettydiff)
     [`prettier`](https://github.com/prettier/prettier),
-    [`prettierd`](https://github.com/fsouza/prettierd)
+    [`prettierd`](https://github.com/fsouza/prettierd),
+    [`xmllint`](https://gitlab.gnome.org/GNOME/libxml2)
 - YAML
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettier`](https://github.com/prettier/prettier),
