@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#blade#blade_formatter() abort
     return {
         \ 'exe': 'blade-formatter',
-        \ 'args': ['--stdin', '-q'],
+        \ 'args': ['--stdin'],
         \ 'stdin': 1
         \ }
 endfunction
