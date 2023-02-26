@@ -382,6 +382,9 @@ that caused Neoformat to be invoked.
     [`prettier`](https://github.com/prettier/prettier)
 - LaTeX
   - [`latexindent`](https://github.com/cmhughes/latexindent.pl)
+    ```vim
+    let g:latexindent_opt="-m"
+    ```
 - Less
   - [`csscomb`](http://csscomb.com),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
