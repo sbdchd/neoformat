@@ -291,6 +291,8 @@ that caused Neoformat to be invoked.
   - [`elm-format`](https://github.com/avh4/elm-format)
 - Erlang
   - [`erlfmt`](https://github.com/WhatsApp/erlfmt)
+- Fennel
+  - [`fnlfmt`](https://git.sr.ht/~technomancy/fnlfmt)
 - Fish
   - [`fish_indent`](http://fishshell.com)
 - Fortran
