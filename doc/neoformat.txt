@@ -227,6 +227,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Beancount
   - [`bean-format`](https://beancount.github.io/docs/running_beancount_and_generating_reports.html#bean-format)
 - Bib
+  - [bibtex-tidy](https://github.com/FlamingTempura/bibtex-tidy)
   - [bibclean](https://github.com/tobywf/bibclean)
 - C
   - [`uncrustify`](http://uncrustify.sourceforge.net),

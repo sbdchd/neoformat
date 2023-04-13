@@ -234,6 +234,7 @@ that caused Neoformat to be invoked.
 - Blade
   - [`blade-formatter`](https://github.com/shufo/blade-formatter)
 - Bib
+  - [bibtex-tidy](https://github.com/FlamingTempura/bibtex-tidy)
   - [bibclean](https://github.com/tobywf/bibclean)
 - C
   - [`uncrustify`](http://uncrustify.sourceforge.net),
