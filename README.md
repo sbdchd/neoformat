@@ -421,6 +421,8 @@ that caused Neoformat to be invoked.
 - OCaml
   - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
     [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat)
+- OpenSCAD
+  - [`openscad-format`](https://github.com/Maxattax97/openscad-format)
 - Pandoc Markdown
   - [`pandoc`](https://pandoc.org/MANUAL.html)
 - Pawn
