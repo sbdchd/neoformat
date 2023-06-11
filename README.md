@@ -334,6 +334,8 @@ that caused Neoformat to be invoked.
     " wrong
     let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
     ```
+- HCL
+  - [`hclfmt`](https://github.com/hashicorp/hcl)
 - Toml
   - [`taplo`](https://taplo.tamasfe.dev/cli)
 - Puppet
