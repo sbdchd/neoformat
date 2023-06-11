@@ -335,7 +335,7 @@ that caused Neoformat to be invoked.
     let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
     ```
 - Toml
-  - [`taplo`](https://taplo.tamasfe.dev/cli)
+  - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
