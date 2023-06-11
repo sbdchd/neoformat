@@ -481,7 +481,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`deno fmt`](https://deno.land/manual/tools/formatter)
 - Toml
-  - [`taplo`](https://taplo.tamasfe.dev/cli)
+  - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html)
 - V
   - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
