@@ -312,6 +312,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     let g:neoformat_enabled_haskell = ['sortimports', 'stylishhaskell']
     " wrong
     let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
+- HCL
+  - [`hclfmt`](https://github.com/hashicorp/hcl)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
