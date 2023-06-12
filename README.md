@@ -496,7 +496,8 @@ that caused Neoformat to be invoked.
 - SQL
   - [`sqlfmt`](https://github.com/jackc/sqlfmt),
     `sqlformat` (ships with [sqlparse](https://github.com/andialbrecht/sqlparse)),
-    `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter))
+    `pg_format` (ships with [pgFormatter](https://github.com/darold/pgFormatter)),
+    [`sleek`](https://github.com/nrempel/sleek)
 - Starlark
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - SugarSS
