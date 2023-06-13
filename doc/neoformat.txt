@@ -428,6 +428,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
   - [`bsrefmt`](https://github.com/bucklescript/bucklescript)
+- Rego
+  - [`opa fmt`](https://www.openpolicyagent.org/docs/latest/cli/#opa-fmt)
 - Ruby
   - [`rufo`](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)

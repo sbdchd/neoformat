@@ -459,6 +459,8 @@ that caused Neoformat to be invoked.
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
   - [`bsrefmt`](https://github.com/bucklescript/bucklescript)
+- Rego
+  - [`opa fmt`](https://www.openpolicyagent.org/docs/latest/cli/#opa-fmt)
 - Ruby
   - [`rufo`](https://github.com/ruby-formatter/rufo),
     [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify),
