@@ -1,5 +1,5 @@
 function! neoformat#formatters#sh#enabled() abort
-    return ['shfmt']
+    return ['shfmt', 'topiary']
 endfunction
 
 function! neoformat#formatters#sh#shfmt() abort
@@ -9,4 +9,12 @@ function! neoformat#formatters#sh#shfmt() abort
             \ 'args': ['-i ' . (&expandtab ? shiftwidth() : 0), opts],
             \ 'stdin': 1,
             \ }
+endfunction
+
+function! neoformat#formatters#sh#topiary() abort
+    return {
+        \ 'exe': 'topiary',
+        \ 'stdin': 1,
+        \ 'args': ['--language', '"bash"' ]
+        \ }
 endfunction
