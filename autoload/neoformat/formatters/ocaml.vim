@@ -1,5 +1,5 @@
 function! neoformat#formatters#ocaml#enabled() abort
-    return ['ocamlformat', 'ocpindent']
+    return ['ocamlformat', 'ocpindent', 'topiary']
 endfunction
 
 function! neoformat#formatters#ocaml#ocpindent() abort
@@ -14,5 +14,13 @@ function! neoformat#formatters#ocaml#ocamlformat() abort
         \ 'no_append': 1,
         \ 'stdin': 1,
         \ 'args': ['--name', '"%:p"', '-']
+        \ }
+endfunction
+
+function! neoformat#formatters#ocaml#topiary() abort
+    return {
+        \ 'exe': 'topiary',
+        \ 'stdin': 1,
+        \ 'args': ['--language', '"ocaml"' ]
         \ }
 endfunction

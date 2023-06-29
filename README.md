@@ -337,7 +337,8 @@ that caused Neoformat to be invoked.
 - HCL
   - [`hclfmt`](https://github.com/hashicorp/hcl)
 - Toml
-  - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html)
+  - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html),
+    [`topiary`](https://topiary.tweag.io)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
@@ -375,8 +376,9 @@ that caused Neoformat to be invoked.
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/),
-    [`fixjson`](https://github.com/rhysd/fixjson)
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`fixjson`](https://github.com/rhysd/fixjson),
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`topiary`](https://topiary.tweag.io)
 - JSONC (JSON with comments)
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
@@ -410,6 +412,8 @@ that caused Neoformat to be invoked.
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
 - Nginx
   - [nginxbeautifier](https://github.com/vasilevich/nginxbeautifier)
+- Nickel
+  - [`topiary`](https://topiary.tweag.io)
 - Nim
   - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
 - Nix
@@ -422,7 +426,8 @@ that caused Neoformat to be invoked.
     [`astyle`](http://astyle.sourceforge.net)
 - OCaml
   - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
-    [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat)
+    [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat),
+    [`topiary`](https://topiary.tweag.io)
 - Pandoc Markdown
   - [`pandoc`](https://pandoc.org/MANUAL.html)
 - Pawn
@@ -468,7 +473,8 @@ that caused Neoformat to be invoked.
     [`standard`](https://github.com/testdouble/standard)
     [`prettier`](https://github.com/prettier/plugin-ruby)
 - Rust
-  - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
+  - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt),
+    [`topiary`](https://topiary.tweag.io)
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylelint`](https://stylelint.io/),
@@ -490,7 +496,8 @@ that caused Neoformat to be invoked.
   - [`shfmt`](https://github.com/mvdan/sh)
     ```vim
     let g:shfmt_opt="-ci"
-    ```
+    ```,
+    [`topiary`](https://topiary.tweag.io)
 - Solidity
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity),
