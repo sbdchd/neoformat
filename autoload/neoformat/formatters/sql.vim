@@ -1,5 +1,5 @@
 function! neoformat#formatters#sql#enabled() abort
-    return ['sqlformat', 'pg_format', 'sqlfmt']
+    return ['sqlformat', 'pg_format', 'sqlfmt', 'sleek']
 endfunction
 
 function! neoformat#formatters#sql#sqlformat() abort
@@ -21,6 +21,14 @@ endfunction
 function! neoformat#formatters#sql#sqlfmt() abort
     return {
         \ 'exe': 'sqlfmt',
+        \ 'args': [],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#sql#sleek() abort
+    return {
+        \ 'exe': 'sleek',
         \ 'args': [],
         \ 'stdin': 1,
         \ }

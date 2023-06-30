@@ -312,6 +312,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     let g:neoformat_enabled_haskell = ['sortimports', 'stylishhaskell']
     " wrong
     let g:neoformat_enabled_haskell = ['sort-imports', 'stylish-haskell']
+- HCL
+  - [`hclfmt`](https://github.com/hashicorp/hcl)
 - Puppet
   - [`puppet-lint`](https://github.com/rodjek/puppet-lint)
 - PureScript
@@ -349,8 +351,9 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`jq`](https://stedolan.github.io/jq/),
-    [`fixjson`](https://github.com/rhysd/fixjson)
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`fixjson`](https://github.com/rhysd/fixjson),
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`topiary`](https://topiary.tweag.io)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint)
     [`prettierd`](https://github.com/fsouza/prettierd),
@@ -377,6 +380,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
 - Nginx
   - [nginxbeautifier](https://github.com/vasilevich/nginxbeautifier)
+- Nickel
+  - [`topiary`](https://topiary.tweag.io)
 - Nim
   - nimpretty (ships with [nim](https://nim-lang.org/)),
 - Nix
@@ -388,8 +393,9 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`astyle`](http://astyle.sourceforge.net)
 - OCaml
-  - [`ocp-indent`](http://www.typerex.org/ocp-indent.html)
-  - [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat)
+  - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
+    [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat),
+    [`topiary`](https://topiary.tweag.io)
 - OpenSCAD
   - [`openscad-format`](https://github.com/Maxattax97/openscad-format)
 - Pandoc Markdown
@@ -428,6 +434,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
 - Reason
   - [`refmt`](https://github.com/facebook/reason)
   - [`bsrefmt`](https://github.com/bucklescript/bucklescript)
+- Rego
+  - [`opa fmt`](https://www.openpolicyagent.org/docs/latest/cli/#opa-fmt)
 - Ruby
   - [`rufo`](https://github.com/asterite/rufo)
   - [`ruby-beautify`](https://github.com/erniebrodeur/ruby-beautify)
@@ -435,7 +443,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`standard`](https://github.com/testdouble/standard)
   - [`prettier`](https://github.com/prettier/plugin-ruby)
 - Rust
-  - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt)
+  - [`rustfmt`](https://github.com/rust-lang-nursery/rustfmt),
+    [`topiary`](https://topiary.tweag.io)
 - Sass
   - [`sass-convert`](http://sass-lang.com/documentation/#executables),
     [`stylelint`](https://stylelint.io/),
@@ -454,7 +463,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
     [`csscomb`](http://csscomb.com)
 - Shell
-  - [`shfmt`](https://github.com/mvdan/sh)
+  - [`shfmt`](https://github.com/mvdan/sh),
+    [`topiary`](https://topiary.tweag.io)
 - Solidity
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity)
@@ -462,6 +472,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [`sqlfmt`](https://github.com/jackc/sqlfmt)
   - `sqlformat` (ships with [`sqlparse`](https://github.com/andialbrecht/sqlparse))
   - `pg_format` (ships with [`pgFormatter`](https://github.com/darold/pgFormatter))
+  - [`sleek`](https://github.com/nrempel/sleek)
 - Starlark
   - [`buildifier`](https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md)
 - SugarSS
@@ -483,7 +494,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`deno fmt`](https://deno.land/manual/tools/formatter)
 - Toml
-  - [`taplo`](https://taplo.tamasfe.dev/cli)
+  - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html),
+    [`topiary`](https://topiary.tweag.io)
 - V
   - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA

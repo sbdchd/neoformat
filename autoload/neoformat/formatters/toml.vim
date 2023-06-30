@@ -1,5 +1,5 @@
 function! neoformat#formatters#toml#enabled() abort
-  return ['taplo']
+  return ['taplo', 'topiary']
 endfunction
 
 function! neoformat#formatters#toml#taplo() abort
@@ -8,5 +8,13 @@ function! neoformat#formatters#toml#taplo() abort
         \ 'args': ['fmt', '-'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#toml#topiary() abort
+    return {
+        \ 'exe': 'topiary',
+        \ 'stdin': 1,
+        \ 'args': ['--language', '"toml"' ]
         \ }
 endfunction
