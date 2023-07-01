@@ -428,6 +428,8 @@ that caused Neoformat to be invoked.
   - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
     [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat),
     [`topiary`](https://topiary.tweag.io)
+- OpenSCAD
+  - [`openscad-format`](https://github.com/Maxattax97/openscad-format)
 - Pandoc Markdown
   - [`pandoc`](https://pandoc.org/MANUAL.html)
 - Pawn
