@@ -1,8 +1,8 @@
-function! neoformat#formatters#elixir#enabled() abort
+function! neoformat#formatters#eelixir#enabled() abort
     return ['mixformat']
 endfunction
 
-function! neoformat#formatters#elixir#mixformat() abort
+function! neoformat#formatters#eelixir#mixformat() abort
     return {
         \ 'exe': 'mix',
         \ 'args': ['format', "-"],
