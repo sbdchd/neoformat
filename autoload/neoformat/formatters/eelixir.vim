@@ -5,7 +5,7 @@ endfunction
 function! neoformat#formatters#eelixir#mixformat() abort
     return {
         \ 'exe': 'mix',
-        \ 'args': ['format', "-"],
+        \ 'args': ['format', '--stdin-filename=stdin.heex', '-'],
         \ 'stdin': 1
         \ }
 endfunction
