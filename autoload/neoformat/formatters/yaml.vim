@@ -1,5 +1,5 @@
 function! neoformat#formatters#yaml#enabled() abort
-   return ['pyaml', 'prettierd', 'prettier', 'yamlfmt']
+   return ['pyaml', 'prettierd', 'prettier', 'yamlfmt', 'yamlfix']
 endfunction
 
 function! neoformat#formatters#yaml#pyaml() abort
@@ -30,6 +30,14 @@ endfunction
 function! neoformat#formatters#yaml#yamlfmt() abort
     return {
         \ 'exe': 'yamlfmt',
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#yaml#yamlfix() abort
+    return {
+        \ 'exe': 'yamlfix',
+        \ 'args': ['-'],
         \ 'stdin': 1,
         \ }
 endfunction
