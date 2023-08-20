@@ -436,6 +436,7 @@ that caused Neoformat to be invoked.
   - [`uncrustify`](http://uncrustify.sourceforge.net)
 - Perl
   - [`perltidy`](http://perltidy.sourceforge.net)
+  - [`perlimports`](https://github.com/perl-ide/App-perlimports)
 - PHP
   - [`php_beautifier`](http://pear.php.net/package/PHP_Beautifier),
     [`php-cs-fixer`](http://cs.sensiolabs.org/),
