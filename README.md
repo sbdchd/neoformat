@@ -379,6 +379,9 @@ that caused Neoformat to be invoked.
     [`fixjson`](https://github.com/rhysd/fixjson),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
     [`topiary`](https://topiary.tweag.io)
+- JSON5
+  - [`prettierd`](https://github.com/fsouza/prettierd),
+    [`prettier`](https://github.com/prettier/prettier),
 - JSONC (JSON with comments)
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
