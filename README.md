@@ -383,6 +383,8 @@ that caused Neoformat to be invoked.
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
     [`deno fmt`](https://deno.land/manual/tools/formatter)
+- jsonnet
+  - [`jsonnetfmt`](https://github.com/google/jsonnet)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
     [`prettierd`](https://github.com/fsouza/prettierd),
