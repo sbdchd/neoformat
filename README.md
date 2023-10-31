@@ -501,8 +501,8 @@ that caused Neoformat to be invoked.
   - [`shfmt`](https://github.com/mvdan/sh)
     ```vim
     let g:shfmt_opt="-ci"
-    ```,
-    [`topiary`](https://topiary.tweag.io)
+    ```
+  - [`topiary`](https://topiary.tweag.io)
 - Solidity
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier-solidity/prettier-plugin-solidity),
