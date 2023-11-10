@@ -426,6 +426,10 @@ that caused Neoformat to be invoked.
   - [`uncrustify`](http://uncrustify.sourceforge.net),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`astyle`](http://astyle.sourceforge.net)
+- Objective-C++
+  - [`uncrustify`](http://uncrustify.sourceforge.net),
+    [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
+    [`astyle`](http://astyle.sourceforge.net)
 - OCaml
   - [`ocp-indent`](http://www.typerex.org/ocp-indent.html),
     [`ocamlformat`](https://github.com/ocaml-ppx/ocamlformat),
