@@ -466,7 +466,8 @@ that caused Neoformat to be invoked.
     [`pydevf`](https://github.com/fabioz/PyDev.Formatter),
     [`isort`](https://github.com/timothycrosley/isort),
     [`docformatter`](https://github.com/myint/docformatter),
-    [`pyment`](https://github.com/dadadel/pyment)
+    [`pyment`](https://github.com/dadadel/pyment),
+    [`ruff`](https://github.com/astral-sh/ruff)
 - R
   - [`styler`](https://github.com/r-lib/styler),
     [`formatR`](https://github.com/yihui/formatR)
