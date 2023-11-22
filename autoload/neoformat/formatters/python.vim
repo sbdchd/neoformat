@@ -1,5 +1,5 @@
 function! neoformat#formatters#python#enabled() abort
-    return ['yapf', 'autopep8', 'black', 'isort', 'docformatter', 'pyment', 'pydevf']
+    return ['yapf', 'autopep8', 'black', 'isort', 'docformatter', 'pyment', 'pydevf', 'ruff']
 endfunction
 
 function! neoformat#formatters#python#yapf() abort
@@ -56,5 +56,13 @@ function! neoformat#formatters#python#pydevf() abort
     return {
                 \ 'exe': 'pydevf',
                 \ 'replace': 1,
+                \ }
+endfunction
+
+function! neoformat#formatters#python#ruff() abort
+    return {
+                \ 'exe': 'ruff',
+                \ 'stdin': 1,
+                \ 'args': ['format', '-q', '-'],
                 \ }
 endfunction
