@@ -57,6 +57,6 @@ function! neoformat#formatters#json#topiary() abort
         \ 'exe': 'topiary',
         \ 'no_append': 1,
         \ 'stdin': 1,
-        \ 'args': ['--language', '"json"' ]
+        \ 'args': ['format', '--language', '"json"' ]
         \ }
 endfunction

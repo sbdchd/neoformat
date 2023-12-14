@@ -6,6 +6,6 @@ function! neoformat#formatters#nickel#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'stdin': 1,
-        \ 'args': ['--language', '"nickel"' ]
+        \ 'args': ['format', '--language', '"nickel"' ]
         \ }
 endfunction

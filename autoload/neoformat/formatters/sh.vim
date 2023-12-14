@@ -15,6 +15,6 @@ function! neoformat#formatters#sh#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'stdin': 1,
-        \ 'args': ['--language', '"bash"' ]
+        \ 'args': ['format', '--language', '"bash"' ]
         \ }
 endfunction
