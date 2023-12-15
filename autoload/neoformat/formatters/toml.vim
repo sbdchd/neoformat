@@ -15,6 +15,6 @@ function! neoformat#formatters#toml#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'stdin': 1,
-        \ 'args': ['--language', '"toml"' ]
+        \ 'args': ['format', '--language', '"toml"' ]
         \ }
 endfunction
