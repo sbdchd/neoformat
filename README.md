@@ -409,7 +409,8 @@ that caused Neoformat to be invoked.
   - [`remark`](https://github.com/wooorm/remark),
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`mdformat`](https://github.com/executablebooks/mdformat)
 - Matlab
   - [`matlab-formatter-vscode`](https://github.com/affenwiesel/matlab-formatter-vscode)
 - Nginx
