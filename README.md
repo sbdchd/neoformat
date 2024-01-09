@@ -558,7 +558,8 @@ that caused Neoformat to be invoked.
   - [`pyaml`](https://pypi.python.org/pypi/pyaml),
     [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
-    [`yamlfmt`](https://github.com/mmlb/yamlfmt),
+    [`yamlfmt`](https://github.com/mmlb/yamlfmt) (by @mmlb),
+    [`yamlfmt`](https://github.com/google/yamlfmt) (by @google),
     [`yamlfix`](https://github.com/lyz-code/yamlfix)
 - zig
   - [`zigformat`](https://github.com/Himujjal/zigformat)
