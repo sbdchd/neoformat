@@ -1,5 +1,12 @@
 function! neoformat#formatters#nim#enabled() abort
-    return ['nimpretty']
+    return ['nimpretty','nph']
+endfunction
+
+function! neoformat#formatters#nim#nph() abort
+    return {
+        \ 'exe': 'nph',
+        \ 'replace': 1,
+        \ }
 endfunction
 
 function! neoformat#formatters#nim#nimpretty() abort
