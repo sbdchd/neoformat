@@ -419,6 +419,7 @@ that caused Neoformat to be invoked.
   - [`topiary`](https://topiary.tweag.io)
 - Nim
   - `nimpretty` (ships with [`nim`](https://nim-lang.org/))
+  - [`nph`](https://github.com/arnetheduck/nph)
 - Nix
   - [`nixfmt`](https://github.com/serokell/nixfmt)
   - [`nixpkgs-fmt`](https://github.com/nix-community/nixpkgs-fmt)
