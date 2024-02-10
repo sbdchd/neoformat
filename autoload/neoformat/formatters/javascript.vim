@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascript#enabled() abort
-    return ['jsbeautify', 'standard', 'semistandard', 'prettierd', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
+    return ['jsbeautify', 'standard', 'semistandard', 'prettierd', 'prettier', 'prettydiff', 'clangformat', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt', 'biome']
 endfunction
 
 function! neoformat#formatters#javascript#jsbeautify() abort
@@ -98,5 +98,15 @@ function! neoformat#formatters#javascript#semistandard() abort
         \ 'args': ['--stdin','--fix'],
         \ 'stdin': 1,
         \ 'try_node_exe': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#javascript#biome() abort
+    return {
+        \ 'exe': 'biome',
+        \ 'try_node_exe': 1,
+        \ 'args': ['format', '--stdin-file-path="%:p"'],
+        \ 'no_append': 1,
+        \ 'stdin': 1,
         \ }
 endfunction

@@ -369,7 +369,8 @@ that caused Neoformat to be invoked.
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`standard`](https://standardjs.com/),
     [`semistandard`](https://github.com/standard/semistandard),
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`biome format`](https://biomejs.dev)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
@@ -378,11 +379,13 @@ that caused Neoformat to be invoked.
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
-    [`topiary`](https://topiary.tweag.io)
+    [`topiary`](https://topiary.tweag.io),
+    [`biome format`](https://biomejs.dev)
 - JSONC (JSON with comments)
   - [`prettierd`](https://github.com/fsouza/prettierd),
     [`prettier`](https://github.com/prettier/prettier),
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`biome format`](https://biomejs.dev)
 - jsonnet
   - [`jsonnetfmt`](https://github.com/google/jsonnet)
 - Kotlin
@@ -538,7 +541,8 @@ that caused Neoformat to be invoked.
     [`tslint`](https://palantir.github.io/tslint),
     [`eslint_d`](https://github.com/mantoni/eslint_d.js),
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`biome format`](https://biomejs.dev)
 - V
   - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA

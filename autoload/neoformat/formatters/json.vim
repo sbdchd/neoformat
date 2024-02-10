@@ -1,5 +1,5 @@
 function! neoformat#formatters#json#enabled() abort
-    return ['jsbeautify', 'prettydiff', 'prettierd', 'prettier', 'jq', 'fixjson', 'denofmt', 'topiary']
+    return ['jsbeautify', 'prettydiff', 'prettierd', 'prettier', 'jq', 'fixjson', 'denofmt', 'topiary', 'biome']
 endfunction
 
 function! neoformat#formatters#json#jsbeautify() abort
@@ -58,5 +58,15 @@ function! neoformat#formatters#json#topiary() abort
         \ 'no_append': 1,
         \ 'stdin': 1,
         \ 'args': ['format', '--language', '"json"' ]
+        \ }
+endfunction
+
+function! neoformat#formatters#json#biome() abort
+    return {
+        \ 'exe': 'biome',
+        \ 'try_node_exe': 1,
+        \ 'args': ['format', '--stdin-file-path="%:p"'],
+        \ 'no_append': 1,
+        \ 'stdin': 1,
         \ }
 endfunction
