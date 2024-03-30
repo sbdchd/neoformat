@@ -345,6 +345,7 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`standard`](https://standardjs.com/),
     [`semistandard`](https://github.com/standard/semistandard),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`biome`](https://biomejs.dev)
 - JSON
   - [`js-beautify`](https://github.com/beautify-web/js-beautify),
     [`prettydiff`](https://github.com/prettydiff/prettydiff),
@@ -353,7 +354,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`jq`](https://stedolan.github.io/jq/),
     [`fixjson`](https://github.com/rhysd/fixjson),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
-    [`topiary`](https://topiary.tweag.io)
+    [`topiary`](https://topiary.tweag.io),
+    [`biome`](https://biomejs.dev)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint)
     [`prettierd`](https://github.com/fsouza/prettierd),
@@ -499,7 +501,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`tslint`](https://palantir.github.io/tslint)
     [`eslint_d`](https://github.com/mantoni/eslint_d.js)
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
-    [`deno fmt`](https://deno.land/manual/tools/formatter)
+    [`deno fmt`](https://deno.land/manual/tools/formatter),
+    [`biome`](https://biomejs.dev)
 - Toml
   - [`taplo`](https://taplo.tamasfe.dev/cli/usage/formatting.html),
     [`topiary`](https://topiary.tweag.io)

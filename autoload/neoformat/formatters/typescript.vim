@@ -1,5 +1,5 @@
 function! neoformat#formatters#typescript#enabled() abort
-   return ['tsfmt', 'prettierd', 'prettier', 'prettiereslint', 'tslint', 'eslint_d', 'clangformat', 'denofmt']
+   return ['tsfmt', 'prettierd', 'prettier', 'prettiereslint', 'tslint', 'eslint_d', 'clangformat', 'denofmt', 'biome']
 endfunction
 
 function! neoformat#formatters#typescript#tsfmt() abort
@@ -74,6 +74,16 @@ function! neoformat#formatters#typescript#denofmt() abort
     return {
         \ 'exe': 'deno',
         \ 'args': ['fmt','--ext','ts','-'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
+function! neoformat#formatters#javascript#biome() abort
+    return {
+        \ 'exe': 'biome',
+        \ 'try_node_exe': 1,
+        \ 'args': ['format', '--stdin-file-path="%:p"'],
+        \ 'no_append': 1,
         \ 'stdin': 1,
         \ }
 endfunction
