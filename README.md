@@ -388,6 +388,8 @@ that caused Neoformat to be invoked.
     [`biome format`](https://biomejs.dev)
 - jsonnet
   - [`jsonnetfmt`](https://github.com/google/jsonnet)
+- just
+  - [`just`](https://github.com/casey/just)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
     [`prettierd`](https://github.com/fsouza/prettierd),
