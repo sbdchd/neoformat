@@ -78,7 +78,7 @@ function! neoformat#formatters#typescript#denofmt() abort
         \ }
 endfunction
 
-function! neoformat#formatters#javascript#biome() abort
+function! neoformat#formatters#typescript#biome() abort
     return {
         \ 'exe': 'biome',
         \ 'try_node_exe': 1,
