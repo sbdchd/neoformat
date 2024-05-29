@@ -545,6 +545,9 @@ that caused Neoformat to be invoked.
     [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html),
     [`deno fmt`](https://deno.land/manual/tools/formatter),
     [`biome format`](https://biomejs.dev)
+- Typst
+  - [`typstfmt`](https://github.com/astrale-sharp/typstfmt)
+    [`typstyle`](https://github.com/Enter-tainer/typstyle)
 - V
   - `v fmt` (ships with [`v`](https://vlang.io))
 - VALA
