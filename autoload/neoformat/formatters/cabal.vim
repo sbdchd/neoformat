@@ -4,7 +4,9 @@ endfunction
 
 function! neoformat#formatters#cabal#cabalfmt() abort
     return {
+        \ 'args' : [expand('%:p')],
         \ 'exe' : 'cabal-fmt',
-        \ 'stdin' : 1,
+        \ 'no_append' : 1,
+        \ 'stdin' : 0
         \ }
 endfunction
