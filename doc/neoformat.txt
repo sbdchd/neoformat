@@ -274,6 +274,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
   - [mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 - Elm
   - [`elm-format`](https://github.com/avh4/elm-format)
+- Eruby
+  - [`htmlbeautifier`](https://github.com/threedaymonk/htmlbeautifier)
 - Erlang
   - [`erlfmt`](https://github.com/WhatsApp/erlfmt)
 - Fish
