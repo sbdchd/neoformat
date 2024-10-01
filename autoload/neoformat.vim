@@ -113,11 +113,15 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
             call neoformat#utils#log_file_content(cmd.stderr_log)
         endif
         if process_ran_succesfully
-            " 1. append the lines that are before and after the formatterd content
+            " 1. append the lines that are before and after the formatted content
             let lines_after = getbufline(bufnr('%'), a:end_line + 1, '$')
             let lines_before = getbufline(bufnr('%'), 1, a:start_line - 1)
 
+            if get(definition, 'indent_output')
+                let stdout = s:indent_output(stdout, lines_before)
+            endif
             let new_buffer = lines_before + stdout + lines_after
+
             if new_buffer !=# original_buffer
 
                 call s:deletelines(len(new_buffer), line('$'))
@@ -148,6 +152,29 @@ function! s:neoformat(bang, user_input, start_line, end_line) abort
     elseif len(formatters_failed) == 0
         call neoformat#utils#msg('no change necessary')
     endif
+endfunction
+
+function! s:indent_output(output, lines_before)
+    if empty(a:output)
+        return []
+    endif
+
+    " guess indent based on the previous line
+    let prev_line = a:lines_before[-1]
+		" see if the line is indented with tabs
+    let tab_count = matchend(prev_line, '^\t*')
+
+		if tab_count > 0
+        let indent_str = repeat("\t", tab_count + 1)
+		else
+        let indent_str = repeat(' ', matchend(prev_line, '^\s*') + &shiftwidth)
+		endif
+
+		for i in range(0, len(a:output) - 1, 1)
+				let a:output[i] = indent_str . a:output[i]
+		endfor
+
+		return a:output
 endfunction
 
 function! s:get_enabled_formatters(filetype) abort

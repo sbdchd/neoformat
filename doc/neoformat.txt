@@ -96,6 +96,7 @@ Options:
 	     used when the `path` is in the middle of a command | default: 0 |
 	     optional
 | `env`       | list of environment variables to prepend to the command | default: [] | optional
+| `indent_output` | wether or not to indent the output automatically, based on the previous line | default: 0 | optional
 
 | `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices | \[0] | optional
 | `try_node_exe` | attempt to find `exe` in a `node_modules/.bin` directory in the current working directory or one of its parents (requires setting `g:neoformat_try_node_exe`) | default: 0 | optional
