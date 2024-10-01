@@ -1,5 +1,5 @@
 function! neoformat#formatters#typst#enabled() abort
-    return ['typst', 'typstyle']
+    return ['typstfmt', 'typstyle']
 endfunction
 
 function! neoformat#formatters#typst#typstfmt() abort
