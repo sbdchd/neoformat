@@ -21,6 +21,6 @@ function! neoformat#formatters#ocaml#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'stdin': 1,
-        \ 'args': ['format', '--language', '"ocaml"' ]
+        \ 'args': ['format', '--merge-configuration', '--language', '"ocaml"' ]
         \ }
 endfunction

@@ -13,6 +13,6 @@ function! neoformat#formatters#rust#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'stdin': 1,
-        \ 'args': ['format', '--language', '"rust"' ]
+        \ 'args': ['format', '--merge-configuration', '--language', '"rust"' ]
         \ }
 endfunction

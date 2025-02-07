@@ -1,5 +1,5 @@
 function! neoformat#formatters#css#enabled() abort
-    return ['stylelint', 'stylefmt', 'prettierd', 'prettier', 'cssbeautify', 'prettydiff', 'csscomb']
+    return ['stylelint', 'stylefmt', 'prettierd', 'prettier', 'cssbeautify', 'prettydiff', 'csscomb', 'topiary']
 endfunction
 
 function! neoformat#formatters#css#cssbeautify() abort
@@ -63,4 +63,13 @@ function! neoformat#formatters#css#stylelint() abort
             \ 'stdin': 1,
             \ 'try_node_exe': 1,
             \ }
+endfunction
+
+function! neoformat#formatters#json#topiary() abort
+    return {
+        \ 'exe': 'topiary',
+        \ 'no_append': 1,
+        \ 'stdin': 1,
+        \ 'args': ['format', '--merge-configuration', '--language', '"css"' ]
+        \ }
 endfunction

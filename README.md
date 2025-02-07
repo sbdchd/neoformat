@@ -264,7 +264,8 @@ that caused Neoformat to be invoked.
     [`stylelint`](https://stylelint.io/),
     [`csscomb`](http://csscomb.com),
     [`prettierd`](https://github.com/fsouza/prettierd),
-    [`prettier`](https://github.com/prettier/prettier)
+    [`prettier`](https://github.com/prettier/prettier),
+    [`topiary`](https://topiary.tweag.io)
 - CSV
   - [`prettydiff`](https://github.com/prettydiff/prettydiff)
 - Cue
