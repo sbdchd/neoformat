@@ -29,7 +29,7 @@ endfunction
 function! neoformat#formatters#cs#csharpier() abort
     return {
         \ 'exe': 'dotnet',
-        \ 'args': ['csharpier'],
+        \ 'args': ['csharpier', 'format'],
         \ 'stdin': 1,
         \ }
 endfunction
