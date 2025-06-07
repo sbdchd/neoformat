@@ -5,6 +5,7 @@ endfunction
 function! neoformat#formatters#beancount#beanformat() abort
     return {
         \ 'exe': 'bean-format',
+        \ 'args': ['-'],
         \ 'stdin': 1,
         \ }
 endfunction
