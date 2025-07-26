@@ -65,7 +65,7 @@ function! neoformat#formatters#css#stylelint() abort
             \ }
 endfunction
 
-function! neoformat#formatters#json#topiary() abort
+function! neoformat#formatters#css#topiary() abort
     return {
         \ 'exe': 'topiary',
         \ 'no_append': 1,
