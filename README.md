@@ -393,6 +393,8 @@ that caused Neoformat to be invoked.
   - [`jsonnetfmt`](https://github.com/google/jsonnet)
 - just
   - [`just`](https://github.com/casey/just)
+- KDL
+  - [`kdlfmt`](https://github.com/hougesen/kdlfmt/)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint),
     [`prettierd`](https://github.com/fsouza/prettierd),
