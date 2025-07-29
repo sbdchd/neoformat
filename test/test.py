@@ -2,11 +2,12 @@
 
 import subprocess
 
-from os import listdir
+import os
 from shutil import copyfile
 
+
 def run_vim_cmd(cmd, filename=''):
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {cmd} | wq " --headless {filename}'
+    cmd = f'vim -u vimrc -c "set verbose=1 | {cmd} | wq "  {filename}'
     return run_cmd(cmd)
 
 
@@ -23,10 +24,18 @@ def test_formatters():
     '''
     run formatters on entire buffer
     '''
-    for filename in listdir('before'):
+
+    files = os.listdir('before')
+
+    ignored = set(['.mypy_cache'])
+
+    filtered_files = (f for f in files if f not in ignored)
+
+    for filename in filtered_files:
+        assert filename != '.mypy_cache'
         output_file = '/tmp/neoformat_' + filename
         formatter = filename.split('.')[0]
-        cmd = f'nvim -u vimrc -c "set verbose=1 | Neoformat {formatter} | w! {output_file} | q! " --headless ./before/{filename}'
+        cmd = f'vim -u vimrc -c "set verbose=1 | Neoformat {formatter} | w! {output_file} | q! "  ./before/{filename}'
         run_cmd(cmd)
         before = readlines(output_file)
         after = readlines('./after/' + filename)
@@ -45,7 +54,7 @@ def test_visual_selection_multi_filetype():
         (filetype, start_line, end_line) = test
         print(start_line)
         vim_cmd = f'{start_line},{end_line}Neoformat! {filetype}'
-        cmd = f'nvim -u vimrc -c "set verbose=1 | {vim_cmd} | wq " --headless {output_file}'
+        cmd = f'vim -u vimrc -c "set verbose=1 | {vim_cmd} | wq "  {output_file}'
         run_cmd(cmd)
 
     before = readlines(output_file)
@@ -59,10 +68,10 @@ def test_visual_selection_with_filetype_and_formatter():
     '''
     dir_before = 'visual_before/'
     dir_after = 'visual_after/'
-    for filename in listdir(dir_before):
+    for filename in os.listdir(dir_before):
         (filetype, formatter, start_line, end_line) = filename.split('_')
         output_file = '/tmp/neoformat_' + filename
-        cmd = f'nvim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} {formatter} | w! {output_file} | q! " --headless {dir_before + filename}'
+        cmd = f'vim -u vimrc -c "set verbose=1 | {start_line},{end_line}Neoformat! {filetype} {formatter} | w! {output_file} | q! "  {dir_before + filename}'
         run_cmd(cmd)
         before = readlines(output_file)
         after = readlines(dir_after + filename)
@@ -81,7 +90,7 @@ def test_formatprg_with_neoformat():
     let &formatprg = 'css-beautify -s 6 -n'
     let g:neoformat_try_formatprg = 1
     '''
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    cmd = f'vim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! "  {dir_before + filename}'
     run_cmd(cmd)
     before = readlines(output_file)
     after = readlines('./after/cssbeautify-indent-6.css')
@@ -99,7 +108,7 @@ def test_formatprg_without_enable():
     viml = '''
     let &formatprg = 'css-beautify -s 6 -n'
     '''
-    cmd = f'nvim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! " --headless {dir_before + filename}'
+    cmd = f'vim -u vimrc -c "set verbose=1 | {viml} | Neoformat | w! {output_file} | q! "  {dir_before + filename}'
     run_cmd(cmd)
     before = readlines(output_file)
     after = readlines('./after/cssbeautify.css')
@@ -110,7 +119,7 @@ def test_vader():
     '''
     run *.vader tests
     '''
-    cmd = f'nvim -u vimrc -c "Vader! *.vader" --headless'
+    cmd = f'vim -u vimrc -c "Vader! *.vader" '
     exit_code = run_cmd(cmd)
     assert exit_code == 0
 
@@ -119,7 +128,7 @@ def test_autocompletion():
     '''
     run the vim autocompletion tests
     '''
-    cmd = f'nvim -u vimrc -c "source autocomplete_test.vim" --headless'
+    cmd = f'vim -u vimrc -c "source autocomplete_test.vim" '
     exit_code = run_cmd(cmd)
     assert exit_code == 0
 
