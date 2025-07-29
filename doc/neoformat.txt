@@ -358,6 +358,8 @@ SUPPORTED FILETYPES				*neoformat-supported-filetypes*
     [`deno fmt`](https://deno.land/manual/tools/formatter),
     [`topiary`](https://topiary.tweag.io),
     [`biome`](https://biomejs.dev)
+- KDL
+  - [`kdlfmt`](https://github.com/hougesen/kdlfmt/)
 - Kotlin
   - [`ktlint`](https://github.com/shyiko/ktlint)
     [`prettierd`](https://github.com/fsouza/prettierd),
