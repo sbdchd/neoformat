@@ -44,8 +44,7 @@ endfunction
 function! neoformat#formatters#html#prettydiff() abort
     return {
         \ 'exe': 'prettydiff',
-        \ 'args': ['mode:"beautify"',
-                 \ 'lang:"html"',
+        \ 'args': ['beautify',
                  \ 'readmethod:"filescreen"',
                  \ 'endquietly:"quiet"',
                  \ 'source:"%:p"'],
