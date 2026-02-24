@@ -28,6 +28,13 @@ function! neoformat#utils#should_be_verbose() abort
     return &verbose || g:neoformat_verbose
 endfunction
 
+function! neoformat#utils#should_be_compact() abort
+    if !exists('g:neoformat_compact')
+        let g:neoformat_compact = 1
+    endif
+    return g:neoformat_compact
+endfunction
+
 function! s:better_echo(msg) abort
     if type(a:msg) != type('')
         echom 'Neoformat: ' . string(a:msg)
