@@ -213,6 +213,16 @@ augroup fmt
 augroup END
 ```
 
+However, undojoin is not allowed after undo, and save the buffer , the 
+following script will attempts to catch that error and perform a normal 
+format instead:
+```viml
+augroup fmt
+  autocmd!
+  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+augroup END
+```
+
 When `undojoin` is used this way pressing `u` will "skip over" the Neoformat
 changes - it will revert both the changes made by Neoformat and the change
 that caused Neoformat to be invoked.
