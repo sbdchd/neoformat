@@ -98,7 +98,7 @@ Options:
 | `env`       | list of environment variables to prepend to the command | default: [] | optional
 
 | `valid_exit_codes` | list of valid exit codes for formatters who do not respect common unix practices | \[0] | optional
-| `try_node_exe` | attempt to find `exe` in a `node_modules/.bin` directory in the current working directory or one of its parents (requires setting `g:neoformat_try_node_exe`) | default: 0 | optional
+| `try_node_exe` | attempt to find `exe` in `node_modules/.bin` next to the current file or in one of its parent directories (requires setting `g:neoformat_try_node_exe`) | default: 0 | optional
 
 Example:
 
@@ -152,8 +152,9 @@ When debugging, you can enable either of following variables for extra logging.
     let &verbose            = 1 " also increases verbosity of the editor as a whole
 <
 Have Neoformat look for a formatter executable in the `node_modules/.bin`
-directory in the current working directory or one of its parents (only applies
-to formatters with `try_node_exe` set to `1`):
+directory next to the current file or in one of its parent directories (only applies
+to formatters with `try_node_exe` set to `1`). For unnamed buffers, the search
+starts in the current working directory:
 >
     let g:neoformat_try_node_exe = 1
 <

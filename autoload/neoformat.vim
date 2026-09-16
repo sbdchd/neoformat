@@ -221,7 +221,8 @@ function! s:split_filetypes(filetype) abort
 endfunction
 
 function! s:get_node_exe(exe) abort
-    let node_exe = findfile('node_modules/.bin/' . a:exe, getcwd() . ';')
+    let start_dir = empty(expand('%')) ? getcwd() : expand('%:p:h')
+    let node_exe = findfile('node_modules/.bin/' . a:exe, start_dir . ';')
     if !empty(node_exe) && executable(node_exe)
         return node_exe
     endif
