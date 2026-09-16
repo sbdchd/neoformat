@@ -1,0 +1,37 @@
+Before:
+  enew!
+  let g:neoformat_node_test_dir = tempname()
+  let g:neoformat_node_test_cwd = getcwd()
+  call mkdir(g:neoformat_node_test_dir . '/project/node_modules/.bin', 'p')
+  call mkdir(g:neoformat_node_test_dir . '/project/src', 'p')
+  call writefile(['#!/bin/sh', 'printf "local formatter\n"'], g:neoformat_node_test_dir . '/project/node_modules/.bin/neoformat-test-node')
+  call setfperm(g:neoformat_node_test_dir . '/project/node_modules/.bin/neoformat-test-node', 'rwx------')
+  let g:neoformat_try_node_exe = 1
+  let g:neoformat_nodefixture_local = {
+        \ 'exe': 'neoformat-test-node',
+        \ 'try_node_exe': 1,
+        \ 'stdin': 1,
+        \ 'no_append': 1,
+        \ }
+  let g:neoformat_enabled_nodefixture = ['local']
+  execute 'cd' fnameescape(g:neoformat_node_test_dir)
+
+After:
+  execute 'cd' fnameescape(g:neoformat_node_test_cwd)
+  call delete(g:neoformat_node_test_dir, 'rf')
+  unlet g:neoformat_try_node_exe g:neoformat_nodefixture_local g:neoformat_enabled_nodefixture
+  unlet g:neoformat_node_test_dir g:neoformat_node_test_cwd
+
+Execute (find a formatter from a buffer in a nested project):
+  execute 'file' fnameescape(g:neoformat_node_test_dir . '/project/src/file.js')
+  setlocal filetype=nodefixture
+  call setline(1, 'original')
+  Neoformat
+  AssertEqual ['local formatter'], getline(1, '$')
+
+Execute (use the working directory for an unnamed buffer):
+  execute 'cd' fnameescape(g:neoformat_node_test_dir . '/project')
+  setlocal filetype=nodefixture
+  call setline(1, 'original')
+  Neoformat
+  AssertEqual ['local formatter'], getline(1, '$')
